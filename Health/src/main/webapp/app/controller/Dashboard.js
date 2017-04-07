@@ -1,27 +1,36 @@
 'use strict'
 
-function createLineChart(){
+function selectChart(){
+    createChart("lineChkBox", "lineChartDiv", createLineChart);
+    createChart("barChkBox", "barChartDiv", createBarChart);
+    createChart("pieChkBox", "pieChartDiv", createPieChart);
+    createChart("doughnutChkBox", "doughnutChartDiv", createDoughnutChart);
+    createChart("stackedChkBox", "stackedChartDiv", createStackedChart);
+}
 
+function createChart(checkBoxName, chartDivName, viewChart){
+    if(document.getElementById(checkBoxName).checked){
+        viewChart();
+        document.getElementById(chartDivName).style.display = 'block';
+    }else{
+        document.getElementById(chartDivName).style.display = 'none';
+    }
+}
+
+function createLineChart(){
     var data = new Data();
     data.label = '2015';
     data.data = [10, 8, 6, 5, 12, 8, 16, 17, 6, 7, 6, 10];
     data.labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
     var lineChart = new LineChart('line',data);
-
-    var ctx = document.getElementById("lineChart");
-    var lineChart1 = new Chart(ctx, {
-        type: lineChart.type,
-        data: {
-          labels: lineChart.data.labels,
-          datasets: [{
-            label: lineChart.data.label,
-            data: lineChart.data.data
-          }]
-        }
-    });
+    lineChart.generateChart();
 }
 
+
+
+/*
+ *  Change Below code to use respective models.
+*/
 function createBarChart(){
 var ctx1 = document.getElementById("barChart");
     var myChart = new Chart(ctx1, {
@@ -157,21 +166,4 @@ var stackedLine = new Chart(ctx, {
         }
     }
 });
-}
-
-function selectChart(){
-    createChart("lineChkBox", "lineChartDiv", createLineChart);
-    createChart("barChkBox", "barChartDiv", createBarChart);
-    createChart("pieChkBox", "pieChartDiv", createPieChart);
-    createChart("doughnutChkBox", "doughnutChartDiv", createDoughnutChart);
-    createChart("stackedChkBox", "stackedChartDiv", createStackedChart);
-}
-
-function createChart(checkBoxName, chartDivName, viewChart){
-    if(document.getElementById(checkBoxName).checked){
-        viewChart();
-        document.getElementById(chartDivName).style.display = 'block';
-    }else{
-        document.getElementById(chartDivName).style.display = 'none';
-    }
 }
