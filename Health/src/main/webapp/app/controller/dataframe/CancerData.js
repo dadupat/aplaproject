@@ -96,18 +96,21 @@ function getMultiselectData(){
 	var valuesyear = [];
 	var valuescancer = [];
 
+	if(null != gnder)
 	for (var i = 0; i < gnder.options.length; i++) {
 		if (gnder.options[i].selected) {
 			valuesgender.push(gnder.options[i].value);
 		}
 	}
 
+	if(null != yer)
 	for (var i = 0; i < yer.options.length; i++) {
 		if (yer.options[i].selected) {
 			valuesyear.push(yer.options[i].value);
 		}
 	}
 
+	if(null != cncrTyp)
 	for (var i = 0; i < cncrTyp.options.length; i++) {
 		if (cncrTyp.options[i].selected) {
 			valuescancer.push(cncrTyp.options[i].value);
