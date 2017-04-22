@@ -3,13 +3,47 @@
  */
 
 function getCancerData(){
- 	//getCancerTable();
  	var years = [];
  	var gender = ['female', 'male'];
  	//getCancerQuery('All', gender, years);
-
+ 	getColumnName();
  	getCancerTable();
  }
+
+/*function getCancerData(){
+	getColumnData();
+	getColumnDistinctValues();
+	getCancerTable();
+}*/
+
+function getColumnName(){
+	var DataFrame = dfjs.DataFrame;
+	  DataFrame.fromCSV('./DownloadableContent/CancerRate.csv').then(
+				 df => {
+				     //data = df.toArray();
+				     //console.log(typeof(data));
+				     var columns = df.listColumns();
+				     console.log('--------Column Names-------');
+				     console.log (columns);
+				     console.log('--------Column Distinct Values-------');
+				     for (var i = 0; i<columns.length; i++ ){
+				    	 console.log('--------------' + columns[i] + '------------');
+				    	 var distinctArray = df.distinct(columns[i]).toDict()[columns[i]];
+				    	 console.log (distinctArray);
+				     }
+				     df.distinct('column1')
+				     
+	                      /*for(var i=0; i<data.length; i++){
+	                    	  console.log (data[i]);
+	                          for(var j=0; j<data[i].length; j++){
+	                             console.log(data[i][j]);
+	                          }
+	                      }*/
+				 }
+				).catch(err => {
+				 console.log(err);
+				});
+}
 
 function getCancerTable() {
 
