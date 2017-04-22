@@ -20,30 +20,107 @@ function getColumnName(){
 	var DataFrame = dfjs.DataFrame;
 	  DataFrame.fromCSV('./DownloadableContent/CancerRate.csv').then(
 				 df => {
-				     //data = df.toArray();
-				     //console.log(typeof(data));
-				     var columns = df.listColumns();
-				     console.log('--------Column Names-------');
-				     console.log (columns);
-				     console.log('--------Column Distinct Values-------');
-				     for (var i = 0; i<columns.length; i++ ){
-				    	 console.log('--------------' + columns[i] + '------------');
-				    	 var distinctArray = df.distinct(columns[i]).toDict()[columns[i]];
-				    	 console.log (distinctArray);
-				     }
-				     df.distinct('column1')
-				     
-	                      /*for(var i=0; i<data.length; i++){
-	                    	  console.log (data[i]);
-	                          for(var j=0; j<data[i].length; j++){
-	                             console.log(data[i][j]);
-	                          }
-	                      }*/
+
+				     	var columns = df.listColumns();
+						var div = document.getElementById('some_div');
+						for(var i=0;i<columns.length-1;i++){
+
+							var checkbox = document.createElement('input');
+							checkbox.type = 'checkbox';
+							checkbox.name = columns[i];
+							checkbox.value = columns[i];
+							checkbox.id = columns[i];
+							checkbox.onchange = new Function("onchangeHandler('" + columns[i] + "')"); 
+						
+							div.appendChild(checkbox);
+							var label = document.createElement('label');
+							label.htmlFor="id"+i;  
+							label.appendChild(document.createTextNode(columns[i]));
+							div.appendChild(label);
+						}
 				 }
 				).catch(err => {
 				 console.log(err);
 				});
 }
+
+function onchangeHandler(cb){
+	var chkbox=document.getElementById(cb);	
+    var DataFrame = dfjs.DataFrame;
+    DataFrame.fromCSV('./DownloadableContent/CancerRate.csv').then(
+                 df => {
+                         	var distinctArray = df.distinct(cb).toDict()[cb];
+                        
+				  			var div = document.getElementById('multiselectdropdown');
+							var selectBox = document.createElement('select');
+							selectBox.type = 'select';
+							selectBox.name = cb;
+							selectBox.value = cb;
+							selectBox.id = 'idselect'+cb;
+							selectBox.multiple=true;
+							
+							for (var i = 0; i<distinctArray.length; i++){
+								var opt = document.createElement('option');
+								opt.value = distinctArray[i];
+								opt.innerHTML = distinctArray[i];
+								selectBox.appendChild(opt);
+							}
+
+							if (chkbox.checked) {
+									div.appendChild(selectBox);
+									var label = document.createElement('label');
+									label.htmlFor='idlabel'+cb;
+									label.id= 'idlabel'+cb; 
+									label.appendChild(document.createTextNode(cb));
+									div.appendChild(label);
+  								} else {
+									var div111 = document.getElementById('idselect'+cb);
+									var div222 = document.getElementById('idlabel'+cb);
+									div.removeChild(div111);
+									div.removeChild(div222);	
+  								}
+                     }
+       
+                ).catch(err => {
+                 console.log(err);
+                });  
+
+
+}
+
+function getMultiselectData(){
+	var gnder = document.getElementById('idselectGender');
+	var yer = document.getElementById('idselectYear');
+	var cncrTyp = document.getElementById('idselectCancerType');
+	var valuesgender = [];
+	var valuesyear = [];
+	var valuescancer = [];
+
+	for (var i = 0; i < gnder.options.length; i++) {
+		if (gnder.options[i].selected) {
+			valuesgender.push(gnder.options[i].value);
+		}
+	}
+
+	for (var i = 0; i < yer.options.length; i++) {
+		if (yer.options[i].selected) {
+			valuesyear.push(yer.options[i].value);
+		}
+	}
+
+	for (var i = 0; i < cncrTyp.options.length; i++) {
+		if (cncrTyp.options[i].selected) {
+			valuescancer.push(cncrTyp.options[i].value);
+		}
+	}
+
+	console.log(valuesgender);
+	console.log(valuesyear);
+	console.log(valuescancer);
+	
+	getCancerQuery(valuescancer, valuesgender, valuesyear);
+}
+
 
 function getCancerTable() {
 
