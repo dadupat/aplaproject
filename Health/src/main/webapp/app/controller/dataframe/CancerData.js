@@ -394,10 +394,11 @@ function getCancerQuery(cancerType, gender, years) {
 	     });
 	     
 	     
-	     
+	   DataFrame.sql.dropTable('cancerTable');  
 	 }
 	).catch(err => {
 	 console.log(err);
 	});
+	
 }
 
