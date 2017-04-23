@@ -4,7 +4,7 @@ class DataSetFactory{
         
     }
 
-    getDataSet(var DataSetName){
+    getDataSet(DataSetName){
     	if (DataSetName == 'accident'){
         	return new AccidentDataSet();
         }

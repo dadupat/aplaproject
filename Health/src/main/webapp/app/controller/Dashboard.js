@@ -1,7 +1,7 @@
 'use strict'
 class DashBoard{
 
-    var dataSetFactory = new DataSetFactory();
+    dataSetFactory = new DataSetFactory();
 
     createTable(dataType){
         var dataSet = dataSetFactory.getDataSet(dataType);
