@@ -26,7 +26,13 @@ class CancerDataSet extends DataSet{
 		DataFrame.fromCSV('./DownloadableContent/CancerRate.csv').then(
 		df => {
 			var columns = df.listColumns();
-			return columns ;
+			var distColumnValues = [];
+			
+			for (var i=0; i<columns.length; i++){
+				distColumnValues[i] = df.distinct(columns[i]).toDict()[columns[i]];
+			}
+			
+			return distColumnValues;
 			}
 		}
 	).catch(err => {
@@ -82,26 +88,6 @@ class CancerDataSet extends DataSet{
              console.log(query);
              var dataRows = DataFrame.sql.request(query).toArray();
              console.log(dataRows.length);
-
-             var maleData = new Data();
-             maleData.label = 'Male';
-             maleData.data = [];
-             var femaleData = new Data();
-             femaleData.label = 'Female';
-             femaleData.data = [];
-
-             for (var i=0; i<dataRows.length; i++){
-                 console.log(dataRows[i]);
-                 if (dataRows[i][1] == 'male'){
-                     maleData.data.push(dataRows[i][3]);
-                 }else{
-                     femaleData.data.push(dataRows[i][3]);
-                 }
-             }
-
-             console.log(maleData.data);
-             console.log(femaleData.data);
-		
-		
+             return dataRows();
 	}
 }
