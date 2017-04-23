@@ -6,8 +6,8 @@ class StackedChart extends ChartObserver {
         this.data= data;
     }
 
-    generateChart(){
-        var ctx = document.getElementById("lineChart");
+    generateChart(ctxId){
+        var ctx = document.getElementById(ctxId);
         var lineChart1 = new Chart(ctx, {
             type: this.type,
             data: {
