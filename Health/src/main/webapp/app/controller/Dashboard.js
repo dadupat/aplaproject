@@ -40,6 +40,12 @@ class DashBoard{
         var cancerData = new CancerData();
         cancerData.getCancerData();
     }
+
+    getColumnName(){
+
+    }
+
+
 }
 
 var dashboard = new DashBoard();
