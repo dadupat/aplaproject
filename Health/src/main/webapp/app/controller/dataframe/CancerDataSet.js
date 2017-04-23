@@ -118,12 +118,17 @@ class CancerDataSet extends DataSet{
         	     
         		
         		var datasetObjArray=new Array();
-        		var datasetObj = new DatasetObj(maleDatalabel,maleData,malecolor,malebordercolor,1, years);
+        		var datasetObj = new DatasetObj(maleDatalabel,maleData,malecolor,malebordercolor,1);
         		datasetObjArray.push(datasetObj);
-        		datasetObj= new DatasetObj(femaleDatalabel,femaleData,femalecolor,femalebordercolor,1, years);
+        		datasetObj= new DatasetObj(femaleDatalabel,femaleData,femalecolor,femalebordercolor,1);
         		datasetObjArray.push(datasetObj);
         		DataFrame.sql.dropTable('cancerTable');
-                 return datasetObjArray;
+        		
+        		var result = new Array();
+        		result.push (years);
+        		result.push (datasetObjArray);
+        		
+                 return result;
                  
                  
 	        }

@@ -53,14 +53,18 @@ class DashBoard {
                 console.log("queryData: " + queryData);
                 
                 instance.createGraph(queryData);
+                
             }
         });
     }
 
     createGraph(queryData){
         // it will have all query data result which we can pass to new LineChart(any()) to generate different graphs.
-        var lineChart = new LineChart('line', queryData)
-        lineChart.generateChart();
+        /*var lineChart = new LineChart('line', queryData)
+        lineChart.generateChart();*/
+        
+        var barChart= new BarChart('bar',queryData[0], queryData[1]);
+		 	barChart.generateChart();
         //same for all chart type.
     }
 }
