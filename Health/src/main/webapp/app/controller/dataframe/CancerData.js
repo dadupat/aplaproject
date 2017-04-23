@@ -4,20 +4,6 @@ class CancerData{
     constructor () {
     }
 
-    getCancerData(){
-        var years = [];
-        var gender = ['female', 'male'];
-        //getCancerQuery('All', gender, years);
-        this.getColumnName();
-        this.getCancerTable();
-     }
-
-    /*function getCancerData(){
-        getColumnData();
-        getColumnDistinctValues();
-        getCancerTable();
-    }*/
-
     getColumnName(){
         var DataFrame = dfjs.DataFrame;
           DataFrame.fromCSV('./DownloadableContent/CancerRate.csv').then(
