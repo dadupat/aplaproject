@@ -45,7 +45,9 @@ class CancerDataSet extends DataSet{
 		var tableData = DataFrame.fromCSV(this.filename).then(
             df => {
                 var data = df.toArray();
+                data[data.length] = df.listColumns();
                 return data;
+                
             }
         ).catch(err => {
             console.log(err);
