@@ -43,40 +43,24 @@ class DashBoard {
         document.getElementById('toAppend').appendChild(newDiv);
     }
 
-    //Modify this should be more functionality specific.
-    getMultiSelectData(){
-        var gender = document.getElementById('idselectGender');
-        var year = document.getElementById('idselectYear');
-        var cancerType = document.getElementById('idselectCancerType');
-        var valuesGender = [];
-        var valuesYear = [];
-        var valuesCancer = [];
-
-        if(null != gender){
-            for (var i = 0; i < gender.options.length; i++) {
-                if (gender.options[i].selected) {
-                    valuesGender.push(gender.options[i].value);
-                }
+    generateGraph(){
+        var instance = this;
+        var dataSetFactory = new DataSetFactory();
+        var dataSet = dataSetFactory.getDataSet('cancer');
+        var queryResultPromise = dataSet.getMultiSelectData();
+        queryResultPromise.then(function(queryData){
+            if(queryData != undefined){
+                console.log("queryData: " + queryData);
+                instance.displayTable(queryData);
             }
-        }
+        });
+    }
 
-        if(null != year){
-            for (var i = 0; i < year.options.length; i++) {
-                if (year.options[i].selected) {
-                    valuesYear.push(year.options[i].value);
-                }
-            }
-        }
-
-        if(null != cancerType){
-            for (var i = 0; i < cancerType.options.length; i++) {
-                if (cancerType.options[i].selected) {
-                    valuesCancer.push(cancerType.options[i].value);
-                }
-            }
-        }
-        // it should return an array and use that value to change UI here
-        cancerData.getCancerQuery(valuesCancer, valuesGender, valuesYear);
+    createGraph(queryData){
+        // it will have all query data result which we can pass to new LineChart(any()) to generate different graphs.
+        var lineChart = new LineChart(queryData)
+        lineChart.generateChart();
+        //same for all chart type.
     }
 }
 

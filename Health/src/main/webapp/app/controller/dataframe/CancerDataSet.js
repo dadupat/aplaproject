@@ -53,7 +53,7 @@ class CancerDataSet extends DataSet{
 
 	getQueryData(cancerType, gender, years){
 		var DataFrame = dfjs.DataFrame;
-        var queryResult = DataFrame.fromCSV('./DownloadableContent/CancerRate.csv').then(
+        return DataFrame.fromCSV('./DownloadableContent/CancerRate.csv').then(
              df => {
 
                  DataFrame.sql.registerTable(df, 'cancerTable');
@@ -82,12 +82,12 @@ class CancerDataSet extends DataSet{
                  console.log(query);
                  var dataRows = DataFrame.sql.request(query).toArray();
                  console.log(dataRows.length);
-                 return dataRows();
+                 DataFrame.sql.dropTable('cancerTable');
+                 return dataRows;
 	        }
         ).catch(err => {
             console.log(err);
         });
-        return queryResult;
     }
 
     getDistinctColumnVal(columnName) {
@@ -143,8 +143,10 @@ class CancerDataSet extends DataSet{
                selectBox.name = instance.cb;
                selectBox.value = instance.cb;
                selectBox.id = 'idselect'+instance.cb;
-               selectBox.multiple=true;
-                console.log(distinctArray);
+               if(instance.cb != 'CancerType'){
+                  selectBox.multiple=true;
+               }
+               console.log(distinctArray);
                for (var i = 0; i<distinctArray.length; i++){
                    var opt = document.createElement('option');
                    opt.value = distinctArray[i];
@@ -167,5 +169,41 @@ class CancerDataSet extends DataSet{
                }
             }
         });
+    }
+
+    getMultiSelectData(){
+        //if possible call  getColumnList iterate on that list to get column names to store in idSelect.
+        var gender = document.getElementById('idselectGender');
+        var year = document.getElementById('idselectYear');
+        var cancerType = document.getElementById('idselectCancerType');
+        var valuesGender = [];
+        var valuesYear = [];
+        var valuesCancer = [];
+
+        if(null != gender){
+            for (var i = 0; i < gender.options.length; i++) {
+                if (gender.options[i].selected) {
+                    valuesGender.push(gender.options[i].value);
+                }
+            }
+        }
+
+        if(null != year){
+            for (var i = 0; i < year.options.length; i++) {
+                if (year.options[i].selected) {
+                    valuesYear.push(year.options[i].value);
+                }
+            }
+        }
+
+        if(null != cancerType){
+            for (var i = 0; i < cancerType.options.length; i++) {
+                if (cancerType.options[i].selected) {
+                    valuesCancer.push(cancerType.options[i].value);
+                }
+            }
+        }
+        // it should return an array and use that value to change UI here
+        return this.getQueryData(valuesCancer, valuesGender, valuesYear);
     }
 }
