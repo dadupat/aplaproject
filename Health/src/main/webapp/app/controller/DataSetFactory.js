@@ -1,38 +1,32 @@
 class DataSetFactory {
+    constructor () {
 
-    constructor (singletonToken) {
-    	if (_singleton != singletonToken){
-    	    throw new Error('Cannot instantiate directly.');
-    	}
     }
 
-    static getFactory (){
-    	if (!this._singleton){
-    	    accidentDataSet = new AccidentDataSet();
-        	birthDataSet = new BirthDataSet();
-        	cancerDataSet = new CancerDataSet();
-        	insuranceDataSet = new InsuranceDataSet();
-        	mortalityDataSet = new MortalityDataSet();
-    		this._singleton = new DataSetFactory(_singleton);
-    	}
-    	return this[_singleton]
-    }
+    /*static getFactory (){
+        this.accidentDataSet = new AccidentDataSet();
+        this.birthDataSet  = new BirthDataSet();
+        this.cancerDataSet = new CancerDataSet();
+        this.insuranceDataSet = new InsuranceDataSet();
+        this.mortalityDataSet = new MortalityDataSet();
+    	return new DataSetFactory();
+    }*/
     
     getDataSet(DataSetName){
     	if (DataSetName == 'accident'){
-        	return accidentDataSet;
+        	return this.accidentDataSet;
         }
         if (DataSetName == 'birth'){
-        	return birthDataSet;
+        	return this.birthDataSet;
         }
         if (DataSetName == 'cancer'){
-        	return cancerDataSet;
+        	return new CancerDataSet();
         }
         if (DataSetName == 'insurance'){
-        	return insuranceDataSet;
+        	return this.insuranceDataSet;
         }
         if (DataSetName == 'mortality'){
-        	return mortalityDataSet;
+        	return this.mortalityDataSet;
         }
     }
 }

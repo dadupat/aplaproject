@@ -1,3 +1,4 @@
+/*
 'use strict'
 class CancerData{
 
@@ -178,7 +179,8 @@ class CancerData{
              console.log(maleData.data);
              console.log(femaleData.data);
 
-    /*	     var ctx = document.getElementById("barChart");
+    */
+/*	     var ctx = document.getElementById("barChart");
 
 
              var lineChart1 = new Chart(ctx, {
@@ -194,7 +196,8 @@ class CancerData{
                        }
                    ]
                  }
-             });*/
+             });*//*
+
 
 
              var malecolor = []
@@ -352,3 +355,4 @@ class CancerData{
     }
 
 }
+*/

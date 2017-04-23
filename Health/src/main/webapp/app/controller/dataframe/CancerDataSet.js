@@ -8,21 +8,21 @@ class CancerDataSet extends DataSet{
     }
     
 	getColumnList() {
-
 		var DataFrame = dfjs.DataFrame;
-			DataFrame.fromCSV('./DownloadableContent/CancerRate.csv').then(
-                df => {
-                    var columns = df.listColumns();
-                    return columns ;
-                }
-            ).catch(err => {
-                console.log(err);
-            });
+        var columns = DataFrame.fromCSV('./DownloadableContent/CancerRate.csv').then(
+            df => {
+                var columns = df.listColumns();
+                return columns;
+            }
+        ).catch(err => {
+            console.log(err);
+        });
+        return columns;
 	}
 
 	getDistinctColumnVal() {
 		var DataFrame = dfjs.DataFrame;
-		DataFrame.fromCSV('./DownloadableContent/CancerRate.csv').then(
+		var distColumnValues = DataFrame.fromCSV('./DownloadableContent/CancerRate.csv').then(
             df => {
                 var columns = df.listColumns();
                 var distColumnValues = [];
@@ -36,11 +36,12 @@ class CancerDataSet extends DataSet{
         ).catch(err => {
         console.log(err);
         });
+        return distColumnValues;
 	}
 
 	getTableData(){
 		var DataFrame = dfjs.DataFrame;
-		DataFrame.fromCSV('./DownloadableContent/CancerRate.csv').then(
+		var tableData = DataFrame.fromCSV('./DownloadableContent/CancerRate.csv').then(
             df => {
                 var data = df.toArray();
                 return data;
@@ -48,11 +49,12 @@ class CancerDataSet extends DataSet{
         ).catch(err => {
             console.log(err);
         });
+        return tableData;
 	}
 
 	getQueryData(cancerType, gender, years){
 		var DataFrame = dfjs.DataFrame;
-        DataFrame.fromCSV('./DownloadableContent/CancerRate.csv').then(
+        var queryResult = DataFrame.fromCSV('./DownloadableContent/CancerRate.csv').then(
              df => {
 
                  DataFrame.sql.registerTable(df, 'cancerTable');
@@ -86,5 +88,6 @@ class CancerDataSet extends DataSet{
         ).catch(err => {
             console.log(err);
         });
+        return queryResult;
     }
 }
