@@ -1,22 +1,40 @@
 class BarChart extends ChartObserver {
 
-    constructor (type, data) {
+    constructor (type,labelsArray, datasetJsonArray) {
         super();
-        this.type = type;
-        this.data= data;
+        this._type = type;
+        this._labelsArray=labelsArray;
+        this._datasetJsonArray=datasetJsonArray;
+     
+
     }
 
-    generateChart(ctxId){
-        var ctx = document.getElementById(ctxId);
+    generateChart(){
+
+       // this.getDatasets();
+       console.log("json in generateChart="+this._datasetJsonArray);
+        var ctx = document.getElementById("barChart");
         var lineChart1 = new Chart(ctx, {
-            type: this.type,
+            type: this._type,
             data: {
-              labels: this.data.labels,
-              datasets: [{
-                label: this.data.label,
-                data: this.data.data
-              }]
-            }
+              labels: this._labelsArray,
+            
+                 datasets:this._datasetJsonArray
+               
+                  },
+            options: {
+	             scales: {
+	                 yAxes: [{
+	                     ticks: {
+	                         beginAtZero:true
+	                     }
+	                 }]
+	             }
+	         }
+            
         });
     }
+
+    
+
 }
