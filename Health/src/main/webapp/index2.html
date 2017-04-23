@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Health Dashboard</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/heroic-features.css" rel="stylesheet">
+    <script src="js/htmlContainer.js"></script>
+    <script src="js/respond.min.js"></script>
+    <script src="js/w3data.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
+    <script src="https://cdn.rawgit.com/Gmousse/dataframe-js/master/dist/dataframe.js"></script>
+    <!--Model Imports-->
+    <script src="./app/model/Data.js"></script>
+    <!--Controller Imports-->
+    <script src="./app/controller/DataSetFactory.js"></script>
+    <script src="./app/controller/dataframe/DataSet.js"></script>
+    <script src="./app/controller/dataframe/AccidentDataSet.js"></script>
+    <script src="./app/controller/dataframe/BirthDataSet.js"></script>
+    <script src="./app/controller/dataframe/CancerDataSet.js"></script>
+    <script src="./app/controller/dataframe/InsuranceDataSet.js"></script>
+    <script src="./app/controller/dataframe/MortalityDataSet.js"></script>
+    <script src="./app/controller/chart/ChartObserver.js"></script>
+    <script src="./app/controller/chart/BarChart.js"></script>
+    <script src="./app/controller/chart/DoughnutChart.js"></script>
+    <script src="./app/controller/chart/LineChart.js"></script>
+    <script src="./app/controller/chart/PieChart.js"></script>
+    <script src="./app/controller/chart/StackedChart.js"></script>
+    <script src="./app/controller/dataframe/CancerData.js"></script>
+    <script src="./app/controller/Dashboard.js"></script>
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Home</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+	
+	<div style="padding-top:20px;">
+        <button onclick="dashboard.getMultiSelectData()">Click me choutu</button>
+    </div>
+
+    <!-- /.row  ./app/views/home.html -->
+    <hr>
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Your Health 2017</p>
+            </div>
+        </div>
+    </footer>
+</div>
+<script>
+w3IncludeHTML();
+</script>
+<!-- /.container -->
+</body>
+</html>

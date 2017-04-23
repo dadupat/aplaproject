@@ -60,8 +60,8 @@ class CancerDataSet extends DataSet{
         return DataFrame.fromCSV(this.filename).then(
              df => {
 
-                 DataFrame.sql.registerTable(df, 'cancerTable');
-                 var query = 'SELECT * FROM cancerTable WHERE CancerType=' + cancerType;
+                 DataFrame.sql.registerTable(df, 'cancerTable', true);
+                 var query = "SELECT * FROM cancerTable WHERE CancerType=" + "'" + cancerType + "'";
 
 
                  if (gender != null && gender.length == 1){
@@ -248,8 +248,8 @@ class CancerDataSet extends DataSet{
         if(null != cancerType){
             for (var i = 0; i < cancerType.options.length; i++) {
                 if (cancerType.options[i].selected) {
-                    var temp = cancerType.options[i].value.split(' ').join('$');
-                    valuesCancer.push(temp);
+                    //var temp = cancerType.options[i].value.split(' ').join('$');
+                    valuesCancer.push(cancerType.options[i].value);
                 }
             }
         }
