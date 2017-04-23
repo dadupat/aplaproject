@@ -239,10 +239,12 @@ class CancerDataSet extends DataSet{
         if(null != cancerType){
             for (var i = 0; i < cancerType.options.length; i++) {
                 if (cancerType.options[i].selected) {
-                    valuesCancer.push(cancerType.options[i].value);
+                    var temp = cancerType.options[i].value.split(' ').join('$');
+                    valuesCancer.push(temp);
                 }
             }
         }
+        console.log(valuesCancer);
         // it should return an array and use that value to change UI here
         return this.getQueryData(valuesCancer, valuesGender, valuesYear);
     }
