@@ -1,10 +1,8 @@
 'use strict'
 class DashBoard{
 
-    dataSetFactory = new DataSetFactory();
-
     createTable(dataType){
-        var dataSet = dataSetFactory.getDataSet(dataType);
+        var dataSet = DataSetFactory.getFactory().getDataSet(dataType);
         var columnNames = dataSet.getColumnList();
         var tableData = dataSet.getTableData();
         this.displayColumnNames(columnNames)

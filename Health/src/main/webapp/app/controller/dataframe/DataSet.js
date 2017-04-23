@@ -5,7 +5,7 @@ class DataSet{
 		if (this.constructor === DataSet) {
 			throw new TypeError("Can not construct abstract class.");
 		}
-		if (this.getColumnName === DataSet.prototype.getColumnName) {
+		if (this.getColumnList === DataSet.prototype.getColumnList) {
 			throw new TypeError("Please implement abstract method getColumnList.");
 		}
 		if (this.getDistinctColumnVal === DataSet.prototype.getDistinctColumnVal) {
