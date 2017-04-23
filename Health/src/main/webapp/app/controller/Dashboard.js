@@ -1,6 +1,11 @@
 'use strict'
 class DashBoard{
+    // Change this to get from factory object where ever necessary.
+    //Should be singleton and evry time should give the same instance
+    var cancerData = new CancerData();
 
+
+    //Modify this should be more functionality specific.
     getMultiSelectData(){
         var gender = document.getElementById('idselectGender');
         var year = document.getElementById('idselectYear');
@@ -32,19 +37,22 @@ class DashBoard{
                 }
             }
         }
-        var cancerData = new CancerData();
+
+        // it should return an array and use that value to change UI here
         cancerData.getCancerQuery(valuesCancer, valuesGender, valuesYear);
     }
 
-    getCancerData(){
-        var cancerData = new CancerData();
-        cancerData.getCancerData();
+    // this method should accept type from UI and on the basis of type it should call respective TableGeneration Logic.
+    getCancerTable(dataType){
+        //check if condition
+        cancerData.getCancerTable();
     }
 
     getColumnName(){
-
+        // should return array
+        cancerData.getColumnName();
+        // use that return array value to add logic to Change UI.
     }
-
 
 }
 
