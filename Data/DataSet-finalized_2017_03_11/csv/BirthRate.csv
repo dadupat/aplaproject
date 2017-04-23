@@ -1,721 +1,361 @@
-Year,State,Race,BirthRate
-2000-2002,Alabama,White,7.77
-2003-2005,Alabama,White,8.46
-2007-2009,Alabama,White,8.39
-2008-2010,Alabama,White,8.40
-2009-2011,Alabama,White,8.23
-2010-2012,Alabama,White,8.06
-2011-2013,Alabama,White,7.95
-2012-2014,Alabama,White,7.97
-2000-2002,Alaska,White,4.84
-2003-2005,Alaska,White,5.34
-2007-2009,Alaska,White,5.22
-2008-2010,Alaska,White,4.99
-2009-2011,Alaska,White,5.01
-2010-2012,Alaska,White,4.92
-2011-2013,Alaska,White,5.14
-2012-2014,Alaska,White,5.25
-2000-2002,Arizona,White,6.78
-2003-2005,Arizona,White,7.01
-2007-2009,Arizona,White,6.92
-2008-2010,Arizona,White,6.80
-2009-2011,Arizona,White,6.77
-2010-2012,Arizona,White,6.63
-2011-2013,Arizona,White,6.56
-2012-2014,Arizona,White,6.53
-2000-2002,Arkansas,White,7.48
-2003-2005,Arkansas,White,7.83
-2007-2009,Arkansas,White,7.88
-2008-2010,Arkansas,White,7.72
-2009-2011,Arkansas,White,7.65
-2010-2012,Arkansas,White,7.56
-2011-2013,Arkansas,White,7.62
-2012-2014,Arkansas,White,7.59
-2000-2002,California,White,5.86
-2003-2005,California,White,6.30
-2007-2009,California,White,6.36
-2008-2010,California,White,6.28
-2009-2011,California,White,6.16
-2010-2012,California,White,6.02
-2011-2013,California,White,5.97
-2012-2014,California,White,5.87
-2000-2002,Colorado,White,8.24
-2003-2005,Colorado,White,8.81
-2007-2009,Colorado,White,8.56
-2008-2010,Colorado,White,8.47
-2009-2011,Colorado,White,8.45
-2010-2012,Colorado,White,8.38
-2011-2013,Colorado,White,8.32
-2012-2014,Colorado,White,8.27
-2000-2002,Connecticut,White,6.48
-2003-2005,Connecticut,White,6.60
-2007-2009,Connecticut,White,6.91
-2008-2010,Connecticut,White,6.81
-2009-2011,Connecticut,White,6.81
-2010-2012,Connecticut,White,6.65
-2011-2013,Connecticut,White,6.56
-2012-2014,Connecticut,White,6.56
-2000-2002,Delaware,White,7.80
-2003-2005,Delaware,White,7.62
-2007-2009,Delaware,White,7.04
-2008-2010,Delaware,White,7.06
-2009-2011,Delaware,White,6.91
-2010-2012,Delaware,White,7.00
-2011-2013,Delaware,White,6.77
-2012-2014,Delaware,White,6.84
-2000-2002,District of Columbia,White,6.35
-2003-2005,District of Columbia,White,6.28
-2007-2009,District of Columbia,White,6.67
-2008-2010,District of Columbia,White,6.72
-2009-2011,District of Columbia,White,6.47
-2010-2012,District of Columbia,White,6.27
-2011-2013,District of Columbia,White,6.06
-2012-2014,District of Columbia,White,5.98
-2000-2002,Florida,White,6.98
-2003-2005,Florida,White,7.38
-2007-2009,Florida,White,7.40
-2008-2010,Florida,White,7.33
-2009-2011,Florida,White,7.25
-2010-2012,Florida,White,7.22
-2011-2013,Florida,White,7.21
-2012-2014,Florida,White,7.18
-2000-2002,Georgia,White,6.92
-2003-2005,Georgia,White,7.44
-2007-2009,Georgia,White,7.53
-2008-2010,Georgia,White,7.67
-2009-2011,Georgia,White,7.58
-2010-2012,Georgia,White,7.48
-2011-2013,Georgia,White,7.29
-2012-2014,Georgia,White,7.18
-2000-2002,Hawaii,White,6.17
-2003-2005,Hawaii,White,6.42
-2007-2009,Hawaii,White,6.30
-2008-2010,Hawaii,White,6.53
-2009-2011,Hawaii,White,6.48
-2010-2012,Hawaii,White,6.14
-2011-2013,Hawaii,White,5.99
-2012-2014,Hawaii,White,5.90
-2000-2002,Idaho,White,6.29
-2003-2005,Idaho,White,6.60
-2007-2009,Idaho,White,6.28
-2008-2010,Idaho,White,6.29
-2009-2011,Idaho,White,6.20
-2010-2012,Idaho,White,6.28
-2011-2013,Idaho,White,6.35
-2012-2014,Idaho,White,6.46
-2000-2002,Illinois,White,6.74
-2003-2005,Illinois,White,7.22
-2007-2009,Illinois,White,7.24
-2008-2010,Illinois,White,7.15
-2009-2011,Illinois,White,7.06
-2010-2012,Illinois,White,6.98
-2011-2013,Illinois,White,6.89
-2012-2014,Illinois,White,6.86
-2000-2002,Indiana,White,6.95
-2003-2005,Indiana,White,7.54
-2007-2009,Indiana,White,7.73
-2008-2010,Indiana,White,7.57
-2009-2011,Indiana,White,7.51
-2010-2012,Indiana,White,7.39
-2011-2013,Indiana,White,7.35
-2012-2014,Indiana,White,7.30
-2000-2002,Iowa,White,6.19
-2003-2005,Iowa,White,6.72
-2007-2009,Iowa,White,6.48
-2008-2010,Iowa,White,6.48
-2009-2011,Iowa,White,6.49
-2010-2012,Iowa,White,6.48
-2011-2013,Iowa,White,6.36
-2012-2014,Iowa,White,6.35
-2000-2002,Kansas,White,6.66
-2003-2005,Kansas,White,6.97
-2007-2009,Kansas,White,6.78
-2008-2010,Kansas,White,6.70
-2009-2011,Kansas,White,6.68
-2010-2012,Kansas,White,6.58
-2011-2013,Kansas,White,6.63
-2012-2014,Kansas,White,6.54
-2000-2002,Kentucky,White,7.84
-2003-2005,Kentucky,White,8.50
-2007-2009,Kentucky,White,8.66
-2008-2010,Kentucky,White,8.65
-2009-2011,Kentucky,White,8.63
-2010-2012,Kentucky,White,8.55
-2011-2013,Kentucky,White,8.42
-2012-2014,Kentucky,White,8.33
-2000-2002,Louisiana,White,7.56
-2003-2005,Louisiana,White,8.12
-2007-2009,Louisiana,White,8.22
-2008-2010,Louisiana,White,8.00
-2009-2011,Louisiana,White,8.12
-2010-2012,Louisiana,White,8.09
-2011-2013,Louisiana,White,8.19
-2012-2014,Louisiana,White,8.06
-2000-2002,Maine,White,6.13
-2003-2005,Maine,White,6.57
-2007-2009,Maine,White,6.36
-2008-2010,Maine,White,6.42
-2009-2011,Maine,White,6.43
-2010-2012,Maine,White,6.50
-2011-2013,Maine,White,6.73
-2012-2014,Maine,White,6.96
-2000-2002,Maryland,White,6.79
-2003-2005,Maryland,White,7.19
-2007-2009,Maryland,White,7.12
-2008-2010,Maryland,White,7.08
-2009-2011,Maryland,White,6.92
-2010-2012,Maryland,White,6.80
-2011-2013,Maryland,White,6.69
-2012-2014,Maryland,White,6.64
-2000-2002,Massachusetts,White,6.56
-2003-2005,Massachusetts,White,7.15
-2007-2009,Massachusetts,White,7.21
-2008-2010,Massachusetts,White,7.11
-2009-2011,Massachusetts,White,7.06
-2010-2012,Massachusetts,White,6.96
-2011-2013,Massachusetts,White,6.95
-2012-2014,Massachusetts,White,6.90
-2000-2002,Michigan,White,6.55
-2003-2005,Michigan,White,7.00
-2007-2009,Michigan,White,7.17
-2008-2010,Michigan,White,7.08
-2009-2011,Michigan,White,6.97
-2010-2012,Michigan,White,6.96
-2011-2013,Michigan,White,6.96
-2012-2014,Michigan,White,6.99
-2000-2002,Minnesota,White,5.80
-2003-2005,Minnesota,White,5.93
-2007-2009,Minnesota,White,5.97
-2008-2010,Minnesota,White,5.83
-2009-2011,Minnesota,White,5.88
-2010-2012,Minnesota,White,5.89
-2011-2013,Minnesota,White,5.84
-2012-2014,Minnesota,White,5.94
-2000-2002,Mississippi,White,7.97
-2003-2005,Mississippi,White,8.67
-2007-2009,Mississippi,White,8.91
-2008-2010,Mississippi,White,8.74
-2009-2011,Mississippi,White,8.88
-2010-2012,Mississippi,White,8.62
-2011-2013,Mississippi,White,8.51
-2012-2014,Mississippi,White,8.23
-2000-2002,Missouri,White,6.79
-2003-2005,Missouri,White,7.18
-2007-2009,Missouri,White,7.04
-2008-2010,Missouri,White,7.15
-2009-2011,Missouri,White,7.01
-2010-2012,Missouri,White,6.94
-2011-2013,Missouri,White,6.85
-2012-2014,Missouri,White,6.96
-2000-2002,Montana,White,6.60
-2003-2005,Montana,White,6.81
-2007-2009,Montana,White,7.07
-2008-2010,Montana,White,7.28
-2009-2011,Montana,White,7.21
-2010-2012,Montana,White,7.19
-2011-2013,Montana,White,7.03
-2012-2014,Montana,White,6.98
-2000-2002,Nebraska,White,6.52
-2003-2005,Nebraska,White,6.76
-2007-2009,Nebraska,White,6.51
-2008-2010,Nebraska,White,6.58
-2009-2011,Nebraska,White,6.39
-2010-2012,Nebraska,White,6.31
-2011-2013,Nebraska,White,6.07
-2012-2014,Nebraska,White,6.12
-2000-2002,Nevada,White,7.19
-2003-2005,Nevada,White,7.78
-2007-2009,Nevada,White,7.87
-2008-2010,Nevada,White,7.88
-2009-2011,Nevada,White,7.84
-2010-2012,Nevada,White,7.63
-2011-2013,Nevada,White,7.46
-2012-2014,Nevada,White,7.34
-2000-2002,New Hampshire,White,6.24
-2003-2005,New Hampshire,White,6.59
-2007-2009,New Hampshire,White,6.48
-2008-2010,New Hampshire,White,6.62
-2009-2011,New Hampshire,White,6.85
-2010-2012,New Hampshire,White,6.99
-2011-2013,New Hampshire,White,7.00
-2012-2014,New Hampshire,White,6.92
-2000-2002,New Jersey,White,6.59
-2003-2005,New Jersey,White,7.11
-2007-2009,New Jersey,White,7.36
-2008-2010,New Jersey,White,7.25
-2009-2011,New Jersey,White,7.31
-2010-2012,New Jersey,White,7.30
-2011-2013,New Jersey,White,7.26
-2012-2014,New Jersey,White,7.01
-2000-2002,New Mexico,White,7.89
-2003-2005,New Mexico,White,8.33
-2007-2009,New Mexico,White,8.25
-2008-2010,New Mexico,White,8.38
-2009-2011,New Mexico,White,8.35
-2010-2012,New Mexico,White,8.53
-2011-2013,New Mexico,White,8.44
-2012-2014,New Mexico,White,8.44
-2000-2002,New York,White,6.48
-2003-2005,New York,White,6.82
-2007-2009,New York,White,6.88
-2008-2010,New York,White,6.85
-2009-2011,New York,White,6.87
-2010-2012,New York,White,6.79
-2011-2013,New York,White,6.71
-2012-2014,New York,White,6.60
-2000-2002,North Carolina,White,7.49
-2003-2005,North Carolina,White,7.73
-2007-2009,North Carolina,White,7.64
-2008-2010,North Carolina,White,7.64
-2009-2011,North Carolina,White,7.57
-2010-2012,North Carolina,White,7.53
-2011-2013,North Carolina,White,7.37
-2012-2014,North Carolina,White,7.37
-2000-2002,North Dakota,White,6.13
-2003-2005,North Dakota,White,6.37
-2007-2009,North Dakota,White,6.31
-2008-2010,North Dakota,White,6.22
-2009-2011,North Dakota,White,6.22
-2010-2012,North Dakota,White,6.18
-2011-2013,North Dakota,White,6.23
-2012-2014,North Dakota,White,6.06
-2000-2002,Ohio,White,7.08
-2003-2005,Ohio,White,7.53
-2007-2009,Ohio,White,7.48
-2008-2010,Ohio,White,7.43
-2009-2011,Ohio,White,7.50
-2010-2012,Ohio,White,7.49
-2011-2013,Ohio,White,7.47
-2012-2014,Ohio,White,7.38
-2000-2002,Oklahoma,White,7.35
-2003-2005,Oklahoma,White,7.63
-2007-2009,Oklahoma,White,7.92
-2008-2010,Oklahoma,White,7.98
-2009-2011,Oklahoma,White,8.05
-2010-2012,Oklahoma,White,7.87
-2011-2013,Oklahoma,White,7.79
-2012-2014,Oklahoma,White,7.60
-2000-2002,Oregon,White,5.44
-2003-2005,Oregon,White,6.02
-2007-2009,Oregon,White,5.95
-2008-2010,Oregon,White,5.99
-2009-2011,Oregon,White,5.96
-2010-2012,Oregon,White,5.95
-2011-2013,Oregon,White,5.91
-2012-2014,Oregon,White,5.99
-2000-2002,Pennsylvania,White,6.78
-2003-2005,Pennsylvania,White,7.06
-2007-2009,Pennsylvania,White,7.14
-2008-2010,Pennsylvania,White,7.15
-2009-2011,Pennsylvania,White,7.12
-2010-2012,Pennsylvania,White,7.06
-2011-2013,Pennsylvania,White,6.95
-2012-2014,Pennsylvania,White,7.00
-2000-2002,Rhode Island,White,6.75
-2003-2005,Rhode Island,White,7.39
-2007-2009,Rhode Island,White,7.26
-2008-2010,Rhode Island,White,7.03
-2009-2011,Rhode Island,White,7.04
-2010-2012,Rhode Island,White,7.01
-2011-2013,Rhode Island,White,6.68
-2012-2014,Rhode Island,White,6.47
-2000-2002,South Carolina,White,7.40
-2003-2005,South Carolina,White,7.82
-2007-2009,South Carolina,White,7.80
-2008-2010,South Carolina,White,7.74
-2009-2011,South Carolina,White,7.76
-2010-2012,South Carolina,White,7.60
-2011-2013,South Carolina,White,7.59
-2012-2014,South Carolina,White,7.41
-2000-2002,South Dakota,White,6.37
-2003-2005,South Dakota,White,6.62
-2007-2009,South Dakota,White,6.18
-2008-2010,South Dakota,White,6.23
-2009-2011,South Dakota,White,6.12
-2010-2012,South Dakota,White,6.10
-2011-2013,South Dakota,White,5.80
-2012-2014,South Dakota,White,5.92
-2000-2002,Tennessee,White,7.95
-2003-2005,Tennessee,White,8.26
-2007-2009,Tennessee,White,8.18
-2008-2010,Tennessee,White,8.06
-2009-2011,Tennessee,White,7.99
-2010-2012,Tennessee,White,8.00
-2011-2013,Tennessee,White,7.98
-2012-2014,Tennessee,White,7.95
-2000-2002,Texas,White,6.81
-2003-2005,Texas,White,7.43
-2007-2009,Texas,White,7.73
-2008-2010,Texas,White,7.67
-2009-2011,Texas,White,7.64
-2010-2012,Texas,White,7.48
-2011-2013,Texas,White,7.44
-2012-2014,Texas,White,7.31
-2000-2002,Utah,White,6.28
-2003-2005,Utah,White,6.45
-2007-2009,Utah,White,6.55
-2008-2010,Utah,White,6.66
-2009-2011,Utah,White,6.69
-2010-2012,Utah,White,6.64
-2011-2013,Utah,White,6.63
-2012-2014,Utah,White,6.66
-2000-2002,Alabama,Black or African American,14.10
-2003-2005,Alabama,Black or African American,15.02
-2007-2009,Alabama,Black or African American,15.50
-2008-2010,Alabama,Black or African American,15.41
-2009-2011,Alabama,Black or African American,15.13
-2010-2012,Alabama,Black or African American,15.01
-2011-2013,Alabama,Black or African American,14.85
-2012-2014,Alabama,Black or African American,14.86
-2000-2002,Alaska,Black or African American,10.70
-2003-2005,Alaska,Black or African American,11.74
-2007-2009,Alaska,Black or African American,12.09
-2008-2010,Alaska,Black or African American,12.58
-2009-2011,Alaska,Black or African American,11.75
-2010-2012,Alaska,Black or African American,11.21
-2011-2013,Alaska,Black or African American,9.01
-2012-2014,Alaska,Black or African American,8.88
-2000-2002,Arizona,Black or African American,13.16
-2003-2005,Arizona,Black or African American,12.38
-2007-2009,Arizona,Black or African American,12.48
-2008-2010,Arizona,Black or African American,11.86
-2009-2011,Arizona,Black or African American,12.20
-2010-2012,Arizona,Black or African American,12.01
-2011-2013,Arizona,Black or African American,12.00
-2012-2014,Arizona,Black or African American,11.72
-2000-2002,Arkansas,Black or African American,13.81
-2003-2005,Arkansas,Black or African American,14.86
-2007-2009,Arkansas,Black or African American,14.89
-2008-2010,Arkansas,Black or African American,14.73
-2009-2011,Arkansas,Black or African American,14.86
-2010-2012,Arkansas,Black or African American,14.55
-2011-2013,Arkansas,Black or African American,14.45
-2012-2014,Arkansas,Black or African American,14.07
-2000-2002,California,Black or African American,11.66
-2003-2005,California,Black or African American,12.46
-2007-2009,California,Black or African American,11.92
-2008-2010,California,Black or African American,11.95
-2009-2011,California,Black or African American,11.74
-2010-2012,California,Black or African American,11.69
-2011-2013,California,Black or African American,11.50
-2012-2014,California,Black or African American,11.51
-2000-2002,Colorado,Black or African American,14.59
-2003-2005,Colorado,Black or African American,15.20
-2007-2009,Colorado,Black or African American,14.39
-2008-2010,Colorado,Black or African American,14.00
-2009-2011,Colorado,Black or African American,13.30
-2010-2012,Colorado,Black or African American,13.29
-2011-2013,Colorado,Black or African American,13.62
-2012-2014,Colorado,Black or African American,13.59
-2000-2002,Connecticut,Black or African American,12.28
-2003-2005,Connecticut,Black or African American,12.88
-2007-2009,Connecticut,Black or African American,12.59
-2008-2010,Connecticut,Black or African American,12.69
-2009-2011,Connecticut,Black or African American,12.07
-2010-2012,Connecticut,Black or African American,12.19
-2011-2013,Connecticut,Black or African American,12.09
-2012-2014,Connecticut,Black or African American,12.08
-2000-2002,Delaware,Black or African American,14.08
-2003-2005,Delaware,Black or African American,14.32
-2007-2009,Delaware,Black or African American,13.27
-2008-2010,Delaware,Black or African American,13.12
-2009-2011,Delaware,Black or African American,13.18
-2010-2012,Delaware,Black or African American,12.67
-2011-2013,Delaware,Black or African American,12.41
-2012-2014,Delaware,Black or African American,12.22
-2000-2002,District of Columbia,Black or African American,14.60
-2003-2005,District of Columbia,Black or African American,13.96
-2007-2009,District of Columbia,Black or African American,13.79
-2008-2010,District of Columbia,Black or African American,13.33
-2009-2011,District of Columbia,Black or African American,13.25
-2010-2012,District of Columbia,Black or African American,12.91
-2011-2013,District of Columbia,Black or African American,12.60
-2012-2014,District of Columbia,Black or African American,12.41
-2000-2002,Florida,Black or African American,12.58
-2003-2005,Florida,Black or African American,13.28
-2007-2009,Florida,Black or African American,13.47
-2008-2010,Florida,Black or African American,13.51
-2009-2011,Florida,Black or African American,13.40
-2010-2012,Florida,Black or African American,13.19
-2011-2013,Florida,Black or African American,12.91
-2012-2014,Florida,Black or African American,12.97
-2000-2002,Georgia,Black or African American,12.98
-2003-2005,Georgia,Black or African American,13.81
-2007-2009,Georgia,Black or African American,13.88
-2008-2010,Georgia,Black or African American,13.72
-2009-2011,Georgia,Black or African American,13.54
-2010-2012,Georgia,Black or African American,13.46
-2011-2013,Georgia,Black or African American,13.33
-2012-2014,Georgia,Black or African American,13.51
-2000-2002,Hawaii,Black or African American,11.01
-2003-2005,Hawaii,Black or African American,11.44
-2007-2009,Hawaii,Black or African American,11.23
-2008-2010,Hawaii,Black or African American,11.57
-2009-2011,Hawaii,Black or African American,11.23
-2010-2012,Hawaii,Black or African American,10.13
-2011-2013,Hawaii,Black or African American,11.22
-2012-2014,Hawaii,Black or African American,11.31
-2000-2002,Idaho,Black or African American,6.03
-2003-2005,Idaho,Black or African American,7.03
-2007-2009,Idaho,Black or African American,7.93
-2008-2010,Idaho,Black or African American,9.13
-2009-2011,Idaho,Black or African American,8.83
-2010-2012,Idaho,Black or African American,7.71
-2011-2013,Idaho,Black or African American,6.71
-2012-2014,Idaho,Black or African American,7.23
-2000-2002,Illinois,Black or African American,14.04
-2003-2005,Illinois,Black or African American,14.70
-2007-2009,Illinois,Black or African American,14.16
-2008-2010,Illinois,Black or African American,13.90
-2009-2011,Illinois,Black or African American,13.82
-2010-2012,Illinois,Black or African American,13.57
-2011-2013,Illinois,Black or African American,13.57
-2012-2014,Illinois,Black or African American,13.65
-2000-2002,Indiana,Black or African American,12.89
-2003-2005,Indiana,Black or African American,13.46
-2007-2009,Indiana,Black or African American,14.01
-2008-2010,Indiana,Black or African American,13.76
-2009-2011,Indiana,Black or African American,13.49
-2010-2012,Indiana,Black or African American,13.04
-2011-2013,Indiana,Black or African American,12.86
-2012-2014,Indiana,Black or African American,12.89
-2000-2002,Iowa,Black or African American,11.77
-2003-2005,Iowa,Black or African American,12.22
-2007-2009,Iowa,Black or African American,12.06
-2008-2010,Iowa,Black or African American,12.01
-2009-2011,Iowa,Black or African American,12.01
-2010-2012,Iowa,Black or African American,11.52
-2011-2013,Iowa,Black or African American,11.22
-2012-2014,Iowa,Black or African American,11.19
-2000-2002,Kansas,Black or African American,12.37
-2003-2005,Kansas,Black or African American,13.42
-2007-2009,Kansas,Black or African American,12.83
-2008-2010,Kansas,Black or African American,12.82
-2009-2011,Kansas,Black or African American,12.95
-2010-2012,Kansas,Black or African American,12.97
-2011-2013,Kansas,Black or African American,12.78
-2012-2014,Kansas,Black or African American,12.84
-2000-2002,Kentucky,Black or African American,13.84
-2003-2005,Kentucky,Black or African American,13.52
-2007-2009,Kentucky,Black or African American,14.77
-2008-2010,Kentucky,Black or African American,14.04
-2009-2011,Kentucky,Black or African American,13.62
-2010-2012,Kentucky,Black or African American,13.57
-2011-2013,Kentucky,Black or African American,13.55
-2012-2014,Kentucky,Black or African American,13.37
-2000-2002,Louisiana,Black or African American,14.44
-2003-2005,Louisiana,Black or African American,15.33
-2007-2009,Louisiana,Black or African American,15.19
-2008-2010,Louisiana,Black or African American,15.05
-2009-2011,Louisiana,Black or African American,15.11
-2010-2012,Louisiana,Black or African American,15.26
-2011-2013,Louisiana,Black or African American,15.33
-2012-2014,Louisiana,Black or African American,15.22
-2000-2002,Maine,Black or African American,9.47
-2003-2005,Maine,Black or African American,8.47
-2007-2009,Maine,Black or African American,7.71
-2008-2010,Maine,Black or African American,6.55
-2009-2011,Maine,Black or African American,6.45
-2010-2012,Maine,Black or African American,8.13
-2011-2013,Maine,Black or African American,8.91
-2012-2014,Maine,Black or African American,9.59
-2000-2002,Maryland,Black or African American,13.00
-2003-2005,Maryland,Black or African American,13.13
-2007-2009,Maryland,Black or African American,13.00
-2008-2010,Maryland,Black or African American,12.72
-2009-2011,Maryland,Black or African American,12.52
-2010-2012,Maryland,Black or African American,12.37
-2011-2013,Maryland,Black or African American,12.34
-2012-2014,Maryland,Black or African American,12.17
-2000-2002,Massachusetts,Black or African American,11.54
-2003-2005,Massachusetts,Black or African American,11.82
-2007-2009,Massachusetts,Black or African American,10.91
-2008-2010,Massachusetts,Black or African American,10.89
-2009-2011,Massachusetts,Black or African American,10.66
-2010-2012,Massachusetts,Black or African American,10.45
-2011-2013,Massachusetts,Black or African American,10.42
-2012-2014,Massachusetts,Black or African American,10.32
-2000-2002,Michigan,Black or African American,14.24
-2003-2005,Michigan,Black or African American,14.43
-2007-2009,Michigan,Black or African American,13.96
-2008-2010,Michigan,Black or African American,14.06
-2009-2011,Michigan,Black or African American,13.91
-2010-2012,Michigan,Black or African American,13.93
-2011-2013,Michigan,Black or African American,13.67
-2012-2014,Michigan,Black or African American,13.60
-2000-2002,Minnesota,Black or African American,10.54
-2003-2005,Minnesota,Black or African American,10.71
-2007-2009,Minnesota,Black or African American,10.56
-2008-2010,Minnesota,Black or African American,10.38
-2009-2011,Minnesota,Black or African American,10.19
-2010-2012,Minnesota,Black or African American,10.23
-2011-2013,Minnesota,Black or African American,10.03
-2012-2014,Minnesota,Black or African American,9.56
-2000-2002,Mississippi,Black or African American,14.48
-2003-2005,Mississippi,Black or African American,15.60
-2007-2009,Mississippi,Black or African American,16.29
-2008-2010,Mississippi,Black or African American,16.41
-2009-2011,Mississippi,Black or African American,16.36
-2010-2012,Mississippi,Black or African American,16.30
-2011-2013,Mississippi,Black or African American,16.06
-2012-2014,Mississippi,Black or African American,15.96
-2000-2002,Missouri,Black or African American,13.27
-2003-2005,Missouri,Black or African American,13.90
-2007-2009,Missouri,Black or African American,13.64
-2008-2010,Missouri,Black or African American,13.67
-2009-2011,Missouri,Black or African American,13.99
-2010-2012,Missouri,Black or African American,13.66
-2011-2013,Missouri,Black or African American,13.67
-2012-2014,Missouri,Black or African American,13.68
-2000-2002,Montana,Black or African American,14.38
-2003-2005,Montana,Black or African American,15.58
-2007-2009,Montana,Black or African American,13.43
-2008-2010,Montana,Black or African American,12.42
-2009-2011,Montana,Black or African American,12.03
-2010-2012,Montana,Black or African American,11.45
-2011-2013,Montana,Black or African American,10.50
-2012-2014,Montana,Black or African American,12.25
-2000-2002,Nebraska,Black or African American,13.07
-2003-2005,Nebraska,Black or African American,12.16
-2007-2009,Nebraska,Black or African American,13.12
-2008-2010,Nebraska,Black or African American,13.30
-2009-2011,Nebraska,Black or African American,13.32
-2010-2012,Nebraska,Black or African American,13.13
-2011-2013,Nebraska,Black or African American,12.25
-2012-2014,Nebraska,Black or African American,11.70
-2000-2002,Nevada,Black or African American,13.40
-2003-2005,Nevada,Black or African American,13.98
-2007-2009,Nevada,Black or African American,13.83
-2008-2010,Nevada,Black or African American,13.72
-2009-2011,Nevada,Black or African American,13.66
-2010-2012,Nevada,Black or African American,13.45
-2011-2013,Nevada,Black or African American,12.97
-2012-2014,Nevada,Black or African American,13.21
-2000-2002,New Hampshire,Black or African American,10.58
-2003-2005,New Hampshire,Black or African American,10.85
-2007-2009,New Hampshire,Black or African American,8.44
-2008-2010,New Hampshire,Black or African American,9.51
-2009-2011,New Hampshire,Black or African American,9.93
-2010-2012,New Hampshire,Black or African American,10.17
-2011-2013,New Hampshire,Black or African American,10.62
-2012-2014,New Hampshire,Black or African American,10.25
-2000-2002,New Jersey,Black or African American,13.20
-2003-2005,New Jersey,Black or African American,13.48
-2007-2009,New Jersey,Black or African American,13.19
-2008-2010,New Jersey,Black or African American,12.93
-2009-2011,New Jersey,Black or African American,12.71
-2010-2012,New Jersey,Black or African American,12.45
-2011-2013,New Jersey,Black or African American,12.44
-2012-2014,New Jersey,Black or African American,12.46
-2000-2002,New Mexico,Black or African American,13.88
-2003-2005,New Mexico,Black or African American,15.01
-2007-2009,New Mexico,Black or African American,14.68
-2008-2010,New Mexico,Black or African American,14.27
-2009-2011,New Mexico,Black or African American,14.37
-2010-2012,New Mexico,Black or African American,13.59
-2011-2013,New Mexico,Black or African American,13.31
-2012-2014,New Mexico,Black or African American,14.69
-2000-2002,New York,Black or African American,12.02
-2003-2005,New York,Black or African American,12.78
-2007-2009,New York,Black or African American,12.75
-2008-2010,New York,Black or African American,12.82
-2009-2011,New York,Black or African American,12.73
-2010-2012,New York,Black or African American,12.51
-2011-2013,New York,Black or African American,12.35
-2012-2014,New York,Black or African American,12.16
-2000-2002,North Carolina,Black or African American,13.83
-2003-2005,North Carolina,Black or African American,14.33
-2007-2009,North Carolina,Black or African American,14.43
-2008-2010,North Carolina,Black or African American,14.23
-2009-2011,North Carolina,Black or African American,14.12
-2010-2012,North Carolina,Black or African American,13.84
-2011-2013,North Carolina,Black or African American,13.59
-2012-2014,North Carolina,Black or African American,13.46
-2000-2002,North Dakota,Black or African American,9.02
-2003-2005,North Dakota,Black or African American,9.43
-2007-2009,North Dakota,Black or African American,5.12
-2008-2010,North Dakota,Black or African American,8.55
-2009-2011,North Dakota,Black or African American,8.20
-2010-2012,North Dakota,Black or African American,9.41
-2011-2013,North Dakota,Black or African American,9.00
-2012-2014,North Dakota,Black or African American,9.30
-2000-2002,Ohio,Black or African American,13.45
-2003-2005,Ohio,Black or African American,13.83
-2007-2009,Ohio,Black or African American,14.19
-2008-2010,Ohio,Black or African American,14.06
-2009-2011,Ohio,Black or African American,13.76
-2010-2012,Ohio,Black or African American,13.72
-2011-2013,Ohio,Black or African American,13.59
-2012-2014,Ohio,Black or African American,13.58
-2000-2002,Oklahoma,Black or African American,13.57
-2003-2005,Oklahoma,Black or African American,13.62
-2007-2009,Oklahoma,Black or African American,14.71
-2008-2010,Oklahoma,Black or African American,14.53
-2009-2011,Oklahoma,Black or African American,14.53
-2010-2012,Oklahoma,Black or African American,14.34
-2011-2013,Oklahoma,Black or African American,14.06
-2012-2014,Oklahoma,Black or African American,13.44
-2000-2002,Oregon,Black or African American,10.32
-2003-2005,Oregon,Black or African American,11.16
-2007-2009,Oregon,Black or African American,10.21
-2008-2010,Oregon,Black or African American,10.51
-2009-2011,Oregon,Black or African American,10.17
-2010-2012,Oregon,Black or African American,9.93
-2011-2013,Oregon,Black or African American,9.43
-2012-2014,Oregon,Black or African American,9.43
-2000-2002,Pennsylvania,Black or African American,13.79
-2003-2005,Pennsylvania,Black or African American,13.67
-2007-2009,Pennsylvania,Black or African American,13.55
-2008-2010,Pennsylvania,Black or African American,13.43
-2009-2011,Pennsylvania,Black or African American,13.33
-2010-2012,Pennsylvania,Black or African American,13.17
-2011-2013,Pennsylvania,Black or African American,12.92
-2012-2014,Pennsylvania,Black or African American,12.85
-2000-2002,Rhode Island,Black or African American,12.32
-2003-2005,Rhode Island,Black or African American,11.22
-2007-2009,Rhode Island,Black or African American,10.83
-2008-2010,Rhode Island,Black or African American,11.06
-2009-2011,Rhode Island,Black or African American,11.08
-2010-2012,Rhode Island,Black or African American,11.49
-2011-2013,Rhode Island,Black or African American,11.53
-2012-2014,Rhode Island,Black or African American,10.90
-2000-2002,South Carolina,Black or African American,14.29
-2003-2005,South Carolina,Black or African American,15.19
-2007-2009,South Carolina,Black or African American,14.80
-2008-2010,South Carolina,Black or African American,14.69
-2009-2011,South Carolina,Black or African American,14.76
-2010-2012,South Carolina,Black or African American,14.69
-2011-2013,South Carolina,Black or African American,14.49
-2012-2014,South Carolina,Black or African American,14.36
-2000-2002,South Dakota,Black or African American,11.51
-2003-2005,South Dakota,Black or African American,7.27
-2007-2009,South Dakota,Black or African American,11.00
-2008-2010,South Dakota,Black or African American,10.83
-2009-2011,South Dakota,Black or African American,11.15
-2010-2012,South Dakota,Black or African American,10.34
-2011-2013,South Dakota,Black or African American,9.47
-2012-2014,South Dakota,Black or African American,9.37
-2000-2002,Tennessee,Black or African American,14.23
-2003-2005,Tennessee,Black or African American,14.51
-2007-2009,Tennessee,Black or African American,14.11
-2008-2010,Tennessee,Black or African American,13.89
-2009-2011,Tennessee,Black or African American,13.86
-2010-2012,Tennessee,Black or African American,13.94
-2011-2013,Tennessee,Black or African American,13.98
-2012-2014,Tennessee,Black or African American,13.98
-2000-2002,Texas,Black or African American,12.82
-2003-2005,Texas,Black or African American,13.91
-2007-2009,Texas,Black or African American,14.17
-2008-2010,Texas,Black or African American,14.03
-2009-2011,Texas,Black or African American,13.91
-2010-2012,Texas,Black or African American,13.76
-2011-2013,Texas,Black or African American,13.48
-2012-2014,Texas,Black or African American,13.36
-2000-2002,Utah,Black or African American,13.09
-2003-2005,Utah,Black or African American,12.05
-2007-2009,Utah,Black or African American,10.99
-2008-2010,Utah,Black or African American,11.24
-2009-2011,Utah,Black or African American,11.84
-2010-2012,Utah,Black or African American,12.28
-2011-2013,Utah,Black or African American,11.38
-2012-2014,Utah,Black or African American,9.82
+Year,State,BirthRate
+2000-2002,Alabama,7.77
+2003-2005,Alabama,8.46
+2007-2009,Alabama,8.39
+2008-2010,Alabama,8.4
+2009-2011,Alabama,8.23
+2010-2012,Alabama,8.06
+2011-2013,Alabama,7.95
+2012-2014,Alabama,7.97
+2000-2002,Alaska,4.84
+2003-2005,Alaska,5.34
+2007-2009,Alaska,5.22
+2008-2010,Alaska,4.99
+2009-2011,Alaska,5.01
+2010-2012,Alaska,4.92
+2011-2013,Alaska,5.14
+2012-2014,Alaska,5.25
+2000-2002,Arizona,6.78
+2003-2005,Arizona,7.01
+2007-2009,Arizona,6.92
+2008-2010,Arizona,6.8
+2009-2011,Arizona,6.77
+2010-2012,Arizona,6.63
+2011-2013,Arizona,6.56
+2012-2014,Arizona,6.53
+2000-2002,Arkansas,7.48
+2003-2005,Arkansas,7.83
+2007-2009,Arkansas,7.88
+2008-2010,Arkansas,7.72
+2009-2011,Arkansas,7.65
+2010-2012,Arkansas,7.56
+2011-2013,Arkansas,7.62
+2012-2014,Arkansas,7.59
+2000-2002,California,5.86
+2003-2005,California,6.3
+2007-2009,California,6.36
+2008-2010,California,6.28
+2009-2011,California,6.16
+2010-2012,California,6.02
+2011-2013,California,5.97
+2012-2014,California,5.87
+2000-2002,Colorado,8.24
+2003-2005,Colorado,8.81
+2007-2009,Colorado,8.56
+2008-2010,Colorado,8.47
+2009-2011,Colorado,8.45
+2010-2012,Colorado,8.38
+2011-2013,Colorado,8.32
+2012-2014,Colorado,8.27
+2000-2002,Connecticut,6.48
+2003-2005,Connecticut,6.6
+2007-2009,Connecticut,6.91
+2008-2010,Connecticut,6.81
+2009-2011,Connecticut,6.81
+2010-2012,Connecticut,6.65
+2011-2013,Connecticut,6.56
+2012-2014,Connecticut,6.56
+2000-2002,Delaware,7.8
+2003-2005,Delaware,7.62
+2007-2009,Delaware,7.04
+2008-2010,Delaware,7.06
+2009-2011,Delaware,6.91
+2010-2012,Delaware,7
+2011-2013,Delaware,6.77
+2012-2014,Delaware,6.84
+2000-2002,District of Columbia,6.35
+2003-2005,District of Columbia,6.28
+2007-2009,District of Columbia,6.67
+2008-2010,District of Columbia,6.72
+2009-2011,District of Columbia,6.47
+2010-2012,District of Columbia,6.27
+2011-2013,District of Columbia,6.06
+2012-2014,District of Columbia,5.98
+2000-2002,Florida,6.98
+2003-2005,Florida,7.38
+2007-2009,Florida,7.4
+2008-2010,Florida,7.33
+2009-2011,Florida,7.25
+2010-2012,Florida,7.22
+2011-2013,Florida,7.21
+2012-2014,Florida,7.18
+2000-2002,Georgia,6.92
+2003-2005,Georgia,7.44
+2007-2009,Georgia,7.53
+2008-2010,Georgia,7.67
+2009-2011,Georgia,7.58
+2010-2012,Georgia,7.48
+2011-2013,Georgia,7.29
+2012-2014,Georgia,7.18
+2000-2002,Hawaii,6.17
+2003-2005,Hawaii,6.42
+2007-2009,Hawaii,6.3
+2008-2010,Hawaii,6.53
+2009-2011,Hawaii,6.48
+2010-2012,Hawaii,6.14
+2011-2013,Hawaii,5.99
+2012-2014,Hawaii,5.9
+2000-2002,Idaho,6.29
+2003-2005,Idaho,6.6
+2007-2009,Idaho,6.28
+2008-2010,Idaho,6.29
+2009-2011,Idaho,6.2
+2010-2012,Idaho,6.28
+2011-2013,Idaho,6.35
+2012-2014,Idaho,6.46
+2000-2002,Illinois,6.74
+2003-2005,Illinois,7.22
+2007-2009,Illinois,7.24
+2008-2010,Illinois,7.15
+2009-2011,Illinois,7.06
+2010-2012,Illinois,6.98
+2011-2013,Illinois,6.89
+2012-2014,Illinois,6.86
+2000-2002,Indiana,6.95
+2003-2005,Indiana,7.54
+2007-2009,Indiana,7.73
+2008-2010,Indiana,7.57
+2009-2011,Indiana,7.51
+2010-2012,Indiana,7.39
+2011-2013,Indiana,7.35
+2012-2014,Indiana,7.3
+2000-2002,Iowa,6.19
+2003-2005,Iowa,6.72
+2007-2009,Iowa,6.48
+2008-2010,Iowa,6.48
+2009-2011,Iowa,6.49
+2010-2012,Iowa,6.48
+2011-2013,Iowa,6.36
+2012-2014,Iowa,6.35
+2000-2002,Kansas,6.66
+2003-2005,Kansas,6.97
+2007-2009,Kansas,6.78
+2008-2010,Kansas,6.7
+2009-2011,Kansas,6.68
+2010-2012,Kansas,6.58
+2011-2013,Kansas,6.63
+2012-2014,Kansas,6.54
+2000-2002,Kentucky,7.84
+2003-2005,Kentucky,8.5
+2007-2009,Kentucky,8.66
+2008-2010,Kentucky,8.65
+2009-2011,Kentucky,8.63
+2010-2012,Kentucky,8.55
+2011-2013,Kentucky,8.42
+2012-2014,Kentucky,8.33
+2000-2002,Louisiana,7.56
+2003-2005,Louisiana,8.12
+2007-2009,Louisiana,8.22
+2008-2010,Louisiana,8
+2009-2011,Louisiana,8.12
+2010-2012,Louisiana,8.09
+2011-2013,Louisiana,8.19
+2012-2014,Louisiana,8.06
+2000-2002,Maine,6.13
+2003-2005,Maine,6.57
+2007-2009,Maine,6.36
+2008-2010,Maine,6.42
+2009-2011,Maine,6.43
+2010-2012,Maine,6.5
+2011-2013,Maine,6.73
+2012-2014,Maine,6.96
+2000-2002,Maryland,6.79
+2003-2005,Maryland,7.19
+2007-2009,Maryland,7.12
+2008-2010,Maryland,7.08
+2009-2011,Maryland,6.92
+2010-2012,Maryland,6.8
+2011-2013,Maryland,6.69
+2012-2014,Maryland,6.64
+2000-2002,Massachusetts,6.56
+2003-2005,Massachusetts,7.15
+2007-2009,Massachusetts,7.21
+2008-2010,Massachusetts,7.11
+2009-2011,Massachusetts,7.06
+2010-2012,Massachusetts,6.96
+2011-2013,Massachusetts,6.95
+2012-2014,Massachusetts,6.9
+2000-2002,Michigan,6.55
+2003-2005,Michigan,7
+2007-2009,Michigan,7.17
+2008-2010,Michigan,7.08
+2009-2011,Michigan,6.97
+2010-2012,Michigan,6.96
+2011-2013,Michigan,6.96
+2012-2014,Michigan,6.99
+2000-2002,Minnesota,5.8
+2003-2005,Minnesota,5.93
+2007-2009,Minnesota,5.97
+2008-2010,Minnesota,5.83
+2009-2011,Minnesota,5.88
+2010-2012,Minnesota,5.89
+2011-2013,Minnesota,5.84
+2012-2014,Minnesota,5.94
+2000-2002,Mississippi,7.97
+2003-2005,Mississippi,8.67
+2007-2009,Mississippi,8.91
+2008-2010,Mississippi,8.74
+2009-2011,Mississippi,8.88
+2010-2012,Mississippi,8.62
+2011-2013,Mississippi,8.51
+2012-2014,Mississippi,8.23
+2000-2002,Missouri,6.79
+2003-2005,Missouri,7.18
+2007-2009,Missouri,7.04
+2008-2010,Missouri,7.15
+2009-2011,Missouri,7.01
+2010-2012,Missouri,6.94
+2011-2013,Missouri,6.85
+2012-2014,Missouri,6.96
+2000-2002,Montana,6.6
+2003-2005,Montana,6.81
+2007-2009,Montana,7.07
+2008-2010,Montana,7.28
+2009-2011,Montana,7.21
+2010-2012,Montana,7.19
+2011-2013,Montana,7.03
+2012-2014,Montana,6.98
+2000-2002,Nebraska,6.52
+2003-2005,Nebraska,6.76
+2007-2009,Nebraska,6.51
+2008-2010,Nebraska,6.58
+2009-2011,Nebraska,6.39
+2010-2012,Nebraska,6.31
+2011-2013,Nebraska,6.07
+2012-2014,Nebraska,6.12
+2000-2002,Nevada,7.19
+2003-2005,Nevada,7.78
+2007-2009,Nevada,7.87
+2008-2010,Nevada,7.88
+2009-2011,Nevada,7.84
+2010-2012,Nevada,7.63
+2011-2013,Nevada,7.46
+2012-2014,Nevada,7.34
+2000-2002,New Hampshire,6.24
+2003-2005,New Hampshire,6.59
+2007-2009,New Hampshire,6.48
+2008-2010,New Hampshire,6.62
+2009-2011,New Hampshire,6.85
+2010-2012,New Hampshire,6.99
+2011-2013,New Hampshire,7
+2012-2014,New Hampshire,6.92
+2000-2002,New Jersey,6.59
+2003-2005,New Jersey,7.11
+2007-2009,New Jersey,7.36
+2008-2010,New Jersey,7.25
+2009-2011,New Jersey,7.31
+2010-2012,New Jersey,7.3
+2011-2013,New Jersey,7.26
+2012-2014,New Jersey,7.01
+2000-2002,New Mexico,7.89
+2003-2005,New Mexico,8.33
+2007-2009,New Mexico,8.25
+2008-2010,New Mexico,8.38
+2009-2011,New Mexico,8.35
+2010-2012,New Mexico,8.53
+2011-2013,New Mexico,8.44
+2012-2014,New Mexico,8.44
+2000-2002,New York,6.48
+2003-2005,New York,6.82
+2007-2009,New York,6.88
+2008-2010,New York,6.85
+2009-2011,New York,6.87
+2010-2012,New York,6.79
+2011-2013,New York,6.71
+2012-2014,New York,6.6
+2000-2002,North Carolina,7.49
+2003-2005,North Carolina,7.73
+2007-2009,North Carolina,7.64
+2008-2010,North Carolina,7.64
+2009-2011,North Carolina,7.57
+2010-2012,North Carolina,7.53
+2011-2013,North Carolina,7.37
+2012-2014,North Carolina,7.37
+2000-2002,North Dakota,6.13
+2003-2005,North Dakota,6.37
+2007-2009,North Dakota,6.31
+2008-2010,North Dakota,6.22
+2009-2011,North Dakota,6.22
+2010-2012,North Dakota,6.18
+2011-2013,North Dakota,6.23
+2012-2014,North Dakota,6.06
+2000-2002,Ohio,7.08
+2003-2005,Ohio,7.53
+2007-2009,Ohio,7.48
+2008-2010,Ohio,7.43
+2009-2011,Ohio,7.5
+2010-2012,Ohio,7.49
+2011-2013,Ohio,7.47
+2012-2014,Ohio,7.38
+2000-2002,Oklahoma,7.35
+2003-2005,Oklahoma,7.63
+2007-2009,Oklahoma,7.92
+2008-2010,Oklahoma,7.98
+2009-2011,Oklahoma,8.05
+2010-2012,Oklahoma,7.87
+2011-2013,Oklahoma,7.79
+2012-2014,Oklahoma,7.6
+2000-2002,Oregon,5.44
+2003-2005,Oregon,6.02
+2007-2009,Oregon,5.95
+2008-2010,Oregon,5.99
+2009-2011,Oregon,5.96
+2010-2012,Oregon,5.95
+2011-2013,Oregon,5.91
+2012-2014,Oregon,5.99
+2000-2002,Pennsylvania,6.78
+2003-2005,Pennsylvania,7.06
+2007-2009,Pennsylvania,7.14
+2008-2010,Pennsylvania,7.15
+2009-2011,Pennsylvania,7.12
+2010-2012,Pennsylvania,7.06
+2011-2013,Pennsylvania,6.95
+2012-2014,Pennsylvania,7
+2000-2002,Rhode Island,6.75
+2003-2005,Rhode Island,7.39
+2007-2009,Rhode Island,7.26
+2008-2010,Rhode Island,7.03
+2009-2011,Rhode Island,7.04
+2010-2012,Rhode Island,7.01
+2011-2013,Rhode Island,6.68
+2012-2014,Rhode Island,6.47
+2000-2002,South Carolina,7.4
+2003-2005,South Carolina,7.82
+2007-2009,South Carolina,7.8
+2008-2010,South Carolina,7.74
+2009-2011,South Carolina,7.76
+2010-2012,South Carolina,7.6
+2011-2013,South Carolina,7.59
+2012-2014,South Carolina,7.41
+2000-2002,South Dakota,6.37
+2003-2005,South Dakota,6.62
+2007-2009,South Dakota,6.18
+2008-2010,South Dakota,6.23
+2009-2011,South Dakota,6.12
+2010-2012,South Dakota,6.1
+2011-2013,South Dakota,5.8
+2012-2014,South Dakota,5.92
+2000-2002,Tennessee,7.95
+2003-2005,Tennessee,8.26
+2007-2009,Tennessee,8.18
+2008-2010,Tennessee,8.06
+2009-2011,Tennessee,7.99
+2010-2012,Tennessee,8
+2011-2013,Tennessee,7.98
+2012-2014,Tennessee,7.95
+2000-2002,Texas,6.81
+2003-2005,Texas,7.43
+2007-2009,Texas,7.73
+2008-2010,Texas,7.67
+2009-2011,Texas,7.64
+2010-2012,Texas,7.48
+2011-2013,Texas,7.44
+2012-2014,Texas,7.31
+2000-2002,Utah,6.28
+2003-2005,Utah,6.45
+2007-2009,Utah,6.55
+2008-2010,Utah,6.66
+2009-2011,Utah,6.69
+2010-2012,Utah,6.64
+2011-2013,Utah,6.63
+2012-2014,Utah,6.66
