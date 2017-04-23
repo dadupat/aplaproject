@@ -22,7 +22,12 @@ function getColumnName(){
 				 df => {
 
 				     	var columns = df.listColumns();
-						var div = document.getElementById('some_div');
+						var div = document.getElementById('columnCheckbox');
+						var labelCol = document.createElement('label');
+						labelCol.htmlFor="labelCol";  
+						labelCol.appendChild(document.createTextNode('Select Column'));
+						div.appendChild(labelCol);
+						
 						for(var i=0;i<columns.length-1;i++){
 
 							var checkbox = document.createElement('input');
