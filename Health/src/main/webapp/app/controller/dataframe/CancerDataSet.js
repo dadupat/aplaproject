@@ -2,14 +2,16 @@
  * 
  */
 class CancerDataSet extends DataSet{
-
+	
     constructor () {
+    	
     	super();
+    	this.filename = './DownloadableContent/CancerRate.csv';
     }
     
 	getColumnList() {
 		var DataFrame = dfjs.DataFrame;
-        return DataFrame.fromCSV('./DownloadableContent/CancerRate.csv').then(
+        return DataFrame.fromCSV(this.filename).then(
             df => {
                 var columns = df.listColumns();
                 return columns;
@@ -21,7 +23,7 @@ class CancerDataSet extends DataSet{
 
 	getDistinctColumnVal() {
 		var DataFrame = dfjs.DataFrame;
-		var distColumnValues = DataFrame.fromCSV('./DownloadableContent/CancerRate.csv').then(
+		var distColumnValues = DataFrame.fromCSV(this.filename).then(
             df => {
                 var columns = df.listColumns();
                 var distColumnValues = [];
@@ -40,7 +42,7 @@ class CancerDataSet extends DataSet{
 
 	getTableData(){
 		var DataFrame = dfjs.DataFrame;
-		var tableData = DataFrame.fromCSV('./DownloadableContent/CancerRate.csv').then(
+		var tableData = DataFrame.fromCSV(this.filename).then(
             df => {
                 var data = df.toArray();
                 return data;
@@ -53,7 +55,7 @@ class CancerDataSet extends DataSet{
 
 	getQueryData(cancerType, gender, years){
 		var DataFrame = dfjs.DataFrame;
-        return DataFrame.fromCSV('./DownloadableContent/CancerRate.csv').then(
+        return DataFrame.fromCSV(this.filename).then(
              df => {
 
                  DataFrame.sql.registerTable(df, 'cancerTable');
@@ -132,7 +134,7 @@ class CancerDataSet extends DataSet{
 
     getDistinctColumnVal(columnName) {
 		var DataFrame = dfjs.DataFrame;
-		return DataFrame.fromCSV('./DownloadableContent/CancerRate.csv').then(
+		return DataFrame.fromCSV(this.filename).then(
             df => {
                 return df.distinct(columnName).toDict()[columnName];
             }

@@ -51,6 +51,7 @@ class DashBoard {
         queryResultPromise.then(function(queryData){
             if(queryData != undefined){
                 console.log("queryData: " + queryData);
+                
                 instance.createGraph(queryData);
             }
         });
