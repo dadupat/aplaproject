@@ -17,6 +17,9 @@ class DataSet{
 		if (this.getQueryData === DataSet.prototype.getQueryData) {
 			throw new TypeError("Please implement abstract method getQueryData.");
 		}
+		if (this.displayColumns === DataSet.prototype.displayColumns) {
+            throw new TypeError("Please implement abstract method getQueryData.");
+        }
 	}
 	
 	// An abstract method.
@@ -36,4 +39,5 @@ class DataSet{
 	getQueryData(){
 		throw new TypeError("Do not call abstract method getQueryData from child.");
 	}
+
 }
