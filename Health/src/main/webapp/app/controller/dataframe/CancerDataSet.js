@@ -82,7 +82,48 @@ class CancerDataSet extends DataSet{
                  console.log(query);
                  var dataRows = DataFrame.sql.request(query).toArray();
                  console.log(dataRows.length);
-                 return dataRows();
+                 
+                 
+                 var maleDatalabel = 'Male';
+        	     var femaleDatalabel = 'Female';
+        	    
+        	     var maleData=new Array();
+        		 var femaleData=new Array();
+
+        	     for (var i=0; i<dataRows.length; i++){
+        	    	 console.log(dataRows[i]);
+        	    	 if (dataRows[i][1] == 'male'){
+        	    		 maleData.push(dataRows[i][3]);
+        	    	 }else{
+        	    		 femaleData.push(dataRows[i][3]);
+        	    	 }
+        	     }
+        	     
+        	     console.log("maledata="+maleData);
+        	     console.log("femaledata="+femaleData);
+        	     
+        	    var malecolor = []
+        	     var malebordercolor = []
+        	     var femalecolor = []
+        	     var femalebordercolor = []
+        	     
+        	     
+        	     for (var i=0; i<years.length; i++){
+        	    	 malecolor.push('rgba(255, 99, 132, 0.2)');
+        	    	 malebordercolor.push('rgba(255,99,132,1)');
+        	    	 femalecolor.push('rgba(54, 162, 235, 0.2)');
+        	    	 femalebordercolor.push('rgba(54, 162, 235, 1)');
+        	     }
+        	     
+        		
+        		var datasetObjArray=new Array();
+        		var datasetObj= new DatasetObj(years,maleDatalabel,maleData,malecolor,malebordercolor,1);
+        		datasetObjArray.push(datasetObj);
+        		datasetObj= new DatasetObj(years,femaleDatalabel,femaleData,femalecolor,femalebordercolor,1);
+        		datasetObjArray.push(datasetObj);
+                 
+                 
+                 return datasetObjArray;
 	        }
         ).catch(err => {
             console.log(err);
