@@ -1,7 +1,6 @@
 class DatasetObj {
 
-    constructor (labels, label, data, backgroundColor,borderColor,borderWidth,labels) {
-    	this._labels = labels;
+    constructor (label, data, backgroundColor,borderColor,borderWidth,labels) {
         this._label = label;
         this._data = data;
         this._backgroundColor = backgroundColor;
@@ -11,14 +10,6 @@ class DatasetObj {
     }
 
     
-    set labels  (labels)  {
-    	this._labels = labels;
-    }
-
-	get labels() {
-	   return this._labels;
-	}
-	
 	set label  (label)  {
              this._label = label;
             }

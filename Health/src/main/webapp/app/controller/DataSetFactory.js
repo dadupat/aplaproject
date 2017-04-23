@@ -3,30 +3,21 @@ class DataSetFactory {
 
     }
 
-    /*static getFactory (){
-        this.accidentDataSet = new AccidentDataSet();
-        this.birthDataSet  = new BirthDataSet();
-        this.cancerDataSet = new CancerDataSet();
-        this.insuranceDataSet = new InsuranceDataSet();
-        this.mortalityDataSet = new MortalityDataSet();
-    	return new DataSetFactory();
-    }*/
-    
     getDataSet(DataSetName){
     	if (DataSetName == 'accident'){
-        	return this.accidentDataSet;
+        	return new AccidentDataSet();
         }
         if (DataSetName == 'birth'){
-        	return this.birthDataSet;
+        	return new BirthDataSet();
         }
         if (DataSetName == 'cancer'){
         	return new CancerDataSet();
         }
         if (DataSetName == 'insurance'){
-        	return this.insuranceDataSet;
+        	return new InsuranceDataSet();
         }
         if (DataSetName == 'mortality'){
-        	return this.mortalityDataSet;
+        	return new MortalityDataSet();
         }
     }
 }
