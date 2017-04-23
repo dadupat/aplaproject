@@ -6,6 +6,7 @@ class MortalityDataSet extends DataSet{
     constructor () {
     	super();
     }
+    
 	getColumnList() {
 	}
 	
