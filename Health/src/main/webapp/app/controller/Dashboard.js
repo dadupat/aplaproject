@@ -40,7 +40,11 @@ class DashBoard {
         }
         table.appendChild(tableBody);
         newDiv.appendChild(table);
-        document.getElementById('toAppend').appendChild(newDiv);
+        var dataComponentDiv = document.getElementById('toAppend');
+        var columnCheckbox = document.getElementById('columnCheckbox');
+        dataComponentDiv.innerHTML = '';
+        columnCheckbox.innerHTML = '';
+        dataComponentDiv.appendChild(newDiv);
     }
 
     generateCharts(){

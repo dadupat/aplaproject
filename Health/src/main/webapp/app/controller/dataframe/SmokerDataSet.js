@@ -1,15 +1,15 @@
 /**
  * 
  */
-class InsuranceDataSet extends DataSet{
+class SmokerDataSet extends DataSet{
 
     constructor () {
-    	super();
+        super();
     }
     
 	getColumnList() {
 		var DataFrame = dfjs.DataFrame;
-        return DataFrame.fromCSV('./DownloadableContent/HealthInsurance.csv').then(
+        return DataFrame.fromCSV('./DownloadableContent/SmokingData.csv').then(
             df => {
                 var columns = df.listColumns();
                 return columns;
@@ -21,7 +21,7 @@ class InsuranceDataSet extends DataSet{
 	
 	getDistinctColumnVal() {
 		var DataFrame = dfjs.DataFrame;
-		var distColumnValues = DataFrame.fromCSV('./DownloadableContent/HealthInsurance.csv').then(
+		var distColumnValues = DataFrame.fromCSV('./DownloadableContent/SmokingData.csv').then(
             df => {
                 var columns = df.listColumns();
                 var distColumnValues = [];
@@ -40,7 +40,7 @@ class InsuranceDataSet extends DataSet{
 
 	getTableData(){
 		var DataFrame = dfjs.DataFrame;
-		var tableData = DataFrame.fromCSV('./DownloadableContent/HealthInsurance.csv').then(
+		var tableData = DataFrame.fromCSV('./DownloadableContent/SmokingData.csv').then(
             df => {
                 var data = df.toArray();
 				data[data.length] = df.listColumns();
@@ -52,20 +52,20 @@ class InsuranceDataSet extends DataSet{
         return tableData;
 	}
 	
-	getQueryData(state, year){
+	getQueryData(year,gender){
 		var DataFrame = dfjs.DataFrame;
         return DataFrame.fromCSV(this.filename).then(
              df => {
 
-                 DataFrame.sql.registerTable(df, 'insuranceTable');
-                 var query = 'SELECT * FROM insuranceTable WHERE State=' + state;
+                 DataFrame.sql.registerTable(df, 'smokingTable');
+                 var query = 'SELECT * FROM smokingTable WHERE State=' + state;
 
 
                  console.log(query);
                  var dataRows = DataFrame.sql.request(query).toArray();
                  console.log(dataRows.length);
 
-        		DataFrame.sql.dropTable('cancerTable');
+        		DataFrame.sql.dropTable('smokingTable');
         		
         		var result = new Array();
         		result.push (years);

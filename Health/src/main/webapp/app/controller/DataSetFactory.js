@@ -4,8 +4,8 @@ class DataSetFactory {
     }
 
     getDataSet(DataSetName){
-    	if (DataSetName == 'accident'){
-        	return new AccidentDataSet();
+    	if (DataSetName == 'smoker'){
+        	return new SmokerDataSet();
         }
         if (DataSetName == 'birth'){
         	return new BirthDataSet();
