@@ -5,11 +5,12 @@ class SmokerDataSet extends DataSet{
 
     constructor () {
         super();
+        this.filename = './DownloadableContent/SmokingData.csv';
     }
     
 	getColumnList() {
 		var DataFrame = dfjs.DataFrame;
-        return DataFrame.fromCSV('./DownloadableContent/SmokingData.csv').then(
+        return DataFrame.fromCSV(this.filename).then(
             df => {
                 var columns = df.listColumns();
                 return columns;
@@ -21,7 +22,7 @@ class SmokerDataSet extends DataSet{
 	
 	getDistinctColumnVal() {
 		var DataFrame = dfjs.DataFrame;
-		var distColumnValues = DataFrame.fromCSV('./DownloadableContent/SmokingData.csv').then(
+		var distColumnValues = DataFrame.fromCSV(this.filename).then(
             df => {
                 var columns = df.listColumns();
                 var distColumnValues = [];
@@ -40,7 +41,7 @@ class SmokerDataSet extends DataSet{
 
 	getTableData(){
 		var DataFrame = dfjs.DataFrame;
-		var tableData = DataFrame.fromCSV('./DownloadableContent/SmokingData.csv').then(
+		var tableData = DataFrame.fromCSV(this.filename).then(
             df => {
                 var data = df.toArray();
 				data[data.length] = df.listColumns();

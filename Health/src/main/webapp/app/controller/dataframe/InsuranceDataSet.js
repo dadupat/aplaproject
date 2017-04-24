@@ -5,11 +5,12 @@ class InsuranceDataSet extends DataSet{
 
     constructor () {
     	super();
+        this.filename = './DownloadableContent/HealthInsurance.csv';
     }
     
 	getColumnList() {
 		var DataFrame = dfjs.DataFrame;
-        return DataFrame.fromCSV('./DownloadableContent/HealthInsurance.csv').then(
+        return DataFrame.fromCSV(this.filename).then(
             df => {
                 var columns = df.listColumns();
                 return columns;
@@ -21,7 +22,7 @@ class InsuranceDataSet extends DataSet{
 	
 	getDistinctColumnVal() {
 		var DataFrame = dfjs.DataFrame;
-		var distColumnValues = DataFrame.fromCSV('./DownloadableContent/HealthInsurance.csv').then(
+		var distColumnValues = DataFrame.fromCSV(this.filename).then(
             df => {
                 var columns = df.listColumns();
                 var distColumnValues = [];
@@ -40,7 +41,7 @@ class InsuranceDataSet extends DataSet{
 
 	getTableData(){
 		var DataFrame = dfjs.DataFrame;
-		var tableData = DataFrame.fromCSV('./DownloadableContent/HealthInsurance.csv').then(
+		var tableData = DataFrame.fromCSV(this.filename).then(
             df => {
                 var data = df.toArray();
 				data[data.length] = df.listColumns();
