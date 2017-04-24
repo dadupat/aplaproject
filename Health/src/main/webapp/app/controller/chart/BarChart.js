@@ -11,8 +11,7 @@ class BarChart extends ChartObserver {
 
     generateChart(){
 
-       // this.getDatasets();
-       console.log("json in generateChart="+this._datasetJsonArray);
+     
         var ctx = document.getElementById("barChart");
         var lineChart1 = new Chart(ctx, {
             type: this._type,

@@ -61,10 +61,25 @@ class DashBoard {
         // it will have all query data result which we can pass to new LineChart(any()) to generate different graphs.
         /*var lineChart = new LineChart('line', queryData)
         lineChart.generateChart();*/
-        
-        var barChart= new BarChart('bar',queryData[0], queryData[1]);
+        var labelsArray=queryData[0];
+        var datasetsArray=queryData[1];
+
+        var barChart= new BarChart('bar',labelsArray,datasetsArray);
 		 	barChart.generateChart();
         //same for all chart type.
+
+         var lineChart= new LineChart('line',labelsArray,datasetsArray);
+		 	lineChart.generateChart();
+
+
+         var donughnutChart= new DoughnutChart('doughnut',labelsArray,datasetsArray);
+		 	donughnutChart.generateChart();
+
+        var stackedChart= new StackedChart('line',labelsArray,datasetsArray);
+		 	stackedChart.generateChart();
+
+        var pieChart= new PieChart('pie',labelsArray,datasetsArray);
+		 	pieChart.generateChart();   
     }
 }
 
