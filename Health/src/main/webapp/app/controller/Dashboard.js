@@ -42,8 +42,10 @@ class DashBoard {
         newDiv.appendChild(table);
         var dataComponentDiv = document.getElementById('toAppend');
         var columnCheckbox = document.getElementById('columnCheckbox');
+        var multiselectdropdown = document.getElementById('multiselectdropdown');
         dataComponentDiv.innerHTML = '';
         columnCheckbox.innerHTML = '';
+        multiselectdropdown.innerHTML = '';
         dataComponentDiv.appendChild(newDiv);
     }
 
