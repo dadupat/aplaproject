@@ -5,11 +5,12 @@ class MortalityDataSet extends DataSet{
 
     constructor () {
     	super();
+        this.filename = './DownloadableContent/SmokingData.csv';
     }
     
 	getColumnList() {
 		var DataFrame = dfjs.DataFrame;
-        return DataFrame.fromCSV('./DownloadableContent/DeathRate.csv').then(
+        return DataFrame.fromCSV(this.filename).then(
             df => {
                 var columns = df.listColumns();
                 return columns;
@@ -21,7 +22,7 @@ class MortalityDataSet extends DataSet{
 	
 	getDistinctColumnVal() {
 		var DataFrame = dfjs.DataFrame;
-		var distColumnValues = DataFrame.fromCSV('./DownloadableContent/DeathRate.csv').then(
+		var distColumnValues = DataFrame.fromCSV(this.filename).then(
             df => {
                 var columns = df.listColumns();
                 var distColumnValues = [];
@@ -40,7 +41,7 @@ class MortalityDataSet extends DataSet{
 
 	getTableData(){
 		var DataFrame = dfjs.DataFrame;
-		var tableData = DataFrame.fromCSV('./DownloadableContent/DeathRate.csv').then(
+		var tableData = DataFrame.fromCSV(this.filename).then(
             df => {
                 var data = df.toArray();
 				data[data.length] = df.listColumns();
@@ -133,9 +134,7 @@ class MortalityDataSet extends DataSet{
                selectBox.name = instance.cb;
                selectBox.value = instance.cb;
                selectBox.id = 'idselect'+instance.cb;
-               if(instance.cb != 'CancerType'){
-                  selectBox.multiple=true;
-               }
+               selectBox.multiple=true;
                console.log(distinctArray);
                for (var i = 0; i<distinctArray.length; i++){
                    var opt = document.createElement('option');
