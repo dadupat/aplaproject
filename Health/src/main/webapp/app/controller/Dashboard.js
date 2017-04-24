@@ -10,6 +10,7 @@ class DashBoard {
             }
         });
         dataSet.displayColumns();
+        document.getElementById('generateChartButton').style.display = 'block';
     }
 
     displayTable(tableData){
@@ -18,13 +19,13 @@ class DashBoard {
         table.className = "table";
         var tableHeader = table.createTHead();
         var rowHead = tableHeader.insertRow(0);
-        
+
         for(var i=0; i<tableData[0].length; i++){
         	console.log(tableData[tableData.length-1][i]);
         	var column = rowHead.insertCell(i)
         	column.innerHTML = "<h3>" + tableData[tableData.length-1][i] + "</h3>"
         }
-        
+
         var newDiv = document.createElement('div');
         newDiv.style.height = "100px!important";
         var row = document.createElement('tr');
@@ -42,22 +43,20 @@ class DashBoard {
         document.getElementById('toAppend').appendChild(newDiv);
     }
 
-    generateGraph(){
+    generateCharts(){
         var instance = this;
         var dataSetFactory = new DataSetFactory();
         var dataSet = dataSetFactory.getDataSet('cancer');
         var queryResultPromise = dataSet.getMultiSelectData();
         queryResultPromise.then(function(queryData){
             if(queryData != undefined){
-                console.log("queryData: " + queryData);
-                
-                instance.createGraph(queryData);
-                
+                document.getElementById('checkboxesId').style.display = 'block';
+                instance.createChart(queryData);
             }
         });
     }
 
-    createGraph(queryData){
+    createChart(queryData){
         // it will have all query data result which we can pass to new LineChart(any()) to generate different graphs.
         /*var lineChart = new LineChart('line', queryData)
         lineChart.generateChart();*/
@@ -80,6 +79,14 @@ class DashBoard {
 
         var pieChart= new PieChart('pie',labelsArray,datasetsArray);
 		 	pieChart.generateChart();   
+    }
+
+    showHideGraph(chkBoxId, chartDivId){
+         if(document.getElementById(chkBoxId).checked == true){
+             document.getElementById(chartDivId).style.display = 'block';
+         }else{
+             document.getElementById(chartDivId).style.display = 'none';
+         }
     }
 }
 
