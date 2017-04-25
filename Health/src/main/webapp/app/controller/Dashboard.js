@@ -52,7 +52,7 @@ class DashBoard {
     generateCharts(){
         var instance = this;
         var dataSetFactory = new DataSetFactory();
-        var dataSet = dataSetFactory.getDataSet('birth');
+        var dataSet = dataSetFactory.getDataSet('insurance');
         var queryResultPromise = dataSet.getMultiSelectData();
         queryResultPromise.then(function(queryData){
             if(queryData != undefined){
