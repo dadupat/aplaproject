@@ -5,7 +5,7 @@ class MortalityDataSet extends DataSet{
 
     constructor () {
     	super();
-        this.filename = './DownloadableContent/SmokingData.csv';
+        this.filename = './DownloadableContent/DeathRate.csv';
     }
     
 	getColumnList() {
@@ -45,6 +45,9 @@ class MortalityDataSet extends DataSet{
             df => {
                 var data = df.toArray();
 				data[data.length] = df.listColumns();
+                for(var i=0;i<data.length;i++){
+                  data[i][2]=(data[i][2]).toString().replace(/[$]/g,' ');
+                }
                 return data;
             }
         ).catch(err => {
@@ -52,29 +55,83 @@ class MortalityDataSet extends DataSet{
         });
         return tableData;
 	}
-	
-	getQueryData(year,gender,death_Cause){
+
+	getQueryData(death_Cause,gender,years){
 		var DataFrame = dfjs.DataFrame;
         return DataFrame.fromCSV(this.filename).then(
              df => {
 
-                 DataFrame.sql.registerTable(df, 'DeathRateTable');
-                 var query = 'SELECT * FROM DeathRateTable WHERE State=' + state;
+                 DataFrame.sql.registerTable(df, 'DeathRateTable', true);
+                 var query = "SELECT * FROM DeathRateTable WHERE Death_Cause=" + "'" + death_Cause + "'";
 
 
+                 if (gender != null && gender.length == 1){
+                     query = query + " AND Gender=" + gender[0];
+                 }
+
+                 if (years != null && years.length != 0){
+                     var yearStr = null;
+                     for (var i=0; i<years.length ; i++){
+                         if (yearStr != null){
+                             yearStr = yearStr + ",";
+                         }else{
+                             yearStr = '(';
+                         }
+                         yearStr = yearStr + years[i];
+                     }
+                     yearStr = yearStr + ')';
+                     query = query + " AND Year IN " + yearStr;
+                 }else{
+                     years = df.distinct('Year').toArray();
+                 }
                  console.log(query);
                  var dataRows = DataFrame.sql.request(query).toArray();
                  console.log(dataRows.length);
 
-        		DataFrame.sql.dropTable('cancerTable');
+                 var maleDatalabel = 'Male';
+        	     var femaleDatalabel = 'Female';
+        	    
+        	     var maleData=new Array();
+        		 var femaleData=new Array();
+
+        	     for (var i=0; i<dataRows.length; i++){
+        	    	 console.log(dataRows[i]);
+        	    	 if (dataRows[i][1] == 'Male'){
+        	    		 maleData.push(dataRows[i][3]);
+        	    	 }else{
+        	    		 femaleData.push(dataRows[i][3]);
+        	    	 }
+        	     }
+        	     
+        	     console.log("maledata="+maleData);
+        	     console.log("femaledata="+femaleData);
+        	     
+        	    var malecolor = []
+        	     var malebordercolor = []
+        	     var femalecolor = []
+        	     var femalebordercolor = []
+        	     
+        	     
+        	     for (var i=0; i<years.length; i++){
+        	    	 malecolor.push('rgba(255, 99, 132, 0.2)');
+        	    	 malebordercolor.push('rgba(255,99,132,1)');
+        	    	 femalecolor.push('rgba(54, 162, 235, 0.2)');
+        	    	 femalebordercolor.push('rgba(54, 162, 235, 1)');
+        	     }
+        	     
+        		
+        		var datasetObjArray=new Array();
+        		var datasetObj = new DatasetObj(maleDatalabel,maleData,malecolor,malebordercolor,1);
+        		datasetObjArray.push(datasetObj);
+        		datasetObj= new DatasetObj(femaleDatalabel,femaleData,femalecolor,femalebordercolor,1);
+        		datasetObjArray.push(datasetObj);
+        		DataFrame.sql.dropTable('DeathRateTable');
         		
         		var result = new Array();
         		result.push (years);
         		result.push (datasetObjArray);
         		
-                 return result;
-                 
-                 
+                return result;                 
 	        }
         ).catch(err => {
             console.log(err);
@@ -134,12 +191,14 @@ class MortalityDataSet extends DataSet{
                selectBox.name = instance.cb;
                selectBox.value = instance.cb;
                selectBox.id = 'idselect'+instance.cb;
-               selectBox.multiple=true;
+               if(selectBox.id != "idselectDeath_Cause"){
+                   selectBox.multiple=true;
+               }
                console.log(distinctArray);
                for (var i = 0; i<distinctArray.length; i++){
                    var opt = document.createElement('option');
                    opt.value = distinctArray[i];
-                   opt.innerHTML = distinctArray[i];
+                   opt.innerHTML = distinctArray[i].toString().replace(/[$]/g,' ');
                    selectBox.appendChild(opt);
                }
 
@@ -158,5 +217,43 @@ class MortalityDataSet extends DataSet{
                }
             }
         });
+    }
+
+     getMultiSelectData(){
+        //if possible call  getColumnList iterate on that list to get column names to store in idSelect.
+        var gender = document.getElementById('idselectGender');
+        var year = document.getElementById('idselectYear');
+        var deathcause = document.getElementById('idselectDeath_Cause');
+        var valuesGender = [];
+        var valuesYear = [];
+        var valuesDeath = [];
+
+        if(null != gender){
+            for (var i = 0; i < gender.options.length; i++) {
+                if (gender.options[i].selected) {
+                    valuesGender.push(gender.options[i].value);
+                }
+            }
+        }
+
+        if(null != year){
+            for (var i = 0; i < year.options.length; i++) {
+                if (year.options[i].selected) {
+                    valuesYear.push(year.options[i].value);
+                }
+            }
+        }
+
+        if(null != deathcause){
+            for (var i = 0; i < deathcause.options.length; i++) {
+                if (deathcause.options[i].selected) {
+                    valuesDeath.push(deathcause.options[i].value);
+                }
+            }
+        }
+
+        console.log(valuesDeath, valuesGender, valuesYear);
+        // it should return an array and use that value to change UI here
+        return this.getQueryData(valuesDeath, valuesGender, valuesYear);
     }
 }

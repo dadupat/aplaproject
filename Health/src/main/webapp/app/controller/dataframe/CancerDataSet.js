@@ -46,8 +46,10 @@ class CancerDataSet extends DataSet{
             df => {
                 var data = df.toArray();
                 data[data.length] = df.listColumns();
+                for(var i=0;i<data.length;i++){
+                  data[i][2]=(data[i][2]).toString().replace(/[$]/g,' ');
+                }
                 return data;
-                
             }
         ).catch(err => {
             console.log(err);
@@ -61,7 +63,7 @@ class CancerDataSet extends DataSet{
              df => {
 
                  DataFrame.sql.registerTable(df, 'cancerTable', true);
-                 var query = "SELECT * FROM cancerTable WHERE CancerType=" + "'" + cancerType + "'";
+                 var query = "SELECT * FROM cancerTable WHERE Cancer_Type=" + "'" + cancerType + "'";
 
 
                  if (gender != null && gender.length == 1){
@@ -192,14 +194,14 @@ class CancerDataSet extends DataSet{
                selectBox.name = instance.cb;
                selectBox.value = instance.cb;
                selectBox.id = 'idselect'+instance.cb;
-               if(instance.cb != 'CancerType'){
+               if(instance.cb != 'Cancer_Type'){
                   selectBox.multiple=true;
                }
                console.log(distinctArray);
                for (var i = 0; i<distinctArray.length; i++){
                    var opt = document.createElement('option');
                    opt.value = distinctArray[i];
-                   opt.innerHTML = distinctArray[i];
+                   opt.innerHTML = distinctArray[i].toString().replace(/[$]/g,' ');
                    selectBox.appendChild(opt);
                }
 
@@ -224,7 +226,7 @@ class CancerDataSet extends DataSet{
         //if possible call  getColumnList iterate on that list to get column names to store in idSelect.
         var gender = document.getElementById('idselectGender');
         var year = document.getElementById('idselectYear');
-        var cancerType = document.getElementById('idselectCancerType');
+        var cancerType = document.getElementById('idselectCancer_Type');
         var valuesGender = [];
         var valuesYear = [];
         var valuesCancer = [];
@@ -248,7 +250,6 @@ class CancerDataSet extends DataSet{
         if(null != cancerType){
             for (var i = 0; i < cancerType.options.length; i++) {
                 if (cancerType.options[i].selected) {
-                    //var temp = cancerType.options[i].value.split(' ').join('$');
                     valuesCancer.push(cancerType.options[i].value);
                 }
             }
