@@ -53,19 +53,76 @@ class SmokerDataSet extends DataSet{
         return tableData;
 	}
 	
-	getQueryData(year,gender){
+	getQueryData(gender, years){
 		var DataFrame = dfjs.DataFrame;
         return DataFrame.fromCSV(this.filename).then(
              df => {
 
                  DataFrame.sql.registerTable(df, 'smokingTable');
-                 var query = 'SELECT * FROM smokingTable WHERE State=' + state;
+                 var query = 'SELECT * FROM smokingTable';
 
+                 if (gender != null && gender.length == 1){
+                     query = query + " WHERE Gender=" + "'" + gender[0] + "'";
+                 }
+
+                 if (years != null && years.length != 0){
+                     var yearStr = null;
+                     for (var i=0; i<years.length ; i++){
+                         if (yearStr != null){
+                             yearStr = yearStr + ",";
+                         }else{
+                             yearStr = '(';
+                         }
+                         yearStr = yearStr + years[i];
+                     }
+                     yearStr = yearStr + ')';
+                     query = query + " AND Year IN " + yearStr;
+                 }else{
+                     years = df.distinct('Year').toArray();
+                 }
+                 
 
                  console.log(query);
                  var dataRows = DataFrame.sql.request(query).toArray();
                  console.log(dataRows.length);
+                 console.log(dataRows);
 
+        		 var maleDatalabel = 'Male';
+        	     var femaleDatalabel = 'Female';
+        	    
+        	     var maleData=new Array();
+        		 var femaleData=new Array();
+
+        	     for (var i=0; i<dataRows.length; i++){
+        	    	 console.log(dataRows[i]);
+        	    	 if (dataRows[i][1] == 'male'){
+        	    		 maleData.push(dataRows[i][2]);
+        	    	 }else{
+        	    		 femaleData.push(dataRows[i][2]);
+        	    	 }
+        	     }
+        	     
+        	     console.log("maledata="+maleData);
+        	     console.log("femaledata="+femaleData);
+        	     
+        	     var malecolor = []
+        	     var malebordercolor = []
+        	     var femalecolor = []
+        	     var femalebordercolor = []
+        	     
+        	     
+        	     for (var i=0; i<years.length; i++){
+        	    	 malecolor.push('rgba(255, 99, 132, 0.2)');
+        	    	 malebordercolor.push('rgba(255,99,132,1)');
+        	    	 femalecolor.push('rgba(54, 162, 235, 0.2)');
+        	    	 femalebordercolor.push('rgba(54, 162, 235, 1)');
+        	     }
+        	     
+        		var datasetObjArray=new Array();
+        		var datasetObj = new DatasetObj(maleDatalabel,maleData,malecolor,malebordercolor,1);
+        		datasetObjArray.push(datasetObj);
+        		datasetObj= new DatasetObj(femaleDatalabel,femaleData,femalecolor,femalebordercolor,1);
+        		datasetObjArray.push(datasetObj);
         		DataFrame.sql.dropTable('smokingTable');
         		
         		var result = new Array();
@@ -134,9 +191,8 @@ class SmokerDataSet extends DataSet{
                selectBox.name = instance.cb;
                selectBox.value = instance.cb;
                selectBox.id = 'idselect'+instance.cb;
-               if(instance.cb != 'CancerType'){
-                  selectBox.multiple=true;
-               }
+               selectBox.multiple=true;
+               
                console.log(distinctArray);
                for (var i = 0; i<distinctArray.length; i++){
                    var opt = document.createElement('option');
@@ -160,6 +216,33 @@ class SmokerDataSet extends DataSet{
                }
             }
         });
+    }
+
+    getMultiSelectData(){
+        //if possible call  getColumnList iterate on that list to get column names to store in idSelect.
+        var gender = document.getElementById('idselectGender');
+        var year = document.getElementById('idselectYear');
+       
+        var valuesGender = [];
+        var valuesYear = [];
+        
+        if(null != gender){
+            for (var i = 0; i < gender.options.length; i++) {
+                if (gender.options[i].selected) {
+                    valuesGender.push(gender.options[i].value);
+                }
+            }
+        }
+
+        if(null != year){
+            for (var i = 0; i < year.options.length; i++) {
+                if (year.options[i].selected) {
+                    valuesYear.push(year.options[i].value);
+                }
+            }
+        }
+        // it should return an array and use that value to change UI here
+        return this.getQueryData(valuesGender, valuesYear);
     }
 
 }

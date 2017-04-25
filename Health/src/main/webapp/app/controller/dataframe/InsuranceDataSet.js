@@ -45,6 +45,9 @@ class InsuranceDataSet extends DataSet{
             df => {
                 var data = df.toArray();
 				data[data.length] = df.listColumns();
+                for(var i=0;i<data.length;i++){
+                  data[i][0]=(data[i][0]).toString().replace(/[$]/g,' ');
+                }
                 return data;
             }
         ).catch(err => {
@@ -53,26 +56,91 @@ class InsuranceDataSet extends DataSet{
         return tableData;
 	}
 	
-	getQueryData(state, year){
+	getQueryData(state, years){
 		var DataFrame = dfjs.DataFrame;
         return DataFrame.fromCSV(this.filename).then(
              df => {
 
                  DataFrame.sql.registerTable(df, 'insuranceTable');
-                 var query = 'SELECT * FROM insuranceTable WHERE State=' + state;
+                 var query = 'SELECT * FROM insuranceTable';
 
+                 if (years != null && years.length != 0){
+                     var yearStr = null;
+                     for (var i=0; i<years.length ; i++){
+                         if (yearStr != null){
+                             yearStr = yearStr + ",";
+                         }else{
+                             yearStr = '(';
+                         }
+                         yearStr = yearStr + years[i];
+                     }
+                     yearStr = yearStr + ')';
+                     query = query + " where Year IN " + yearStr;
+                 }else{
+                     years = df.distinct('Year').toArray();
+                 }
+                 if (state != null && state.length != 0){
+                     var stateStr = null;
+                     for (var i=0; i<state.length ; i++){
+                         if (stateStr != null){
+                             stateStr = stateStr + ",";
+                         }else{
+                             stateStr = '(';
+                         }
+                         stateStr = stateStr + state[i];
+                     }
+                     stateStr = stateStr + ')';
+                     query = query + " AND State IN " + stateStr;
+                 }else{
+                     state = df.distinct('State').toArray();
+                 }
 
                  console.log(query);
                  var dataRows = DataFrame.sql.request(query).toArray();
                  console.log(dataRows.length);
+                 console.log(dataRows);
+                
 
-        		DataFrame.sql.dropTable('cancerTable');
+        	     
+
+                var stateDataArray =new Array();
+
+                 for (i=0;i<dataRows.length;i++) {
+                     if(!stateDataArray.includes(dataRows[i][1])){
+                         stateDataArray[i]= dataRows[i][1];
+                     }
+                     
+                       // for (j=0;j<jMax;j++) {
+                       //     f[i][j]=0;
+                        //}
+                    }
+                console.log(stateDataArray);
+        		 
+/*
+        	     for (var i=0; i<dataRows.length; i++){
+        	    	 console.log(dataRows[i]);
+        	    	 if (dataRows[i][1] == 'male'){
+        	    		 maleData.push(dataRows[i][3]);
+        	    	 }else{
+        	    		 femaleData.push(dataRows[i][3]);
+        	    	 }
+        	     }
+        	*/	
+        		
+        		var datasetObjArray=new Array();
+        		//var datasetObj = new DatasetObj(maleDatalabel,maleData,malecolor,malebordercolor,1);
+        		//datasetObjArray.push(datasetObj);
+        		//datasetObj= new DatasetObj(femaleDatalabel,femaleData,femalecolor,femalebordercolor,1);
+        		//datasetObjArray.push(datasetObj);
+
+        		DataFrame.sql.dropTable('insuranceTable');
         		
         		var result = new Array();
         		result.push (years);
         		result.push (datasetObjArray);
         		
-                 return result;
+        		
+                return result;
                  
                  
 	        }
@@ -134,14 +202,12 @@ class InsuranceDataSet extends DataSet{
                selectBox.name = instance.cb;
                selectBox.value = instance.cb;
                selectBox.id = 'idselect'+instance.cb;
-               if(instance.cb != 'CancerType'){
-                  selectBox.multiple=true;
-               }
+               selectBox.multiple=true;
                console.log(distinctArray);
                for (var i = 0; i<distinctArray.length; i++){
                    var opt = document.createElement('option');
                    opt.value = distinctArray[i];
-                   opt.innerHTML = distinctArray[i];
+                   opt.innerHTML = distinctArray[i].toString().replace(/[$]/g,' ');
                    selectBox.appendChild(opt);
                }
 
@@ -160,6 +226,33 @@ class InsuranceDataSet extends DataSet{
                }
             }
         });
+    }
+
+    getMultiSelectData(){
+        //if possible call  getColumnList iterate on that list to get column names to store in idSelect.
+        var state = document.getElementById('idselectState');
+        var year = document.getElementById('idselectYear');
+       
+        var valuesState = [];
+        var valuesYear = [];
+        
+        if(null != state){
+            for (var i = 0; i < state.options.length; i++) {
+                if (state.options[i].selected) {
+                    valuesState.push(state.options[i].value);
+                }
+            }
+        }
+
+        if(null != year){
+            for (var i = 0; i < year.options.length; i++) {
+                if (year.options[i].selected) {
+                    valuesYear.push(year.options[i].value);
+                }
+            }
+        }
+        // it should return an array and use that value to change UI here
+        return this.getQueryData(valuesState, valuesYear);
     }
 
 }
