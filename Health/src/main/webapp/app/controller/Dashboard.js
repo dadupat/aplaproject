@@ -1,5 +1,6 @@
 'use strict'
 class DashBoard {
+
     createTable(dataType){
         var instance = this;
         var dataSetFactory = new DataSetFactory();
@@ -11,6 +12,7 @@ class DashBoard {
         });
         dataSet.displayColumns();
         document.getElementById('generateChartButton').style.display = 'block';
+        this.abc = dataType;
     }
 
     displayTable(tableData){
@@ -52,7 +54,7 @@ class DashBoard {
     generateCharts(){
         var instance = this;
         var dataSetFactory = new DataSetFactory();
-        var dataSet = dataSetFactory.getDataSet('insurance');
+        var dataSet = dataSetFactory.getDataSet(this.abc);
         var queryResultPromise = dataSet.getMultiSelectData();
         queryResultPromise.then(function(queryData){
             if(queryData != undefined){
