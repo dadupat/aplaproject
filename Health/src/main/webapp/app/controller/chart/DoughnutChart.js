@@ -9,6 +9,21 @@ class DoughnutChart extends ChartObserver {
 
      generateChart(){
       
+       /*var buildChartData=new BuildChartData(this._labelsArray,this._datasetJsonArray);
+        
+        //getting stateDataMap
+        var stateDataMap =new Map();
+        stateDataMap=buildChartData.generateStateDataMap();
+        console.log("after returning from builddata stateDataMap size="+stateDataMap.size);
+      
+        //getting stateLabelsArray
+        var stateLabelsArray=new Array();
+        stateLabelsArray=buildChartData.generateStateLabelsArray();
+
+        // this.generateDatasetWithColor(stateDataMap,stateLabelsArray);
+        var datasetObjArray=buildChartData.generatePieDatasetWithColor(stateDataMap,stateLabelsArray);
+        this._datasetJsonArray=  datasetObjArray;*/
+
            var ctx = document.getElementById("doughnutChart");
         var lineChart1 = new Chart(ctx, {
             type: this._type,

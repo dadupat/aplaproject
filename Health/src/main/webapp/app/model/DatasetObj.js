@@ -1,13 +1,21 @@
 class DatasetObj {
 
-    constructor (label, data, backgroundColor,borderColor,borderWidth) {
+    constructor (label, data, backgroundColor,borderColor,borderWidth,fill) {
         this._label = label;
         this._data = data;
         this._backgroundColor = backgroundColor;
         this._borderColor = borderColor;
         this._borderWidth = borderWidth;
+        this._fill = fill;
     }
 
+    set fill  (fill)  {
+             this._fill = fill;
+            }
+
+    get fill() {
+        return this._fill;
+    }
     
 	set label  (label)  {
              this._label = label;

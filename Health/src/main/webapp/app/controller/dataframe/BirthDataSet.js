@@ -165,17 +165,25 @@ class BirthDataSet extends DataSet{
                     console.log("-------------------------");
                     
 
-        		
+
+        	var datasetObjArray=new Array();
+            for(var x=0;x<stateLabelsArray.length;x++){
+                var stateLabel=stateLabelsArray[x];
+                var stateDataArray=stateDataMap.get(stateLabel);
+
+                var datasetObj= new DatasetObj(stateLabel,stateDataArray,null,null,null);
+                datasetObjArray.push(datasetObj);
+            }
                
              //For Barchart
-        	 /* var datasetObjArray=new Array();
+        	  /*var datasetObjArray=new Array();
               datasetObjArray= this.datasetGenerationForBarChart(stateLabelsArray,stateDataMap,labelsBackgroundColorMap,labelsBorderColorMap,datasetObjArray);
               */
 
                 //For pie chart
-               var datasetObjArray=new Array();
+              /* var datasetObjArray=new Array();
                datasetObjArray=this.datasetGenerationForPieChart(stateLabelsArray,stateDataMap,stateDataColorMap,stateDataBorderColorMap,1,datasetObjArray);
-               
+              */ 
 
 
                //Below is reference code dont delete
@@ -192,7 +200,8 @@ class BirthDataSet extends DataSet{
         		
         		var result = new Array();
         		//for Barchart result.push (years);
-                result.push(years);  
+                result.push(years);
+               // result.push(datasetObj);  
         		result.push (datasetObjArray);
         		
         		
@@ -274,6 +283,10 @@ class BirthDataSet extends DataSet{
     {
      var state= stateLabelsArray[0];
      var datasetObj= new DatasetObj(state,stateDataMap.get(state),stateDataColorMap.get(state),stateDataBorderColorMap.get(state),1);
+     datasetObjArray.push(datasetObj);
+
+     state= stateLabelsArray[1];
+      datasetObj= new DatasetObj(state,stateDataMap.get(state),stateDataColorMap.get(state),stateDataBorderColorMap.get(state),1);
      datasetObjArray.push(datasetObj);
     
 
