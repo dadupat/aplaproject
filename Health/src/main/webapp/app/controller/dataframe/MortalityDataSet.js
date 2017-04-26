@@ -253,7 +253,46 @@ class MortalityDataSet extends DataSet{
         }
 
         console.log(valuesDeath, valuesGender, valuesYear);
+        var div = document.getElementById('aggregateFunction');
+        var labelCol = document.createElement('label');
+        labelCol.htmlFor="labelCol";
+        labelCol.appendChild(document.createTextNode('Select Aggregate Function:  '));
+        div.appendChild(labelCol);
+        var aggFunct = ['Minimum','Maximum','Average','Count','Standard Deviation'];
+        for(var i=0;i<aggFunct.length;i++){
+            var checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.name = aggFunct[i];
+            checkbox.value = aggFunct[i];
+            checkbox.id = aggFunct[i];
+            div.appendChild(checkbox);
+            var label = document.createElement('label');
+            label.appendChild(document.createTextNode(aggFunct[i]));
+            div.appendChild(label);
+        }
         // it should return an array and use that value to change UI here
         return this.getQueryData(valuesDeath, valuesGender, valuesYear);
+    }
+
+    createAggregateElements(){
+        var div = document.getElementById('aggregateFunction');
+        var labelCol = document.createElement('label');
+        labelCol.htmlFor="labelCol";
+        labelCol.appendChild(document.createTextNode('Select Aggregate Function:  '));
+        div.appendChild(labelCol);
+        var aggFunct = ['Minimum','Maximum','Average','Count','Standard_Deviation'];
+        for(var i=0;i<=aggFunct.length;i++){
+            var checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.name = aggFunct[i];
+            checkbox.value = aggFunct[i];
+            checkbox.id = aggFunct[i];
+            div.appendChild(checkbox);
+            div.appendChild('   ');
+            label.appendChild(document.createTextNode(aggFunct[i]));
+            div.appendChild(label);
+        }
+
+
     }
 }
