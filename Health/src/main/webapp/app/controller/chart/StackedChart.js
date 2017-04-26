@@ -9,6 +9,21 @@ class StackedChart extends ChartObserver {
 
      generateChart(){
       
+
+      /*var buildChartData=new BuildChartData(this._labelsArray,this._datasetJsonArray);
+        
+        //getting stateDataMap
+        var stateDataMap =new Map();
+        stateDataMap=buildChartData.generateStateDataMap();
+      
+        //getting stateLabelsArray
+        var stateLabelsArray=new Array();
+        stateLabelsArray=buildChartData.generateStateLabelsArray();
+       
+
+        var datasetObjArray=buildChartData.generateLineDatasetWithColor(stateDataMap,stateLabelsArray);
+        this._datasetJsonArray=  datasetObjArray;*/
+
            var ctx = document.getElementById("stackedChart");
         var lineChart1 = new Chart(ctx, {
             type: this._type,

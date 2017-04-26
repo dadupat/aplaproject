@@ -68,6 +68,45 @@ class DashBoard {
         });
     }
 
+generateCommonBuildChartData(labelsArray,datasetsArray){
+
+    var buildChartData=new BuildChartData(labelsArray,datasetsArray);
+        
+        //getting stateDataMap
+        var stateDataMap =new Map();
+        stateDataMap=buildChartData.generateStateDataMap();
+      
+        //getting stateLabelsArray
+        var stateLabelsArray=new Array();
+        stateLabelsArray=buildChartData.generateStateLabelsArray();
+       
+       //for bar chart
+        var barDatasetObjArray=buildChartData.generateBarDatasetWithColor(stateDataMap,stateLabelsArray);
+        var barChart= new BarChart('bar',stateLabelsArray,barDatasetObjArray);
+		 	barChart.generateChart();
+
+       //for line chart
+       var lineDatasetObjArray=buildChartData.generateLineDatasetWithColor(stateDataMap,stateLabelsArray);
+        var lineChart= new LineChart('line',labelsArray,lineDatasetObjArray);
+		lineChart.generateChart();
+
+        //for stacked line chart
+        var stackedLineDatasetObjArray=buildChartData.generateLineDatasetWithColor(stateDataMap,stateLabelsArray);
+        var stackedChart= new StackedChart('line',labelsArray,stackedLineDatasetObjArray);
+		stackedChart.generateChart();
+        
+        //for pie chart
+        var pieDatasetObjArray=buildChartData.generatePieDatasetWithColor(stateDataMap,stateLabelsArray);
+        var pieChart= new PieChart('pie',labelsArray,pieDatasetObjArray);
+		pieChart.generateChart();  
+
+        //for doughnut chart
+        var dounutDatasetObjArray=buildChartData.generatePieDatasetWithColor(stateDataMap,stateLabelsArray);
+        var donughnutChart= new DoughnutChart('doughnut',labelsArray,dounutDatasetObjArray);
+		donughnutChart.generateChart();
+
+}
+
     createChart(queryData){
         // it will have all query data result which we can pass to new LineChart(any()) to generate different graphs.
         /*var lineChart = new LineChart('line', queryData)
@@ -75,9 +114,12 @@ class DashBoard {
         var labelsArray=queryData[0];
         var datasetsArray=queryData[1];
 
-        var barChart= new BarChart('bar',labelsArray,datasetsArray);
+       //generating BuildChartData only once for each call
+       this.generateCommonBuildChartData(labelsArray,datasetsArray);
+
+       /* var barChart= new BarChart('bar',labelsArray,datasetsArray);
 		 	barChart.generateChart();
-        //same for all chart type.
+        
 
          var lineChart= new LineChart('line',labelsArray,datasetsArray);
 		 	lineChart.generateChart();
@@ -90,7 +132,7 @@ class DashBoard {
 		 	stackedChart.generateChart();
 
         var pieChart= new PieChart('pie',labelsArray,datasetsArray);
-		 	pieChart.generateChart();   
+		 	pieChart.generateChart();  */ 
     }
 
     showHideGraph(chkBoxId, chartDivId){
