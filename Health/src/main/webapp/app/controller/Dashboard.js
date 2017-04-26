@@ -45,9 +45,13 @@ class DashBoard {
         var dataComponentDiv = document.getElementById('toAppend');
         var columnCheckbox = document.getElementById('columnCheckbox');
         var multiselectdropdown = document.getElementById('multiselectdropdown');
+        var aggregateFunction = document.getElementById('aggregateFunction');
+        var aggregateFunctionResult = document.getElementById('aggregateFunctionResult');
         dataComponentDiv.innerHTML = '';
         columnCheckbox.innerHTML = '';
         multiselectdropdown.innerHTML = '';
+        aggregateFunction.innerHTML = '';
+        aggregateFunctionResult.innerHTML = '';
         dataComponentDiv.appendChild(newDiv);
     }
 
