@@ -100,10 +100,7 @@ class BirthDataSet extends DataSet{
                  console.log(dataRows.length);
                  console.log(dataRows);
                 
-               // var maleDatalabel = 'Male';
-        	    // var femaleDatalabel = 'Female';
-        	    
-        	     
+                   	     
 
                 var stateDataMap =new Map();
                 
@@ -128,45 +125,18 @@ class BirthDataSet extends DataSet{
                      
                     }
                    
-                    var stateLabelsArray= new Array();
-                    var dataLabelsColor= new Array();
-                     var stateDataColorMap =new Map();
-                     var stateDataBorderColorMap =new Map();
-                     var labelsBackgroundColorMap=new Map();
-                     var labelsBorderColorMap=new Map();
+                   var stateLabelsArray= new Array();
+               
                      
                     console.log("Printing stateDataMap");
                     console.log("-------------------------");
                     for (var [key, value] of stateDataMap) {
                             console.log(key + ' = ' + value);
                             stateLabelsArray.push(key);
-                            var colorArray= new Array();
-                            for(var i=0;i<value.length;i++)
-                            {
-                                colorArray.push(this.getRandomColor());
-                            }
-                            stateDataColorMap.set(key,colorArray);
-                            stateDataBorderColorMap.set(key,colorArray);
+                     
                         }
-                        console.log("-------------------------");
-                        
-                    console.log("The state labels="+stateLabelsArray);
-                    for(var j=0;j<stateLabelsArray.length;j++)
-                    {
-                        labelsBackgroundColorMap.set(stateLabelsArray[j],this.getRandomColor());
-                        labelsBorderColorMap.set(stateLabelsArray[j],this.getRandomColor())
-                    }
-
-                    console.log("printing all colors for labels");
-                    console.log("-------------------------");
-                    for (var [key, value] of stateDataColorMap) {
-                        console.log(key + ' = ' + value);
-                    }
-                    console.log("-------------------------");
-                    
-
-
-        	var datasetObjArray=new Array();
+         
+           	var datasetObjArray=new Array();
             for(var x=0;x<stateLabelsArray.length;x++){
                 var stateLabel=stateLabelsArray[x];
                 var stateDataArray=stateDataMap.get(stateLabel);
@@ -175,36 +145,13 @@ class BirthDataSet extends DataSet{
                 datasetObjArray.push(datasetObj);
             }
                
-             //For Barchart
-        	  /*var datasetObjArray=new Array();
-              datasetObjArray= this.datasetGenerationForBarChart(stateLabelsArray,stateDataMap,labelsBackgroundColorMap,labelsBorderColorMap,datasetObjArray);
-              */
-
-                //For pie chart
-              /* var datasetObjArray=new Array();
-               datasetObjArray=this.datasetGenerationForPieChart(stateLabelsArray,stateDataMap,stateDataColorMap,stateDataBorderColorMap,1,datasetObjArray);
-              */ 
-
-
-               //Below is reference code dont delete
-               /* var state= stateLabelsArray[0];
-                var datasetObj= new DatasetObj(state,stateDataMap.get(state),stateDataColorMap.get(state),stateDataBorderColorMap.get(state),1);
-                datasetObjArray.push(datasetObj);*/
-                         
-               /* datasetObj= new DatasetObj(stateLabelsArray[1],stateDataMap.get('Alaska'),labelsBackgroundColorMap.get('Alaska'),labelsBorderColorMap.get('Alaska'),1);
-        		datasetObjArray.push(datasetObj);
-                datasetObj= new DatasetObj(stateLabelsArray[2],stateDataMap.get('Arizona'),labelsBackgroundColorMap.get('Arizona'),labelsBorderColorMap.get('Arizona'),1);
-                datasetObjArray.push(datasetObj);*/
-              
-        		DataFrame.sql.dropTable('birthRateTable');
-        		
+           		DataFrame.sql.dropTable('birthRateTable');
+     	
         		var result = new Array();
-        		//for Barchart result.push (years);
+        	
                 result.push(years);
-               // result.push(datasetObj);  
-        		result.push (datasetObjArray);
-        		
-        		
+              	result.push (datasetObjArray);
+            		
                 return result;
                  
                  

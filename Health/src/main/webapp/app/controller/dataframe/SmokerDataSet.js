@@ -61,8 +61,27 @@ class SmokerDataSet extends DataSet{
                  DataFrame.sql.registerTable(df, 'smokingTable');
                  var query = 'SELECT * FROM smokingTable';
 
+
+
                  if (gender != null && gender.length == 1){
                      query = query + " WHERE Gender=" + "'" + gender[0] + "'";
+                 }
+                 else if(gender != null && gender.length > 1){
+                     var multipleGender='(';
+                     for(var p=0;p<gender.length;p++)
+                     {
+                         if(p==0)
+                         {
+                            multipleGender=multipleGender+ gender[0];
+                         }
+                         else
+                         {
+                             multipleGender=multipleGender+','+gender[p];
+                         }
+                     }
+                     multipleGender=multipleGender+')';
+                     console.log("Gender IN query prepared multipleGender="+multipleGender);
+                     query = query + " WHERE Gender IN"+multipleGender ;
                  }
 
                  if (years != null && years.length != 0){
@@ -87,42 +106,43 @@ class SmokerDataSet extends DataSet{
                  console.log(dataRows.length);
                  console.log(dataRows);
 
-        		 var maleDatalabel = 'Male';
-        	     var femaleDatalabel = 'Female';
-        	    
-        	     var maleData=new Array();
-        		 var femaleData=new Array();
+        	
+                var genderDataMap =new Map();
+                
 
-        	     for (var i=0; i<dataRows.length; i++){
-        	    	 console.log(dataRows[i]);
-        	    	 if (dataRows[i][1] == 'male'){
-        	    		 maleData.push(dataRows[i][2]);
-        	    	 }else{
-        	    		 femaleData.push(dataRows[i][2]);
-        	    	 }
-        	     }
-        	     
-        	     console.log("maledata="+maleData);
-        	     console.log("femaledata="+femaleData);
-        	     
-        	     var malecolor = []
-        	     var malebordercolor = []
-        	     var femalecolor = []
-        	     var femalebordercolor = []
-        	     
-        	     
-        	     for (var i=0; i<years.length; i++){
-        	    	 malecolor.push('rgba(255, 99, 132, 0.2)');
-        	    	 malebordercolor.push('rgba(255,99,132,1)');
-        	    	 femalecolor.push('rgba(54, 162, 235, 0.2)');
-        	    	 femalebordercolor.push('rgba(54, 162, 235, 1)');
-        	     }
-        	     
-        		var datasetObjArray=new Array();
-        		var datasetObj = new DatasetObj(maleDatalabel,maleData,malecolor,malebordercolor,1);
-        		datasetObjArray.push(datasetObj);
-        		datasetObj= new DatasetObj(femaleDatalabel,femaleData,femalecolor,femalebordercolor,1);
-        		datasetObjArray.push(datasetObj);
+                 for (i=0;i<dataRows.length;i++) {
+                   
+                     if(genderDataMap.has(dataRows[i][1]))
+                     {
+                         console.log("element present=");
+                         var existingGendarDataArray=genderDataMap.get(dataRows[i][1]);
+                         existingGendarDataArray.push(dataRows[i][2]);
+                         genderDataMap.set(dataRows[i][1],existingGendarDataArray);
+                     }
+                     else
+                     {
+                         console.log("adding element in map for first time="+dataRows[i][1]);
+                         var genderDataArray= new Array();
+                         genderDataArray.push(dataRows[i][2]);
+                         genderDataMap.set(dataRows[i][1],genderDataArray);  
+                     }
+                 } 
+
+                var genderLabelsArray= new Array();
+                for (var [key, value] of genderDataMap) {
+                            console.log(key + ' = ' + value);
+                            genderLabelsArray.push(key);   
+                }
+
+                var datasetObjArray=new Array();
+            for(var x=0;x<genderLabelsArray.length;x++){
+                var genderLabel=genderLabelsArray[x];
+                var genderDataArray=genderDataMap.get(genderLabel);
+
+                var datasetObj= new DatasetObj(genderLabel,genderDataArray,null,null,null);
+                datasetObjArray.push(datasetObj);
+            }
+
         		DataFrame.sql.dropTable('smokingTable');
         		
         		var result = new Array();

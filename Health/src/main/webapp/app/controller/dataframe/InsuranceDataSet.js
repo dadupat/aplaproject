@@ -102,47 +102,56 @@ class InsuranceDataSet extends DataSet{
                 
 
         	     
-
-                var stateDataArray =new Array();
+                 var stateDataMap =new Map();
+                
 
                  for (i=0;i<dataRows.length;i++) {
-                     if(!stateDataArray.includes(dataRows[i][1])){
-                         stateDataArray[i]= dataRows[i][1];
+                   
+                     if(stateDataMap.has(dataRows[i][0]))
+                     {
+                         console.log("element present=");
+                         var existingStateDataArray=stateDataMap.get(dataRows[i][0]);
+                         existingStateDataArray.push(dataRows[i][2]);
+                         stateDataMap.set(dataRows[i][0],existingStateDataArray);
+                     }
+                     else
+                     {
+                         console.log("adding element in map for first time="+dataRows[i][0]);
+                         var stateDataArray= new Array();
+                         stateDataArray.push(dataRows[i][2]);
+                         stateDataMap.set(dataRows[i][0],stateDataArray);  
                      }
                      
-                       // for (j=0;j<jMax;j++) {
-                       //     f[i][j]=0;
-                        //}
+                     
                     }
-                console.log(stateDataArray);
-        		 
-/*
-        	     for (var i=0; i<dataRows.length; i++){
-        	    	 console.log(dataRows[i]);
-        	    	 if (dataRows[i][1] == 'male'){
-        	    		 maleData.push(dataRows[i][3]);
-        	    	 }else{
-        	    		 femaleData.push(dataRows[i][3]);
-        	    	 }
-        	     }
-        	*/	
-        		
-        		var datasetObjArray=new Array();
-        		//var datasetObj = new DatasetObj(maleDatalabel,maleData,malecolor,malebordercolor,1);
-        		//datasetObjArray.push(datasetObj);
-        		//datasetObj= new DatasetObj(femaleDatalabel,femaleData,femalecolor,femalebordercolor,1);
-        		//datasetObjArray.push(datasetObj);
+                 var stateLabelsArray= new Array();
+
+                    for (var [key, value] of stateDataMap) {
+                            //console.log(key + ' = ' + value);
+                            stateLabelsArray.push(key);
+                    
+                        }
+
+                var datasetObjArray=new Array();
+            for(var x=0;x<stateLabelsArray.length;x++){
+                var stateLabel=stateLabelsArray[x];
+                var stateDataArray=stateDataMap.get(stateLabel);
+
+                var datasetObj= new DatasetObj(stateLabel,stateDataArray,null,null,null);
+                datasetObjArray.push(datasetObj);
+                    }
 
         		DataFrame.sql.dropTable('insuranceTable');
         		
-        		var result = new Array();
-        		result.push (years);
+
+                //
+                var result = new Array();
+        		
+                result.push(years); 
         		result.push (datasetObjArray);
-        		
-        		
+
                 return result;
-                 
-                 
+                //                
 	        }
         ).catch(err => {
             console.log(err);

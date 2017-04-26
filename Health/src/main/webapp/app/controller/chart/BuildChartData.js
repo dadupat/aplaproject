@@ -1,16 +1,13 @@
-  //let instance = null;
+
 class BuildChartData{
 
   
 
     constructor (labelsArray, datasetJsonArray) {
-       /* if(!instance){
-              instance = this;
-        }*/
+     
         this._labelsArray = labelsArray;
         this._datasetJsonArray = datasetJsonArray;
-    
-       // return instance;
+      
     }
 
 
@@ -19,12 +16,11 @@ class BuildChartData{
     console.log("inside generateStateLabelsArray");
     var labelsArray=new Array();
     labelsArray=this._labelsArray;
-   // console.log("LabelsArray length="+labelsArray.length);
-  //  console.log("LabelsArray content="+labelsArray);
+ 
 
     var datasetJsonArray= new Array();
     datasetJsonArray=this._datasetJsonArray;
-   // console.log("datasetJsonArray length="+datasetJsonArray.length);
+   
 
     var stateLabelsArray= new Array();
     
@@ -44,12 +40,11 @@ class BuildChartData{
     console.log("inside generateStateDataMap");
     var labelsArray=new Array();
     labelsArray=this._labelsArray;
-   // console.log("LabelsArray length="+labelsArray.length);
-    //console.log("LabelsArray content="+labelsArray);
+  
 
     var datasetJsonArray= new Array();
     datasetJsonArray=this._datasetJsonArray;
-   // console.log("datasetJsonArray length="+datasetJsonArray.length);
+ 
 
    
     var stateDataMap =new Map();
@@ -77,33 +72,19 @@ generateLineDatasetWithColor(stateDataMap,stateLabelsArray)
      var stateLabelsArray1=new Array();
      stateLabelsArray1=stateLabelsArray;
 
-     /*
-     if(this.labelsBackgroundColorArray==null){
-       this.labelsBackgroundColorArray=new Array();
-       for(var j=0;j<yearLabelsArray.length;j++)
-            {
-                   this.labelsBackgroundColorArray.push(this.getRandomColor());
-            }
-
-         }*/
+  
         if(this.linesLabelsBorderColorMap==null ){
 
             this.linesLabelsBorderColorMap=new Map();
             for(var j=0;j<stateLabelsArray1.length;j++)
             {
-             //this.labelsBorderColorArray.push(this.getRandomColor());
+             
              this.linesLabelsBorderColorMap.set(stateLabelsArray1[j],this.getRandomColor())
              }
         }
      
      
-    /*  var labelsBackgroundColorMap=new Map();
-      var labelsBorderColorMap=new Map();
-     for(var j=0;j<stateLabelsArray1.length;j++)
-     {
-            labelsBackgroundColorMap.set(stateLabelsArray1[j],this.getRandomColor());
-            labelsBorderColorMap.set(stateLabelsArray1[j],this.getRandomColor())
-     }*/
+   
 
       var datasetObjArray=new Array();
       datasetObjArray= this.datasetGenerationForLineChart(stateLabelsArray1,stateDataMap,this.linesLabelsBorderColorMap,datasetObjArray);
@@ -130,23 +111,17 @@ datasetGenerationForLineChart(stateLabelsArray,stateDataMap,linesLabelsBorderCol
 generateBarDatasetWithColor(stateDataMap,stateLabelsArray)
 {
   
-    //preparing color maps
+   
      var stateLabelsArray1=new Array();
      stateLabelsArray1=stateLabelsArray;
      
-     /* var labelsBackgroundColorMap=new Map();
-      var labelsBorderColorMap=new Map();
-     for(var j=0;j<stateLabelsArray1.length;j++)
-     {
-            labelsBackgroundColorMap.set(stateLabelsArray1[j],this.getRandomColor());
-            labelsBorderColorMap.set(stateLabelsArray1[j],this.getRandomColor())
-     }*/
+    
       if(this.linesLabelsBackgroundColorMap==null){
 
             this.linesLabelsBackgroundColorMap=new Map();
             for(var j=0;j<stateLabelsArray1.length;j++)
             {
-             //this.labelsBorderColorArray.push(this.getRandomColor());
+            
              this.linesLabelsBackgroundColorMap.set(stateLabelsArray1[j],this.getRandomColor());
              }
         }
@@ -186,16 +161,13 @@ datasetGenerationForBarChart(stateLabelsArray,stateDataMap,labelsBackgroundColor
 generatePieDatasetWithColor(stateDataMap,stateLabelsArray)
 {
   
-    //preparing color maps
+   
      var stateLabelsArray1=new Array();
      stateLabelsArray1=stateLabelsArray;
 
      var yearLabelsArray=new Array();
      yearLabelsArray=this._labelsArray;
-     //console.log("yearLabelsArray labels in pie chart="+yearLabelsArray);
-     
-     // var labelsBackgroundColorArray=new Array();
-      //var labelsBorderColorArray=new Array();
+  
        if(this.labelsBackgroundColorArray==null){
        this.labelsBackgroundColorArray=new Array();
        for(var j=0;j<yearLabelsArray.length;j++)
@@ -209,25 +181,19 @@ generatePieDatasetWithColor(stateDataMap,stateLabelsArray)
             this.labelsBorderColorArray=new Array();
             for(var j=0;j<yearLabelsArray.length;j++)
             {
-             //this.labelsBorderColorArray.push(this.getRandomColor());
+         
              this.labelsBorderColorArray.push('#000000');
              }
         }
 
-     /*for(var j=0;j<yearLabelsArray.length;j++)
-     {
-          
-            this.labelsBackgroundColorArray.push(this.getRandomColor());
-            this.labelsBorderColorArray.push(this.getRandomColor());
-            
-     }*/
-     //console.log("labelsBackgroundColorMap size="+labelsBackgroundColorMap.size);
-     //console.log("labelsBorderColorMap size="+labelsBorderColorMap.size);
+    
+     console.log("piechart---labelsBackgroundColorArray size="+this.labelsBackgroundColorArray.length);
+     console.log("piechart---labelsBorderColorArray size="+this.labelsBorderColorArray.length);
      this.global_var="piechart_global_value";
 
       var datasetObjArray=new Array();
       datasetObjArray= this.datasetGenerationForPieChart(stateLabelsArray1,stateDataMap,this.labelsBackgroundColorArray,this.labelsBorderColorArray,datasetObjArray);
-     //this._datasetJsonArray=  datasetObjArray;
+     
      return datasetObjArray;  
 
      

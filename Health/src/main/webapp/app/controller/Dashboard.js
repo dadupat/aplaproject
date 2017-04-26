@@ -108,31 +108,14 @@ generateCommonBuildChartData(labelsArray,datasetsArray){
 }
 
     createChart(queryData){
-        // it will have all query data result which we can pass to new LineChart(any()) to generate different graphs.
-        /*var lineChart = new LineChart('line', queryData)
-        lineChart.generateChart();*/
+       
         var labelsArray=queryData[0];
         var datasetsArray=queryData[1];
 
        //generating BuildChartData only once for each call
        this.generateCommonBuildChartData(labelsArray,datasetsArray);
 
-       /* var barChart= new BarChart('bar',labelsArray,datasetsArray);
-		 	barChart.generateChart();
-        
-
-         var lineChart= new LineChart('line',labelsArray,datasetsArray);
-		 	lineChart.generateChart();
-
-
-         var donughnutChart= new DoughnutChart('doughnut',labelsArray,datasetsArray);
-		 	donughnutChart.generateChart();
-
-        var stackedChart= new StackedChart('line',labelsArray,datasetsArray);
-		 	stackedChart.generateChart();
-
-        var pieChart= new PieChart('pie',labelsArray,datasetsArray);
-		 	pieChart.generateChart();  */ 
+   
     }
 
     showHideGraph(chkBoxId, chartDivId){
