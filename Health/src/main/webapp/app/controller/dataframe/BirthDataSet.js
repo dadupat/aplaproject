@@ -100,45 +100,99 @@ class BirthDataSet extends DataSet{
                  console.log(dataRows.length);
                  console.log(dataRows);
                 
-                var maleDatalabel = 'Male';
-        	     var femaleDatalabel = 'Female';
+               // var maleDatalabel = 'Male';
+        	    // var femaleDatalabel = 'Female';
         	    
         	     
 
-                var stateDataArray =new Array();
+                var stateDataMap =new Map();
+                
 
                  for (i=0;i<dataRows.length;i++) {
-                     if(!stateDataArray.includes(dataRows[i][1])){
-                         stateDataArray[i]= dataRows[i][1];
+                   
+                     if(stateDataMap.has(dataRows[i][1]))
+                     {
+                         console.log("element present=");
+                         var existingStateDataArray=stateDataMap.get(dataRows[i][1]);
+                         existingStateDataArray.push(dataRows[i][2]);
+                         stateDataMap.set(dataRows[i][1],existingStateDataArray);
+                     }
+                     else
+                     {
+                         console.log("adding element in map for first time="+dataRows[i][1]);
+                         var stateDataArray= new Array();
+                         stateDataArray.push(dataRows[i][2]);
+                         stateDataMap.set(dataRows[i][1],stateDataArray);  
                      }
                      
-                       // for (j=0;j<jMax;j++) {
-                       //     f[i][j]=0;
-                        //}
+                     
                     }
-                console.log(stateDataArray);
-        		 
-/*
-        	     for (var i=0; i<dataRows.length; i++){
-        	    	 console.log(dataRows[i]);
-        	    	 if (dataRows[i][1] == 'male'){
-        	    		 maleData.push(dataRows[i][3]);
-        	    	 }else{
-        	    		 femaleData.push(dataRows[i][3]);
-        	    	 }
-        	     }
-        	*/	
-        		
-        		var datasetObjArray=new Array();
-        		//var datasetObj = new DatasetObj(maleDatalabel,maleData,malecolor,malebordercolor,1);
-        		//datasetObjArray.push(datasetObj);
-        		//datasetObj= new DatasetObj(femaleDatalabel,femaleData,femalecolor,femalebordercolor,1);
-        		//datasetObjArray.push(datasetObj);
+                   
+                    var stateLabelsArray= new Array();
+                    var dataLabelsColor= new Array();
+                     var stateDataColorMap =new Map();
+                     var stateDataBorderColorMap =new Map();
+                     var labelsBackgroundColorMap=new Map();
+                     var labelsBorderColorMap=new Map();
+                     
+                    console.log("Printing stateDataMap");
+                    console.log("-------------------------");
+                    for (var [key, value] of stateDataMap) {
+                            console.log(key + ' = ' + value);
+                            stateLabelsArray.push(key);
+                            var colorArray= new Array();
+                            for(var i=0;i<value.length;i++)
+                            {
+                                colorArray.push(this.getRandomColor());
+                            }
+                            stateDataColorMap.set(key,colorArray);
+                            stateDataBorderColorMap.set(key,colorArray);
+                        }
+                        console.log("-------------------------");
+                        
+                    console.log("The state labels="+stateLabelsArray);
+                    for(var j=0;j<stateLabelsArray.length;j++)
+                    {
+                        labelsBackgroundColorMap.set(stateLabelsArray[j],this.getRandomColor());
+                        labelsBorderColorMap.set(stateLabelsArray[j],this.getRandomColor())
+                    }
 
+                    console.log("printing all colors for labels");
+                    console.log("-------------------------");
+                    for (var [key, value] of stateDataColorMap) {
+                        console.log(key + ' = ' + value);
+                    }
+                    console.log("-------------------------");
+                    
+
+        		
+               
+             //For Barchart
+        	 /* var datasetObjArray=new Array();
+              datasetObjArray= this.datasetGenerationForBarChart(stateLabelsArray,stateDataMap,labelsBackgroundColorMap,labelsBorderColorMap,datasetObjArray);
+              */
+
+                //For pie chart
+               var datasetObjArray=new Array();
+               datasetObjArray=this.datasetGenerationForPieChart(stateLabelsArray,stateDataMap,stateDataColorMap,stateDataBorderColorMap,1,datasetObjArray);
+               
+
+
+               //Below is reference code dont delete
+               /* var state= stateLabelsArray[0];
+                var datasetObj= new DatasetObj(state,stateDataMap.get(state),stateDataColorMap.get(state),stateDataBorderColorMap.get(state),1);
+                datasetObjArray.push(datasetObj);*/
+                         
+               /* datasetObj= new DatasetObj(stateLabelsArray[1],stateDataMap.get('Alaska'),labelsBackgroundColorMap.get('Alaska'),labelsBorderColorMap.get('Alaska'),1);
+        		datasetObjArray.push(datasetObj);
+                datasetObj= new DatasetObj(stateLabelsArray[2],stateDataMap.get('Arizona'),labelsBackgroundColorMap.get('Arizona'),labelsBorderColorMap.get('Arizona'),1);
+                datasetObjArray.push(datasetObj);*/
+              
         		DataFrame.sql.dropTable('birthRateTable');
         		
         		var result = new Array();
-        		result.push (years);
+        		//for Barchart result.push (years);
+                result.push(years);  
         		result.push (datasetObjArray);
         		
         		
@@ -151,6 +205,14 @@ class BirthDataSet extends DataSet{
         });
     }
 
+     getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+    }
 	 getDistinctColumnVal(columnName) {
 		var DataFrame = dfjs.DataFrame;
 		return DataFrame.fromCSV(this.filename).then(
@@ -193,6 +255,30 @@ class BirthDataSet extends DataSet{
         });
     }
 
+
+    datasetGenerationForBarChart(stateLabelsArray,stateDataMap,labelsBackgroundColorMap,labelsBorderColorMap,datasetObjArray)
+    {
+         for(var p=0;p<stateLabelsArray.length;p++){
+                    console.log("state="+stateLabelsArray[p]);
+                    console.log("Datapoints="+stateDataMap.get(p));
+                    console.log("label color="+labelsBackgroundColorMap.get(p));
+                    console.log("border color="+labelsBorderColorMap.get(p));
+                    var stateLabel=stateLabelsArray[p];
+                    var datasetObj= new DatasetObj(stateLabel,stateDataMap.get(stateLabel),labelsBackgroundColorMap.get(stateLabel),labelsBorderColorMap.get(stateLabel),1);
+                    datasetObjArray.push(datasetObj);
+                }
+                return datasetObjArray;
+    }
+
+    datasetGenerationForPieChart(stateLabelsArray,stateDataMap,stateDataColorMap,stateDataBorderColorMap,borderWidth,datasetObjArray)
+    {
+     var state= stateLabelsArray[0];
+     var datasetObj= new DatasetObj(state,stateDataMap.get(state),stateDataColorMap.get(state),stateDataBorderColorMap.get(state),1);
+     datasetObjArray.push(datasetObj);
+    
+
+     return datasetObjArray;
+    }
     onchangeHandler(cb, instance){
         instance.cb = cb;
         this.getDistinctColumnVal(instance.cb).then(function(distinctArray){
