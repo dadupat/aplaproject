@@ -12,7 +12,7 @@ class DashBoard {
         });
         dataSet.displayColumns();
         document.getElementById('generateChartButton').style.display = 'block';
-        this.abc = dataType;
+        this.datasetContext = dataType;
     }
 
     displayTable(tableData){
@@ -54,7 +54,7 @@ class DashBoard {
     generateCharts(){
         var instance = this;
         var dataSetFactory = new DataSetFactory();
-        var dataSet = dataSetFactory.getDataSet(this.abc);
+        var dataSet = dataSetFactory.getDataSet(this.datasetContext);
         var queryResultPromise = dataSet.getMultiSelectData();
         queryResultPromise.then(function(queryData){
             if(queryData != undefined){
@@ -95,6 +95,10 @@ class DashBoard {
          }else{
              document.getElementById(chartDivId).style.display = 'none';
          }
+    }
+
+    aggregateFun(agregChk){
+
     }
 }
 
