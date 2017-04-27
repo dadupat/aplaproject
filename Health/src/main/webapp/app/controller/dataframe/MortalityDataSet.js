@@ -305,12 +305,25 @@ class MortalityDataSet extends DataSet{
             checkbox.name = aggFunct[i];
             checkbox.value = aggFunct[i];
             checkbox.id = aggFunct[i];
+            //checkbox.onchange = (function(opt) {
+                                          //   return function() {
+                                           //     instance.aggregationChangeHandler(opt, instance);
+                                           //  };
+                                        // })(columnNames[i], instance);
             div.appendChild(checkbox);
             div.appendChild('   ');
             label.appendChild(document.createTextNode(aggFunct[i]));
             div.appendChild(label);
         }
-
-
     }
+/*
+    aggregationChangeHandler(aggChk, instance){
+        instance.aggChk = aggChk;
+        var chkbox =document.getElementById(instance.aggChkcb);
+        if (chkbox.checked) {
+            //this.aggChk.
+        } else {
+            //
+        }
+    }*/
 }

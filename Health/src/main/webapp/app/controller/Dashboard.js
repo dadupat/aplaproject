@@ -59,6 +59,10 @@ class DashBoard {
         var instance = this;
         var dataSetFactory = new DataSetFactory();
         var dataSet = dataSetFactory.getDataSet(this.datasetContext);
+        var aggregateFunction = document.getElementById('aggregateFunction');
+        var aggregateFunctionResult = document.getElementById('aggregateFunctionResult');
+        aggregateFunction.innerHTML = '';
+        aggregateFunctionResult.innerHTML = '';
         var queryResultPromise = dataSet.getMultiSelectData();
         queryResultPromise.then(function(queryData){
             if(queryData != undefined){
