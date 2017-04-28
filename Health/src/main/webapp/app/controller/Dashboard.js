@@ -6,21 +6,7 @@ class DashBoard {
     
         var dataSetFactory = new DataSetFactory();
         var dataSet = dataSetFactory.getDataSet(dataType);
-        var aggregateFunction = document.getElementById('aggregateFunction');
-        var aggregateFunctionResult = document.getElementById('aggregateFunctionResult');
-        var columnCheckbox = document.getElementById('columnCheckbox');
-        var multiselectdropdown = document.getElementById('multiselectdropdown');
-        //var graphDivFirst = document.getElementById('graphDivFirst');
-        //var graphDivSec = document.getElementById('graphDivSec');
-       
-        multiselectdropdown.innerHTML = '';
-        columnCheckbox.innerHTML = '';
-        aggregateFunction.innerHTML = '';
-        aggregateFunctionResult.innerHTML = '';
-        //graphDivFirst.innerHTML = '';
-        //graphDivSec.innerHTML = '';
-     
-
+        instance.cleanUpComponentOnDataSetChange();
         dataSet.getTableData().then(function(tableData){
             if(tableData != undefined){
                 instance.displayTable(tableData);
@@ -139,6 +125,38 @@ generateCommonBuildChartData(labelsArray,datasetsArray){
          }else{
              document.getElementById(chartDivId).style.display = 'none';
          }
+    }
+
+    cleanUpComponentOnDataSetChange(){
+        var aggregateFunction = document.getElementById('aggregateFunction');
+        var aggregateFunctionResult = document.getElementById('aggregateFunctionResult');
+        var columnCheckbox = document.getElementById('columnCheckbox');
+        var multiselectdropdown = document.getElementById('multiselectdropdown');
+        var checkboxesId = document.getElementById('checkboxesId');
+
+        var graphDivFirst = document.getElementById('lineChart');
+        var graphDivSec = document.getElementById('barChart');
+        var graphDivthrd = document.getElementById('pieChart');
+        var graphDivfourth = document.getElementById('doughnutChart');
+        var graphDivfifth = document.getElementById('stackedChart');
+        
+        var ctxGraphDivFirst=graphDivFirst.getContext("2d");
+        var ctxGraphDivSec=graphDivSec.getContext("2d");
+        var ctxGraphDivthrd=graphDivthrd.getContext("2d");
+        var ctxGraphDivfourth=graphDivfourth.getContext("2d");
+        var ctxGraphDivfifth=graphDivfifth.getContext("2d");
+
+        multiselectdropdown.innerHTML = '';
+        columnCheckbox.innerHTML = '';
+        aggregateFunction.innerHTML = '';
+        aggregateFunctionResult.innerHTML = '';
+        checkboxesId.innerHTML='';
+        ctxGraphDivFirst.clearRect(0, 0, graphDivFirst.width, graphDivFirst.height);
+        ctxGraphDivSec.clearRect(0, 0, graphDivSec.width, graphDivSec.height);
+        ctxGraphDivthrd.clearRect(0, 0, graphDivthrd.width, graphDivthrd.height);
+        ctxGraphDivfourth.clearRect(0, 0, graphDivfourth.width, graphDivfourth.height);
+        ctxGraphDivfifth.clearRect(0, 0, graphDivfifth.width, graphDivfifth.height);
+
     }
 }
 
