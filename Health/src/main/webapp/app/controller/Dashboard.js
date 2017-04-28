@@ -132,7 +132,6 @@ generateCommonBuildChartData(labelsArray,datasetsArray){
         var aggregateFunctionResult = document.getElementById('aggregateFunctionResult');
         var columnCheckbox = document.getElementById('columnCheckbox');
         var multiselectdropdown = document.getElementById('multiselectdropdown');
-        var checkboxesId = document.getElementById('checkboxesId');
 
         var graphDivFirst = document.getElementById('lineChart');
         var graphDivSec = document.getElementById('barChart');
@@ -150,13 +149,20 @@ generateCommonBuildChartData(labelsArray,datasetsArray){
         columnCheckbox.innerHTML = '';
         aggregateFunction.innerHTML = '';
         aggregateFunctionResult.innerHTML = '';
-        checkboxesId.innerHTML='';
+      
         ctxGraphDivFirst.clearRect(0, 0, graphDivFirst.width, graphDivFirst.height);
         ctxGraphDivSec.clearRect(0, 0, graphDivSec.width, graphDivSec.height);
         ctxGraphDivthrd.clearRect(0, 0, graphDivthrd.width, graphDivthrd.height);
         ctxGraphDivfourth.clearRect(0, 0, graphDivfourth.width, graphDivfourth.height);
         ctxGraphDivfifth.clearRect(0, 0, graphDivfifth.width, graphDivfifth.height);
-
+        
+        document.getElementById('checkboxesId').style.display = 'none';
+        document.getElementById('barChkBox').checked =true;
+        document.getElementById('lineChkBox').checked =false;
+        document.getElementById('pieChkBox').checked =false;
+        document.getElementById('doughnutChkBox').checked =false;
+        document.getElementById('stackedChkBox').checked =false;
+    
     }
 }
 
