@@ -1,4 +1,4 @@
-Year,Gender,Cancer_Type,Cases_Rate
+Year,Gender,Cancer$Type,Cases$Rate
 1990,male,Lung$and$bronchus,95
 1991,male,Lung$and$bronchus,94.2
 1992,male,Lung$and$bronchus,93.1

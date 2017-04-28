@@ -3,8 +3,24 @@ class DashBoard {
 
     createTable(dataType){
         var instance = this;
+    
         var dataSetFactory = new DataSetFactory();
         var dataSet = dataSetFactory.getDataSet(dataType);
+        var aggregateFunction = document.getElementById('aggregateFunction');
+        var aggregateFunctionResult = document.getElementById('aggregateFunctionResult');
+        var columnCheckbox = document.getElementById('columnCheckbox');
+        var multiselectdropdown = document.getElementById('multiselectdropdown');
+        //var graphDivFirst = document.getElementById('graphDivFirst');
+        //var graphDivSec = document.getElementById('graphDivSec');
+       
+        multiselectdropdown.innerHTML = '';
+        columnCheckbox.innerHTML = '';
+        aggregateFunction.innerHTML = '';
+        aggregateFunctionResult.innerHTML = '';
+        //graphDivFirst.innerHTML = '';
+        //graphDivSec.innerHTML = '';
+     
+
         dataSet.getTableData().then(function(tableData){
             if(tableData != undefined){
                 instance.displayTable(tableData);
@@ -13,6 +29,11 @@ class DashBoard {
         dataSet.displayColumns();
         document.getElementById('generateChartButton').style.display = 'block';
         this.datasetContext = dataType;
+        var dataSetHeader = document.getElementById('dataSetHeader');
+        dataSetHeader.innerHTML ='';
+        var labelCl = document.createElement('label');
+        labelCl.appendChild(document.createTextNode((this.datasetContext + ' Data Set').toUpperCase()));
+        dataSetHeader.appendChild(labelCl);
     }
 
     displayTable(tableData){
@@ -23,7 +44,6 @@ class DashBoard {
         var rowHead = tableHeader.insertRow(0);
 
         for(var i=0; i<tableData[0].length; i++){
-        	console.log(tableData[tableData.length-1][i]);
         	var column = rowHead.insertCell(i)
         	column.innerHTML = "<h3>" + tableData[tableData.length-1][i] + "</h3>"
         }
@@ -43,26 +63,17 @@ class DashBoard {
         table.appendChild(tableBody);
         newDiv.appendChild(table);
         var dataComponentDiv = document.getElementById('toAppend');
-        var columnCheckbox = document.getElementById('columnCheckbox');
-        var multiselectdropdown = document.getElementById('multiselectdropdown');
-        var aggregateFunction = document.getElementById('aggregateFunction');
-        var aggregateFunctionResult = document.getElementById('aggregateFunctionResult');
         dataComponentDiv.innerHTML = '';
-        columnCheckbox.innerHTML = '';
-        multiselectdropdown.innerHTML = '';
-        aggregateFunction.innerHTML = '';
-        aggregateFunctionResult.innerHTML = '';
         dataComponentDiv.appendChild(newDiv);
+        dataComponentDiv.scrollTop=0;
     }
 
     generateCharts(){
         var instance = this;
         var dataSetFactory = new DataSetFactory();
-        var dataSet = dataSetFactory.getDataSet(this.datasetContext);
-        var aggregateFunction = document.getElementById('aggregateFunction');
         var aggregateFunctionResult = document.getElementById('aggregateFunctionResult');
-        aggregateFunction.innerHTML = '';
         aggregateFunctionResult.innerHTML = '';
+        var dataSet = dataSetFactory.getDataSet(this.datasetContext);
         var queryResultPromise = dataSet.getMultiSelectData();
         queryResultPromise.then(function(queryData){
             if(queryData != undefined){
@@ -128,10 +139,6 @@ generateCommonBuildChartData(labelsArray,datasetsArray){
          }else{
              document.getElementById(chartDivId).style.display = 'none';
          }
-    }
-
-    aggregateFun(agregChk){
-
     }
 }
 

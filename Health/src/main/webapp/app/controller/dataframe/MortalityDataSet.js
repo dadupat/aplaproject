@@ -47,6 +47,7 @@ class MortalityDataSet extends DataSet{
 				data[data.length] = df.listColumns();
                 for(var i=0;i<data.length;i++){
                   data[i][2]=(data[i][2]).toString().replace(/[$]/g,' ');
+                  data[i][3]=(data[i][3]).toString().replace(/[$]/g,' ');
                 }
                 return data;
             }
@@ -62,7 +63,7 @@ class MortalityDataSet extends DataSet{
              df => {
 
                  DataFrame.sql.registerTable(df, 'DeathRateTable', true);
-                 var query = "SELECT * FROM DeathRateTable WHERE Death_Cause=" + "'" + death_Cause + "'";
+                 var query = "SELECT * FROM DeathRateTable WHERE Death$Cause=" + "'" + death_Cause + "'";
 
 
                  if (gender != null && gender.length == 1){
@@ -103,10 +104,11 @@ class MortalityDataSet extends DataSet{
                  }
                  console.log(query);
                  var dataRows = DataFrame.sql.request(query).toArray();
-                 console.log(dataRows.length);
-
-                     	   
-
+                 console.log(dataRows);
+                
+                if(dataRows[0] != null){
+                 this.calculateAndApplyAggFunction(dataRows);
+                }
                  var genderDataMap =new Map();
                 
 
@@ -174,7 +176,7 @@ class MortalityDataSet extends DataSet{
                 var div = document.getElementById('columnCheckbox');
                 var labelCol = document.createElement('label');
                 labelCol.htmlFor="labelCol";
-                labelCol.appendChild(document.createTextNode('Select Column'));
+                labelCol.appendChild(document.createTextNode('Select Column :'));
                 div.appendChild(labelCol);
 
                 for(var i=0;i<columnNames.length-1;i++){
@@ -183,6 +185,7 @@ class MortalityDataSet extends DataSet{
                     checkbox.name = columnNames[i];
                     checkbox.value = columnNames[i];
                     checkbox.id = columnNames[i];
+                    checkbox.style.marginLeft="50px";
                     checkbox.onchange =  (function(opt) {
                                              return function() {
                                                 instance.onchangeHandler(opt, instance);
@@ -191,11 +194,12 @@ class MortalityDataSet extends DataSet{
                     div.appendChild(checkbox);
                     var label = document.createElement('label');
                     label.htmlFor="id"+i;
-                    label.appendChild(document.createTextNode(columnNames[i]));
+                    label.appendChild(document.createTextNode(columnNames[i].toString().replace(/[$]/g,' ')));
                     div.appendChild(label);
                 }
             }
         });
+        this.createAggregateElements();
     }
 
     onchangeHandler(cb, instance){
@@ -205,14 +209,14 @@ class MortalityDataSet extends DataSet{
                var chkbox=document.getElementById(instance.cb);
                var div = document.getElementById('multiselectdropdown');
                var selectBox = document.createElement('select');
-               //selectBox.type = 'select';
                selectBox.name = instance.cb;
                selectBox.value = instance.cb;
+               selectBox.style.marginRight="50px";
                selectBox.id = 'idselect'+instance.cb;
-               if(selectBox.id != "idselectDeath_Cause"){
+               if(selectBox.id != "idselectDeath$Cause"){
                    selectBox.multiple=true;
                }
-               console.log(distinctArray);
+
                for (var i = 0; i<distinctArray.length; i++){
                    var opt = document.createElement('option');
                    opt.value = distinctArray[i];
@@ -221,12 +225,11 @@ class MortalityDataSet extends DataSet{
                }
 
                if (chkbox.checked) {
-                       div.appendChild(selectBox);
                        var label = document.createElement('label');
-                       label.htmlFor='idlabel'+instance.cb;
                        label.id= 'idlabel'+instance.cb;
-                       label.appendChild(document.createTextNode(instance.cb));
+                       label.appendChild(document.createTextNode('Select '+instance.cb.toString().replace(/[$]/g,' ')+' : '));
                        div.appendChild(label);
+                       div.appendChild(selectBox);
                } else {
                    var div111 = document.getElementById('idselect'+instance.cb);
                    var div222 = document.getElementById('idlabel'+instance.cb);
@@ -241,7 +244,7 @@ class MortalityDataSet extends DataSet{
         //if possible call  getColumnList iterate on that list to get column names to store in idSelect.
         var gender = document.getElementById('idselectGender');
         var year = document.getElementById('idselectYear');
-        var deathcause = document.getElementById('idselectDeath_Cause');
+        var deathcause = document.getElementById('idselectDeath$Cause');
         var valuesGender = [];
         var valuesYear = [];
         var valuesDeath = [];
@@ -269,61 +272,113 @@ class MortalityDataSet extends DataSet{
                 }
             }
         }
-
-        console.log(valuesDeath, valuesGender, valuesYear);
-        var div = document.getElementById('aggregateFunction');
-        var labelCol = document.createElement('label');
-        labelCol.htmlFor="labelCol";
-        labelCol.appendChild(document.createTextNode('Select Aggregate Function:  '));
-        div.appendChild(labelCol);
-        var aggFunct = ['Minimum','Maximum','Average','Count','Standard Deviation'];
-        for(var i=0;i<aggFunct.length;i++){
-            var checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.name = aggFunct[i];
-            checkbox.value = aggFunct[i];
-            checkbox.id = aggFunct[i];
-            div.appendChild(checkbox);
-            var label = document.createElement('label');
-            label.appendChild(document.createTextNode(aggFunct[i]));
-            div.appendChild(label);
-        }
-        // it should return an array and use that value to change UI here
         return this.getQueryData(valuesDeath, valuesGender, valuesYear);
     }
 
     createAggregateElements(){
-        var div = document.getElementById('aggregateFunction');
-        var labelCol = document.createElement('label');
-        labelCol.htmlFor="labelCol";
-        labelCol.appendChild(document.createTextNode('Select Aggregate Function:  '));
-        div.appendChild(labelCol);
-        var aggFunct = ['Minimum','Maximum','Average','Count','Standard_Deviation'];
-        for(var i=0;i<=aggFunct.length;i++){
-            var checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.name = aggFunct[i];
-            checkbox.value = aggFunct[i];
-            checkbox.id = aggFunct[i];
-            //checkbox.onchange = (function(opt) {
-                                          //   return function() {
-                                           //     instance.aggregationChangeHandler(opt, instance);
-                                           //  };
-                                        // })(columnNames[i], instance);
-            div.appendChild(checkbox);
-            div.appendChild('   ');
-            label.appendChild(document.createTextNode(aggFunct[i]));
-            div.appendChild(label);
-        }
+        var inst = this;
+        var divAgg = document.getElementById('aggregateFunction');
+        var labelCol1 = document.createElement('label');
+        labelCol1.htmlFor="labelCol1";
+        labelCol1.appendChild(document.createTextNode('Select Aggregate Function:  '));
+        divAgg.appendChild(labelCol1);
+        
+        var aggFunct = ['Minimum','Maximum','Average','Count','Standard Deviation'];
+        for(var i=0;i<aggFunct.length;i++){
+            var checkboxAgg = document.createElement('input');
+            checkboxAgg.type = 'checkbox';
+            checkboxAgg.name = aggFunct[i];
+            checkboxAgg.value = aggFunct[i];
+            checkboxAgg.id = aggFunct[i];
+            checkboxAgg.style.marginLeft="50px";
+            divAgg.appendChild(checkboxAgg);
+            var labl = document.createElement('label');
+            labl.appendChild(document.createTextNode(aggFunct[i]));
+            divAgg.appendChild(labl);
+        }  
     }
-/*
-    aggregationChangeHandler(aggChk, instance){
-        instance.aggChk = aggChk;
-        var chkbox =document.getElementById(instance.aggChkcb);
-        if (chkbox.checked) {
-            //this.aggChk.
-        } else {
-            //
+
+    calculateAndApplyAggFunction(dataRows){
+
+        this.selectedArray = new Array(); 
+        var aggFunct = ['Minimum','Maximum','Average','Count','Standard Deviation'];
+        var divResult = document.getElementById('aggregateFunctionResult');
+        aggregateFunctionResult.innerHTML = '';
+        for(var i=0;i<aggFunct.length;i++){
+            var aggElement = document.getElementById(aggFunct[i]);
+            if(aggElement!=null && aggElement.checked ==  true){
+                this.selectedArray.push(aggFunct[i]);
+            }
+         }
+
+        if(this.selectedArray[0]!=null){
+            var labelCl = document.createElement('label');
+            labelCl.appendChild(document.createTextNode('Aggregate Function Result: '));
+            var linebreak = document.createElement("br");
+            divResult.appendChild(labelCl);
+            divResult.appendChild(linebreak);
         }
-    }*/
+        
+        if(this.selectedArray.includes('Maximum')){
+            var max =0;
+            var maxValue =0;
+            for (var i=0 ; i < dataRows.length ; i++) {
+                if (parseFloat(dataRows[i][3]) > parseFloat(max)){
+                    max = parseFloat(dataRows[i][3]);
+                    maxValue = dataRows[i];
+                }      
+            }
+            divResult.appendChild(document.createTextNode('Record with Maximum Value : '+maxValue.toString().replace(/[$]/g,' ')));
+            var linebreak = document.createElement("br");
+            divResult.appendChild(linebreak);
+        }
+
+        if(this.selectedArray.includes('Minimum')){
+            var min =dataRows[0][3];
+            var minValue =dataRows[0];
+            for (var i=1 ; i < dataRows.length ; i++) {
+                if (parseFloat(dataRows[i][3]) < parseFloat(min)){
+                    min = parseFloat(dataRows[i][3]);
+                    minValue = dataRows[i];
+                }
+                    
+            }
+            divResult.appendChild(document.createTextNode('Record with Minimum Value : '+minValue.toString().replace(/[$]/g,' ')));
+            var linebreak = document.createElement("br");
+            divResult.appendChild(linebreak);
+        }
+
+        var avgValue=0;
+        for (var i=0 ; i < dataRows.length ; i++) {
+                avgValue= parseFloat(avgValue)+parseFloat(dataRows[i][3]);
+        }
+        var avg= parseFloat(avgValue)/parseFloat(dataRows.length);
+
+        if(this.selectedArray.includes('Average')){
+            divResult.appendChild(document.createTextNode('Record with Average Value : '+avg));
+            var linebreak = document.createElement("br");
+            divResult.appendChild(linebreak);
+        }
+
+        if(this.selectedArray.includes('Count')){
+            divResult.appendChild(document.createTextNode('Records Count : '+dataRows.length));
+            var linebreak = document.createElement("br");
+            divResult.appendChild(linebreak);
+        }
+
+        if(this.selectedArray.includes('Standard Deviation')){
+            var total= 0;
+            var diffavg=0;
+            for(var i = 0; i < dataRows.length; i++) {
+                diffavg = Math.pow((parseFloat(dataRows[i][3])-avg),2);
+                total += diffavg;
+            } 
+            var temp23= parseFloat(total)/parseFloat(dataRows.length);
+            var stdDeviation = Math.sqrt(temp23);
+            divResult.appendChild(document.createTextNode('Standard deviation for records : '+stdDeviation));
+            var linebreak = document.createElement("br");
+            divResult.appendChild(linebreak);    
+        } 
+    }
+
 }
