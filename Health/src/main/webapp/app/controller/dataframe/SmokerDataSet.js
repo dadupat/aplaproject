@@ -62,7 +62,7 @@ class SmokerDataSet extends DataSet{
                  var query = 'SELECT * FROM smokingTable';
 
 
-
+                var flag=false;
                  if (gender != null && gender.length == 1){
                      query = query + " WHERE Gender=" + "'" + gender[0] + "'";
                  }
@@ -83,7 +83,13 @@ class SmokerDataSet extends DataSet{
                      console.log("Gender IN query prepared multipleGender="+multipleGender);
                      query = query + " WHERE Gender IN"+multipleGender ;
                  }
-
+				 else{
+					query = query + " WHERE "
+					flag=true;
+				 }
+				 if(flag==false){
+					query=query+" AND ";
+				 }
                  if (years != null && years.length != 0){
                      var yearStr = null;
                      for (var i=0; i<years.length ; i++){
@@ -95,11 +101,10 @@ class SmokerDataSet extends DataSet{
                          yearStr = yearStr + years[i];
                      }
                      yearStr = yearStr + ')';
-                     query = query + " AND Year IN " + yearStr;
+                     query = query + "Year IN " + yearStr;
                  }else{
                      years = df.distinct('Year').toArray();
                  }
-                 
 
                  console.log(query);
                  var dataRows = DataFrame.sql.request(query).toArray();
