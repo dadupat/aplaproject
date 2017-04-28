@@ -7,13 +7,13 @@ class DataSetFactory {
     	if (DataSetName == 'smoker'){
         	return new SmokerDataSet();
         }
-        if (DataSetName == 'birth'){
+        if (DataSetName == 'birth rate'){
         	return new BirthDataSet();
         }
-        if (DataSetName == 'cancer'){
+        if (DataSetName == 'cancer death'){
         	return new CancerDataSet();
         }
-        if (DataSetName == 'insurance'){
+        if (DataSetName == 'medical insurance'){
         	return new InsuranceDataSet();
         }
         if (DataSetName == 'mortality'){
