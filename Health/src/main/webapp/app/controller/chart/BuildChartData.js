@@ -13,7 +13,7 @@ class BuildChartData{
 
     generateStateLabelsArray(){
 
-    console.log("inside generateStateLabelsArray");
+   
     var labelsArray=new Array();
     labelsArray=this._labelsArray;
  
@@ -37,7 +37,7 @@ class BuildChartData{
 
      generateStateDataMap(){
 
-    console.log("inside generateStateDataMap");
+    
     var labelsArray=new Array();
     labelsArray=this._labelsArray;
   
@@ -95,10 +95,7 @@ generateLineDatasetWithColor(stateDataMap,stateLabelsArray)
 datasetGenerationForLineChart(stateLabelsArray,stateDataMap,linesLabelsBorderColorMap,datasetObjArray)
     {
          for(var p=0;p<stateLabelsArray.length;p++){
-                    console.log("state="+stateLabelsArray[p]);
-                    console.log("Datapoints="+stateDataMap.get(p));
-                    //console.log("label color="+labelsBackgroundColorMap.get(p));
-                    console.log("border color="+linesLabelsBorderColorMap.get(p));
+                   
                     var stateLabel=stateLabelsArray[p];
                     var fill="false";
                     var datasetObj= new DatasetObj(stateLabel,stateDataMap.get(stateLabel),null,linesLabelsBorderColorMap.get(stateLabel),3,fill);
@@ -130,7 +127,7 @@ generateBarDatasetWithColor(stateDataMap,stateLabelsArray)
 
             this.linesLabelsBorderColorMap=new Map();
            for (var [key, value] of this.linesLabelsBackgroundColorMap) {
-                            console.log(key + ' = ' + value);
+                            
                             this.linesLabelsBorderColorMap.set(key,value);
                 }
         }
@@ -145,10 +142,7 @@ generateBarDatasetWithColor(stateDataMap,stateLabelsArray)
 datasetGenerationForBarChart(stateLabelsArray,stateDataMap,labelsBackgroundColorMap,labelsBorderColorMap,datasetObjArray)
     {
          for(var p=0;p<stateLabelsArray.length;p++){
-                    console.log("state="+stateLabelsArray[p]);
-                    console.log("Datapoints="+stateDataMap.get(p));
-                    console.log("label color="+labelsBackgroundColorMap.get(p));
-                    console.log("border color="+labelsBorderColorMap.get(p));
+                   
                     var stateLabel=stateLabelsArray[p];
                     
                     var datasetObj= new DatasetObj(stateLabel,stateDataMap.get(stateLabel),labelsBackgroundColorMap.get(stateLabel),labelsBorderColorMap.get(stateLabel),1);
@@ -187,8 +181,7 @@ generatePieDatasetWithColor(stateDataMap,stateLabelsArray)
         }
 
     
-     console.log("piechart---labelsBackgroundColorArray size="+this.labelsBackgroundColorArray.length);
-     console.log("piechart---labelsBorderColorArray size="+this.labelsBorderColorArray.length);
+     
      this.global_var="piechart_global_value";
 
       var datasetObjArray=new Array();
@@ -204,13 +197,10 @@ generatePieDatasetWithColor(stateDataMap,stateLabelsArray)
 
 datasetGenerationForPieChart(stateLabelsArray,stateDataMap,labelsBackgroundColorArray,labelsBorderColorArray,datasetObjArray)
     {
-        console.log("Printing global value="+this.global_var);
+     
          for(var p=0;p<stateLabelsArray.length;p++){
                     var stateLabel=stateLabelsArray[p];
-                    console.log("state="+stateLabelsArray[p]);
-                    console.log("Datapoints="+stateDataMap.get(stateLabel));
-                    console.log("label color="+labelsBackgroundColorArray);
-                    console.log("border color="+labelsBorderColorArray);
+                  
                     var datasetObj= new DatasetObj(stateLabel,stateDataMap.get(stateLabel),labelsBackgroundColorArray,labelsBorderColorArray,2);
                     datasetObjArray.push(datasetObj);
                 }

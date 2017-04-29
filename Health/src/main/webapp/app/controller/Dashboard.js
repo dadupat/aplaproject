@@ -83,7 +83,7 @@ generateCommonBuildChartData(labelsArray,datasetsArray){
        
        //for bar chart
         var barDatasetObjArray=buildChartData.generateBarDatasetWithColor(stateDataMap,stateLabelsArray);
-        var barChart= new BarChart('bar',stateLabelsArray,barDatasetObjArray);
+        var barChart= new BarChart('bar',labelsArray,barDatasetObjArray);
 		 	barChart.generateChart();
 
        //for line chart

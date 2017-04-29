@@ -80,7 +80,7 @@ class SmokerDataSet extends DataSet{
                          }
                      }
                      multipleGender=multipleGender+')';
-                     console.log("Gender IN query prepared multipleGender="+multipleGender);
+                    
                      query = query + " WHERE Gender IN"+multipleGender ;
                  }
 				 else{
@@ -107,10 +107,10 @@ class SmokerDataSet extends DataSet{
                      years = df.distinct('Year').toArray();
                  }
 
-                 console.log(query);
+                // console.log(query);
                  var dataRows = DataFrame.sql.request(query).toArray();
-                 console.log(dataRows.length);
-                 console.log(dataRows);
+               //  console.log(dataRows.length);
+               //  console.log(dataRows);
                 
                 if(dataRows[0] != null){
                 this.calculateAndApplyAggFunction(dataRows);
@@ -123,14 +123,14 @@ class SmokerDataSet extends DataSet{
                    
                      if(genderDataMap.has(dataRows[i][1]))
                      {
-                         console.log("element present=");
+                       
                          var existingGendarDataArray=genderDataMap.get(dataRows[i][1]);
                          existingGendarDataArray.push(dataRows[i][2]);
                          genderDataMap.set(dataRows[i][1],existingGendarDataArray);
                      }
                      else
                      {
-                         console.log("adding element in map for first time="+dataRows[i][1]);
+                       
                          var genderDataArray= new Array();
                          genderDataArray.push(dataRows[i][2]);
                          genderDataMap.set(dataRows[i][1],genderDataArray);  
@@ -139,7 +139,7 @@ class SmokerDataSet extends DataSet{
 
                 var genderLabelsArray= new Array();
                 for (var [key, value] of genderDataMap) {
-                            console.log(key + ' = ' + value);
+                            //console.log(key + ' = ' + value);
                             genderLabelsArray.push(key);   
                 }
 

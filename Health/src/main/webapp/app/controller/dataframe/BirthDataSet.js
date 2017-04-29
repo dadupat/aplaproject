@@ -100,12 +100,17 @@ class BirthDataSet extends DataSet{
                      query = query + "State IN " + stateStr;
                  }else{
                      state = df.distinct('State').toArray();
+                     if(flag==false){
+                     query = query + " AND State = 'Illinois'";
+                    }
+                    
+                     alert("Setting State by default to Illinois(* You can select multiple States)");
                  }
 
-                 console.log(query);
+                 //console.log(query);
                  var dataRows = DataFrame.sql.request(query).toArray();
-                 console.log(dataRows.length);
-                 console.log(dataRows);
+                 //console.log(dataRows.length);
+                 //console.log(dataRows);
                 
                 if(dataRows[0] != null){
                     this.calculateAndApplyAggFunction(dataRows);
@@ -118,14 +123,14 @@ class BirthDataSet extends DataSet{
                    
                      if(stateDataMap.has(dataRows[i][1]))
                      {
-                         console.log("element present=");
+                         
                          var existingStateDataArray=stateDataMap.get(dataRows[i][1]);
                          existingStateDataArray.push(dataRows[i][2]);
                          stateDataMap.set(dataRows[i][1],existingStateDataArray);
                      }
                      else
                      {
-                         console.log("adding element in map for first time="+dataRows[i][1]);
+                         
                          var stateDataArray= new Array();
                          stateDataArray.push(dataRows[i][2]);
                          stateDataMap.set(dataRows[i][1],stateDataArray);  
@@ -137,10 +142,9 @@ class BirthDataSet extends DataSet{
                    var stateLabelsArray= new Array();
                
                      
-                    console.log("Printing stateDataMap");
-                    console.log("-------------------------");
+                   
                     for (var [key, value] of stateDataMap) {
-                            console.log(key + ' = ' + value);
+                            //console.log(key + ' = ' + value);
                             stateLabelsArray.push(key);
                      
                         }
@@ -395,10 +399,7 @@ class BirthDataSet extends DataSet{
     datasetGenerationForBarChart(stateLabelsArray,stateDataMap,labelsBackgroundColorMap,labelsBorderColorMap,datasetObjArray)
     {
          for(var p=0;p<stateLabelsArray.length;p++){
-                    console.log("state="+stateLabelsArray[p]);
-                    console.log("Datapoints="+stateDataMap.get(p));
-                    console.log("label color="+labelsBackgroundColorMap.get(p));
-                    console.log("border color="+labelsBorderColorMap.get(p));
+                 
                     var stateLabel=stateLabelsArray[p];
                     var datasetObj= new DatasetObj(stateLabel,stateDataMap.get(stateLabel),labelsBackgroundColorMap.get(stateLabel),labelsBorderColorMap.get(stateLabel),1);
                     datasetObjArray.push(datasetObj);
