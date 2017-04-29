@@ -63,6 +63,12 @@ class CancerDataSet extends DataSet{
              df => {
 
                  DataFrame.sql.registerTable(df, 'cancerTable', true);
+
+                  if(cancerType==''){
+                    cancerType="All";
+                    alert("Default Cancer Type value selected = All (*You can select Cancer Type)");
+                 }
+
                  if(cancerType!=null){
                  var query = "SELECT * FROM cancerTable WHERE Cancer$Type=" + "'" + cancerType + "'";
                 }
@@ -85,7 +91,7 @@ class CancerDataSet extends DataSet{
                          }
                      }
                      multipleGender=multipleGender+')';
-                     console.log("Gender IN query prepared multipleGender="+multipleGender);
+                   
                      query = query + " AND Gender IN "+multipleGender ;
                  }
 
@@ -104,9 +110,9 @@ class CancerDataSet extends DataSet{
                  }else{
                      years = df.distinct('Year').toArray();
                  }
-                 console.log(query);
+                 //console.log(query);
                  var dataRows = DataFrame.sql.request(query).toArray();
-                 console.log(dataRows.length);
+                // console.log(dataRows.length);
 
                  if(dataRows[0] != null){
                     this.calculateAndApplyAggFunction(dataRows);
@@ -120,14 +126,14 @@ class CancerDataSet extends DataSet{
                    
                      if(genderDataMap.has(dataRows[i][1]))
                      {
-                         console.log("element present=");
+                       
                          var existingGendarDataArray=genderDataMap.get(dataRows[i][1]);
                          existingGendarDataArray.push(dataRows[i][3]);
                          genderDataMap.set(dataRows[i][1],existingGendarDataArray);
                      }
                      else
                      {
-                         console.log("adding element in map for first time="+dataRows[i][1]);
+                         
                          var genderDataArray= new Array();
                          genderDataArray.push(dataRows[i][3]);
                          genderDataMap.set(dataRows[i][1],genderDataArray);  
@@ -136,7 +142,7 @@ class CancerDataSet extends DataSet{
 
                 var genderLabelsArray= new Array();
                 for (var [key, value] of genderDataMap) {
-                            console.log(key + ' = ' + value);
+                            //console.log(key + ' = ' + value);
                             genderLabelsArray.push(key);   
                 }
 

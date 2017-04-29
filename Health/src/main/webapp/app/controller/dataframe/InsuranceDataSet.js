@@ -99,12 +99,16 @@ class InsuranceDataSet extends DataSet{
                      query = query + "State IN " + stateStr;
                  }else{
                      state = df.distinct('State').toArray();
+                     if(flag==false){
+                     query = query + " AND State = 'Illinois'";
+                      alert("Setting State by default to Illinois(* You can select multiple States");
+                     }
                  }
 
-                 console.log(query);
+                 //console.log(query);
                  var dataRows = DataFrame.sql.request(query).toArray();
-                 console.log(dataRows.length);
-                 console.log(dataRows);
+                // console.log(dataRows.length);
+                // console.log(dataRows);
                 
                 if(dataRows[0] != null){
                     this.calculateAndApplyAggFunction(dataRows);
@@ -117,14 +121,14 @@ class InsuranceDataSet extends DataSet{
                    
                      if(stateDataMap.has(dataRows[i][0]))
                      {
-                         console.log("element present=");
+                         
                          var existingStateDataArray=stateDataMap.get(dataRows[i][0]);
                          existingStateDataArray.push(dataRows[i][2]);
                          stateDataMap.set(dataRows[i][0],existingStateDataArray);
                      }
                      else
                      {
-                         console.log("adding element in map for first time="+dataRows[i][0]);
+                         
                          var stateDataArray= new Array();
                          stateDataArray.push(dataRows[i][2]);
                          stateDataMap.set(dataRows[i][0],stateDataArray);  

@@ -63,6 +63,12 @@ class MortalityDataSet extends DataSet{
              df => {
 
                  DataFrame.sql.registerTable(df, 'DeathRateTable', true);
+                 
+                 if(death_Cause==''){
+                    death_Cause="Diseases$of$heart";
+                    alert("Default Death Cause value selected = Diseases of heart (* You can select desired death cause)");
+                 }
+
                  var query = "SELECT * FROM DeathRateTable WHERE Death$Cause=" + "'" + death_Cause + "'";
 
 
@@ -83,7 +89,7 @@ class MortalityDataSet extends DataSet{
                          }
                      }
                      multipleGender=multipleGender+')';
-                     console.log("Gender IN query prepared multipleGender="+multipleGender);
+                     
                      query = query + " AND Gender IN "+multipleGender ;
                  }
 
@@ -116,14 +122,14 @@ class MortalityDataSet extends DataSet{
                    
                      if(genderDataMap.has(dataRows[i][1]))
                      {
-                         console.log("element present=");
+                        
                          var existingGendarDataArray=genderDataMap.get(dataRows[i][1]);
                          existingGendarDataArray.push(dataRows[i][3]);
                          genderDataMap.set(dataRows[i][1],existingGendarDataArray);
                      }
                      else
                      {
-                         console.log("adding element in map for first time="+dataRows[i][1]);
+                        
                          var genderDataArray= new Array();
                          genderDataArray.push(dataRows[i][3]);
                          genderDataMap.set(dataRows[i][1],genderDataArray);  
@@ -132,7 +138,7 @@ class MortalityDataSet extends DataSet{
 
                 var genderLabelsArray= new Array();
                 for (var [key, value] of genderDataMap) {
-                            console.log(key + ' = ' + value);
+                           // console.log(key + ' = ' + value);
                             genderLabelsArray.push(key);   
                 }
 
