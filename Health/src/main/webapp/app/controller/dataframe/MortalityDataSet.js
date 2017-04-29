@@ -84,7 +84,7 @@ class MortalityDataSet extends DataSet{
                      }
                      multipleGender=multipleGender+')';
                      console.log("Gender IN query prepared multipleGender="+multipleGender);
-                     query = query + " WHERE Gender IN "+multipleGender ;
+                     query = query + " AND Gender IN "+multipleGender ;
                  }
 
                  if (years != null && years.length != 0){
