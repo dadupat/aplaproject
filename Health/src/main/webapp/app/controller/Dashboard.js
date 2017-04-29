@@ -25,7 +25,13 @@ class DashBoard {
                 instance.displayTable(tableData);
             }
         });
-        dataSet.displayColumns();
+        
+        dataSet.getColumnList().then(function(columnNames){
+            if(columnNames != undefined){
+                 dataSet.displayColumns(columnNames);
+            }
+        });
+        dataSet.createAggregateElements();
         document.getElementById('generateChartButton').style.display = 'block';
         this.datasetContext = dataType;
         var dataSetHeader = document.getElementById('dataSetHeader');
