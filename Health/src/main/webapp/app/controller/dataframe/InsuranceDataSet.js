@@ -1,5 +1,5 @@
 /**
- * 
+ * MortalityDataSet class defines the method/behaviour for Medical Insurance dataset.
  */
 class InsuranceDataSet extends DataSet{
 
@@ -8,6 +8,7 @@ class InsuranceDataSet extends DataSet{
         this.filename = './DownloadableContent/HealthInsurance.csv';
     }
     
+    // getColumnList returns column names.
 	getColumnList() {
 		var DataFrame = dfjs.DataFrame;
         return DataFrame.fromCSV(this.filename).then(
@@ -20,6 +21,7 @@ class InsuranceDataSet extends DataSet{
         });
 	}
 	
+     //getDistinctColumnVal returns distinct column values from csv files.
 	getDistinctColumnVal() {
 		var DataFrame = dfjs.DataFrame;
 		var distColumnValues = DataFrame.fromCSV(this.filename).then(
@@ -37,6 +39,7 @@ class InsuranceDataSet extends DataSet{
         return distColumnValues;
 	}
 
+    // getTableData returns the data from csv files.
 	getTableData(){
 		var DataFrame = dfjs.DataFrame;
 		var tableData = DataFrame.fromCSV(this.filename).then(
@@ -54,6 +57,7 @@ class InsuranceDataSet extends DataSet{
         return tableData;
 	}
 	
+    // getQueryData creates the query to prepare dataRow from selected Column/Row  and return the resultset.
 	getQueryData(state, years){
 		var DataFrame = dfjs.DataFrame;
         return DataFrame.fromCSV(this.filename).then(
@@ -149,6 +153,7 @@ class InsuranceDataSet extends DataSet{
         });
     }
 
+    // getDistinctColumnVal returns distinct datavalue for a column name.
     getDistinctColumnVal(columnName) {
 		var DataFrame = dfjs.DataFrame;
 		return DataFrame.fromCSV(this.filename).then(
@@ -160,6 +165,7 @@ class InsuranceDataSet extends DataSet{
         });
 	}
 
+    // displayColumns creates column level selection checkboxes dynamically. 
 	displayColumns(){
         var instance = this;
         this.getColumnList().then(function(columnNames){
@@ -193,6 +199,7 @@ class InsuranceDataSet extends DataSet{
         this.createAggregateElements();
     }
 
+    // onchangeHandler perform action on Column checkbox selection dynamically. Show and hide row level selection with distinct data values.
     onchangeHandler(cb, instance){
         instance.cb = cb;
         this.getDistinctColumnVal(instance.cb).then(function(distinctArray){
@@ -229,8 +236,8 @@ class InsuranceDataSet extends DataSet{
         });
     }
 
+    // getMultiSelectData creates array of filtered data and return those to getQueryData method.
     getMultiSelectData(){
-        //if possible call  getColumnList iterate on that list to get column names to store in idSelect.
         var state = document.getElementById('idselectState');
         var year = document.getElementById('idselectYear');
         var valuesState = [];
@@ -251,10 +258,10 @@ class InsuranceDataSet extends DataSet{
                 }
             }
         }
-        // it should return an array and use that value to change UI here
         return this.getQueryData(valuesState, valuesYear);
     }
 
+    // createAggregateElements creates 'Minimum','Maximum','Average','Count','Standard Deviation' checkboxes dynamically on UI.
     createAggregateElements(){
         var inst = this;
         var divAgg = document.getElementById('aggregateFunction');
@@ -277,7 +284,8 @@ class InsuranceDataSet extends DataSet{
             divAgg.appendChild(labl);
         }  
     }
-
+    
+    // calculateAndApplyAggFunction calculates the Minimum','Maximum','Average','Count','Standard Deviation' and apply the changes to UI.
     calculateAndApplyAggFunction(dataRows){
 
         this.selectedArray = new Array(); 

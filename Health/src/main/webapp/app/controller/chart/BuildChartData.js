@@ -39,8 +39,7 @@ class BuildChartData{
         return stateDataMap;
     }
 
-
-
+    // generateLineDatasetWithColor generate color for bar chart
     generateLineDatasetWithColor(stateDataMap,stateLabelsArray){
         //preparing color maps
         var stateLabelsArray1=new Array();
@@ -57,6 +56,7 @@ class BuildChartData{
         return datasetObjArray;
     }
 
+    // datasetGenerationForLineChart method prepares data for line chart creation.
     datasetGenerationForLineChart(stateLabelsArray,stateDataMap,linesLabelsBorderColorMap,datasetObjArray){
         for(var p=0;p<stateLabelsArray.length;p++){
             var stateLabel=stateLabelsArray[p];
@@ -67,6 +67,7 @@ class BuildChartData{
         return datasetObjArray;
     }
 
+    // generateBarDatasetWithColor generate color for bar chart
     generateBarDatasetWithColor(stateDataMap,stateLabelsArray){
         var stateLabelsArray1=new Array();
         stateLabelsArray1=stateLabelsArray;
@@ -88,6 +89,7 @@ class BuildChartData{
         return datasetObjArray;
     }
 
+    // datasetGenerationForBarChart method prepares data for Bar chart creation.
     datasetGenerationForBarChart(stateLabelsArray,stateDataMap,labelsBackgroundColorMap,labelsBorderColorMap,datasetObjArray){
         for(var p=0;p<stateLabelsArray.length;p++){  
             var stateLabel=stateLabelsArray[p];
@@ -96,7 +98,8 @@ class BuildChartData{
         }
         return datasetObjArray;
     }
-       
+
+    // generatePieDatasetWithColor generate color for Pie chart
     generatePieDatasetWithColor(stateDataMap,stateLabelsArray){
         var stateLabelsArray1=new Array();
         stateLabelsArray1=stateLabelsArray;
@@ -120,7 +123,7 @@ class BuildChartData{
         return datasetObjArray;
     }
 
-
+    // datasetGenerationForPieChart method prepares data for pie chart creation.
     datasetGenerationForPieChart(stateLabelsArray,stateDataMap,labelsBackgroundColorArray,labelsBorderColorArray,datasetObjArray){
         for(var p=0;p<stateLabelsArray.length;p++){
             var stateLabel=stateLabelsArray[p];
@@ -130,6 +133,7 @@ class BuildChartData{
         return datasetObjArray;
     }
 
+    //Generates random color
     getRandomColor() {
         var letters = '0123456789ABCDEF'.split('');
         var color = '#';

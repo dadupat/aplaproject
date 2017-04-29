@@ -7,6 +7,7 @@ class PieChart extends ChartObserver {
         this._datasetJsonArray=datasetJsonArray;
     }
      
+    // generateChart creates pieChart chart.
     generateChart(){
         var ctx = document.getElementById("pieChart");
         var pieChart = new Chart(ctx, {

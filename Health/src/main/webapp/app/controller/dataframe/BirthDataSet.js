@@ -1,5 +1,5 @@
 /**
- * 
+ * BirthDataSet class defines the method/behaviour for birthrate rate dataset.
  */
 class BirthDataSet extends DataSet{
 
@@ -8,6 +8,7 @@ class BirthDataSet extends DataSet{
         this.filename = './DownloadableContent/BirthRate.csv';
     }
     
+    // getColumnList returns column names.
 	getColumnList() {
 		var DataFrame = dfjs.DataFrame;
         return DataFrame.fromCSV(this.filename).then(
@@ -20,6 +21,7 @@ class BirthDataSet extends DataSet{
         });
 	}
 	
+     //getDistinctColumnVal returns distinct column values from csv files.
 	getDistinctColumnVal() {
 		var DataFrame = dfjs.DataFrame;
 		var distColumnValues = DataFrame.fromCSV(this.filename).then(
@@ -37,6 +39,7 @@ class BirthDataSet extends DataSet{
         return distColumnValues;
 	}
 
+    // getTableData returns the data from csv files.
 	getTableData(){
 		var DataFrame = dfjs.DataFrame;
 		var tableData = DataFrame.fromCSV(this.filename).then(
@@ -55,6 +58,7 @@ class BirthDataSet extends DataSet{
         return tableData;
 	}
 	
+    // getQueryData creates the query to prepare dataRow from selected Column/Row  and return the resultset.
 	getQueryData(state,years){
 		var DataFrame = dfjs.DataFrame;
         return DataFrame.fromCSV(this.filename).then(
@@ -151,6 +155,7 @@ class BirthDataSet extends DataSet{
         });
     }
 
+    //Generates random color 
     getRandomColor() {
         var letters = '0123456789ABCDEF'.split('');
         var color = '#';
@@ -160,6 +165,7 @@ class BirthDataSet extends DataSet{
         return color;
     }
 
+    // getDistinctColumnVal returns distinct datavalue for a column name.
 	getDistinctColumnVal(columnName) {
 		var DataFrame = dfjs.DataFrame;
 		return DataFrame.fromCSV(this.filename).then(
@@ -171,6 +177,7 @@ class BirthDataSet extends DataSet{
         });
 	}
 
+    // displayColumns creates column level selection checkboxes dynamically.  
 	displayColumns(){
         var instance = this;
         this.getColumnList().then(function(columnNames){
@@ -204,6 +211,7 @@ class BirthDataSet extends DataSet{
         this.createAggregateElements();
     }
 
+    // onchangeHandler perform action on Column checkbox selection dynamically. Show and hide row level selection with distinct data values.
     onchangeHandler(cb, instance){
         instance.cb = cb;
         this.getDistinctColumnVal(instance.cb).then(function(distinctArray){
@@ -240,8 +248,8 @@ class BirthDataSet extends DataSet{
         });
     }
 
+    // getMultiSelectData creates array of filtered data and return those to getQueryData method.
     getMultiSelectData(){
-        //if possible call  getColumnList iterate on that list to get column names to store in idSelect.
         var state = document.getElementById('idselectState');
         var year = document.getElementById('idselectYear');
        
@@ -263,10 +271,10 @@ class BirthDataSet extends DataSet{
                 }
             }
         }
-        // it should return an array and use that value to change UI here
         return this.getQueryData(valuesState, valuesYear);
     }
 
+    // createAggregateElements creates 'Minimum','Maximum','Average','Count','Standard Deviation' checkboxes dynamically on UI.
     createAggregateElements(){
         var inst = this;
         var divAgg = document.getElementById('aggregateFunction');
@@ -290,6 +298,7 @@ class BirthDataSet extends DataSet{
         }  
     }
 
+    // calculateAndApplyAggFunction calculates the Minimum','Maximum','Average','Count','Standard Deviation' and apply the changes to UI.
     calculateAndApplyAggFunction(dataRows){
 
         this.selectedArray = new Array(); 
@@ -373,6 +382,7 @@ class BirthDataSet extends DataSet{
         } 
     }
 
+    // datasetGenerationForBarChart method prepares data for Bar chart creation.
     datasetGenerationForBarChart(stateLabelsArray,stateDataMap,labelsBackgroundColorMap,labelsBorderColorMap,datasetObjArray){
         for(var p=0;p<stateLabelsArray.length;p++){    
             var stateLabel=stateLabelsArray[p];
@@ -382,6 +392,7 @@ class BirthDataSet extends DataSet{
         return datasetObjArray;
     }
 
+    // datasetGenerationForPieChart method prepares data for pie chart creation.
     datasetGenerationForPieChart(stateLabelsArray,stateDataMap,stateDataColorMap,stateDataBorderColorMap,borderWidth,datasetObjArray){
         var state= stateLabelsArray[0];
         var datasetObj= new DatasetObj(state,stateDataMap.get(state),stateDataColorMap.get(state),stateDataBorderColorMap.get(state),1);

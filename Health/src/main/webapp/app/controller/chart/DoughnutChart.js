@@ -7,6 +7,7 @@ class DoughnutChart extends ChartObserver {
         this._datasetJsonArray=datasetJsonArray;
     }
 
+    // generateChart creates doughnutChart chart.
      generateChart(){
         var ctx = document.getElementById("doughnutChart");
         var doughnutChart = new Chart(ctx, {
