@@ -58,19 +58,22 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="./app/views/home.html">Home</a>
+           
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="./app/views/About.html">About</a>
+                    <a class="navbar-brand" href="#" onclick="displayContent('home');">Home</a>
                 </li>
                 <li>
-                    <a href="./app/views/Services.html">Services</a>
+                    <a href="#" onclick="displayContent('About');">About</a>
                 </li>
                 <li>
-                    <a href="./app/views/Contact.html">Contact</a>
+                    <a href="#" onclick="displayContent('Services');">Services</a>
+                </li>
+                <li>
+                    <a href="#" onclick="displayContent('Contact');">Contact</a>
                 </li>
             </ul>
         </div>
@@ -81,7 +84,10 @@
 
 <!-- Page Content -->
 <div class="container">
-    <div w3-include-html="./app/views/home.html"></div>
+    <div id="home" w3-include-html="./app/views/home.html" style="display:block"></div>
+    <div id="About" w3-include-html="./app/views/About.html" style="display:none"></div>
+    <div id="Services" w3-include-html="./app/views/Services.html" style="display:none"></div>
+    <div id="Contact" w3-include-html="./app/views/Contact.html" style="display:none"></div>
 
     <!-- /.row  ./app/views/home.html -->
     <hr>
@@ -99,6 +105,16 @@
             window.scrollTo(0,0);
         };
     w3IncludeHTML();
+
+    displayContent = function(contentType){
+        var contents = ['home','About','Services','Contact'];
+        var index = contents.indexOf(contentType);
+        contents.splice(index,1);
+        document.getElementById(contentType).style.display = 'block';
+        for(var i=0;i<contents.length;i++){
+            document.getElementById(contents[i]).style.display = 'none';
+        }   
+    };
 </script>
 <!-- /.container -->
 </body>
