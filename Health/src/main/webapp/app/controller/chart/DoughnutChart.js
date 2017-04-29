@@ -8,8 +8,7 @@ class DoughnutChart extends ChartObserver {
     }
 
      generateChart(){
-      
-           var ctx = document.getElementById("doughnutChart");
+        var ctx = document.getElementById("doughnutChart");
         var doughnutChart = new Chart(ctx, {
             type: this._type,
             data: {
@@ -18,7 +17,6 @@ class DoughnutChart extends ChartObserver {
             },
             
         });
-
-         return doughnutChart;
+        return doughnutChart;
     }
 }

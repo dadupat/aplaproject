@@ -91,13 +91,13 @@ class DashBoard {
         var stateLabelsArray=new Array();
         stateLabelsArray=buildChartData.generateStateLabelsArray();
 
-       //for bar chart
+        //for bar chart
         var barDatasetObjArray=buildChartData.generateBarDatasetWithColor(stateDataMap,stateLabelsArray);
         var barChart= new BarChart('bar',labelsArray,barDatasetObjArray);
         this.barCh = barChart.generateChart();
 
-       //for line chart
-       var lineDatasetObjArray=buildChartData.generateLineDatasetWithColor(stateDataMap,stateLabelsArray);
+        //for line chart
+        var lineDatasetObjArray=buildChartData.generateLineDatasetWithColor(stateDataMap,stateLabelsArray);
         var lineChart= new LineChart('line',labelsArray,lineDatasetObjArray);
         this.lineCh = lineChart.generateChart();
 
@@ -115,7 +115,6 @@ class DashBoard {
         var dounutDatasetObjArray=buildChartData.generatePieDatasetWithColor(stateDataMap,stateLabelsArray);
         var doughnutChart= new DoughnutChart('doughnut',labelsArray,dounutDatasetObjArray);
         this.doughnutCh = doughnutChart.generateChart();
-
     }
 
     createChart(queryData){
@@ -123,10 +122,8 @@ class DashBoard {
         var labelsArray=queryData[0];
         var datasetsArray=queryData[1];
         this.setSelectChartValues(true, 'block');
-       //generating BuildChartData only once for each call
-       this.generateCommonBuildChartData(labelsArray,datasetsArray);
-
-
+        //generating BuildChartData only once for each call
+        this.generateCommonBuildChartData(labelsArray,datasetsArray);
     }
 
     cleanUpComponentOnDataSetChange(){

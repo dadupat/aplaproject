@@ -26,15 +26,13 @@ class InsuranceDataSet extends DataSet{
             df => {
                 var columns = df.listColumns();
                 var distColumnValues = [];
-
                 for (var i=0; i<columns.length; i++){
                     distColumnValues[i] = df.distinct(columns[i]).toDict()[columns[i]];
                 }
-
                 return distColumnValues;
             }
         ).catch(err => {
-        console.log(err);
+            console.log(err);
         });
         return distColumnValues;
 	}
@@ -60,110 +58,91 @@ class InsuranceDataSet extends DataSet{
 		var DataFrame = dfjs.DataFrame;
         return DataFrame.fromCSV(this.filename).then(
              df => {
+                DataFrame.sql.registerTable(df, 'insuranceTable');
+                var query = 'SELECT * FROM insuranceTable';
+                var flag=false;  
+                if (years != null && years.length != 0){
+                    var yearStr = null;
+                    for (var i=0; i<years.length ; i++){
+                        if (yearStr != null){
+                            yearStr = yearStr + ",";
+                        }else{
+                            yearStr = '(';
+                        }
+                        yearStr = yearStr + years[i];
+                    }
+                    yearStr = yearStr + ')';
+                    query = query + " where Year IN " + yearStr;
+                }
+                else{
+                    years = df.distinct('Year').toArray();
+                    if (state != null && state.length != 0){
+                        query = query + " WHERE ";
+                    }
+                    flag=true;
+                }
+                if(flag==false && state != null && state.length != 0){
+                    query=query+" AND ";
+                }
+                if (state != null && state.length != 0){
+                    var stateStr = null;
+                    for (var i=0; i<state.length ; i++){
+                        if (stateStr != null){
+                            stateStr = stateStr + ",";
+                        }
+                        else{
+                            stateStr = '(';
+                        }
+                        stateStr = stateStr + state[i];
+                    }
+                    stateStr = stateStr + ')';
+                    query = query + "State IN " + stateStr;
+                }else{
+                    state = df.distinct('State').toArray();
+                    if(flag==false){
+                        query = query + " AND State = 'Illinois'";
+                        alert("Setting State by default to Illinois(* You can select multiple States");
+                    }
+                }
 
-                 DataFrame.sql.registerTable(df, 'insuranceTable');
-                 var query = 'SELECT * FROM insuranceTable';
-                   var flag=false;  
-                 if (years != null && years.length != 0){
-                     var yearStr = null;
-                     for (var i=0; i<years.length ; i++){
-                         if (yearStr != null){
-                             yearStr = yearStr + ",";
-                         }else{
-                             yearStr = '(';
-                         }
-                         yearStr = yearStr + years[i];
-                     }
-                     yearStr = yearStr + ')';
-                     query = query + " where Year IN " + yearStr;
-                 }else{
-                     years = df.distinct('Year').toArray();
-                     if (state != null && state.length != 0){
-                     query = query + " WHERE ";}
-					 flag=true;
-                 }
-                 if(flag==false && state != null && state.length != 0){
-					query=query+" AND ";
-				 }
-                 if (state != null && state.length != 0){
-                     var stateStr = null;
-                     for (var i=0; i<state.length ; i++){
-                         if (stateStr != null){
-                             stateStr = stateStr + ",";
-                         }else{
-                             stateStr = '(';
-                         }
-                         stateStr = stateStr + state[i];
-                     }
-                     stateStr = stateStr + ')';
-                     query = query + "State IN " + stateStr;
-                 }else{
-                     state = df.distinct('State').toArray();
-                     if(flag==false){
-                     query = query + " AND State = 'Illinois'";
-                      alert("Setting State by default to Illinois(* You can select multiple States");
-                     }
-                 }
-
-                 //console.log(query);
-                 var dataRows = DataFrame.sql.request(query).toArray();
-                // console.log(dataRows.length);
+                //console.log(query);
+                var dataRows = DataFrame.sql.request(query).toArray();
                 // console.log(dataRows);
-                
                 if(dataRows[0] != null){
                     this.calculateAndApplyAggFunction(dataRows);
                 }
-        	     
-                 var stateDataMap =new Map();
-                
-
-                 for (i=0;i<dataRows.length;i++) {
-                   
-                     if(stateDataMap.has(dataRows[i][0]))
-                     {
-                         
-                         var existingStateDataArray=stateDataMap.get(dataRows[i][0]);
-                         existingStateDataArray.push(dataRows[i][2]);
-                         stateDataMap.set(dataRows[i][0],existingStateDataArray);
-                     }
-                     else
-                     {
-                         
-                         var stateDataArray= new Array();
-                         stateDataArray.push(dataRows[i][2]);
-                         stateDataMap.set(dataRows[i][0],stateDataArray);  
-                     }
-                     
-                     
+                var stateDataMap =new Map();
+                for (i=0;i<dataRows.length;i++) {
+                    if(stateDataMap.has(dataRows[i][0])) { 
+                        var existingStateDataArray=stateDataMap.get(dataRows[i][0]);
+                        existingStateDataArray.push(dataRows[i][2]);
+                        stateDataMap.set(dataRows[i][0],existingStateDataArray);
                     }
-                 var stateLabelsArray= new Array();
+                    else{
+                        var stateDataArray= new Array();
+                        stateDataArray.push(dataRows[i][2]);
+                        stateDataMap.set(dataRows[i][0],stateDataArray);  
+                    }
+                }
+                var stateLabelsArray= new Array();
 
-                    for (var [key, value] of stateDataMap) {
-                            //console.log(key + ' = ' + value);
-                            stateLabelsArray.push(key);
-                    
-                        }
-
+                for (var [key, value] of stateDataMap) {
+                    stateLabelsArray.push(key);
+                }
                 var datasetObjArray=new Array();
-            for(var x=0;x<stateLabelsArray.length;x++){
-                var stateLabel=stateLabelsArray[x];
-                var stateDataArray=stateDataMap.get(stateLabel);
+                for(var x=0;x<stateLabelsArray.length;x++){
+                    var stateLabel=stateLabelsArray[x];
+                    var stateDataArray=stateDataMap.get(stateLabel);
 
-                var datasetObj= new DatasetObj(stateLabel,stateDataArray,null,null,null);
-                datasetObjArray.push(datasetObj);
-                    }
+                    var datasetObj= new DatasetObj(stateLabel,stateDataArray,null,null,null);
+                    datasetObjArray.push(datasetObj);
+                }
 
         		DataFrame.sql.dropTable('insuranceTable');
-        		
-
-                //
                 var result = new Array();
-        		
                 result.push(years); 
         		result.push (datasetObjArray);
-
-                return result;
-                //                
+                return result;               
 	        }
         ).catch(err => {
             console.log(err);
@@ -177,7 +156,7 @@ class InsuranceDataSet extends DataSet{
                 return df.distinct(columnName).toDict()[columnName];
             }
         ).catch(err => {
-        console.log(err);
+            console.log(err);
         });
 	}
 
@@ -254,7 +233,6 @@ class InsuranceDataSet extends DataSet{
         //if possible call  getColumnList iterate on that list to get column names to store in idSelect.
         var state = document.getElementById('idselectState');
         var year = document.getElementById('idselectYear');
-       
         var valuesState = [];
         var valuesYear = [];
         
@@ -352,7 +330,7 @@ class InsuranceDataSet extends DataSet{
 
         var avgValue=0;
         for (var i=0 ; i < dataRows.length ; i++) {
-                avgValue= parseFloat(avgValue)+parseFloat(dataRows[i][2]);
+            avgValue= parseFloat(avgValue)+parseFloat(dataRows[i][2]);
         }
         var avg= parseFloat(avgValue)/parseFloat(dataRows.length);
 
