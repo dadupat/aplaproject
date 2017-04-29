@@ -45,7 +45,7 @@
 
 </head>
 
-<body>
+<body onload="scrolltoTop();">
 
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -94,8 +94,12 @@
         </div>
     </footer>
 </div>
-<script>
-w3IncludeHTML();
+<script type="text/javascript">
+    scrolltoTop = function() {
+            window.scrollTo(0,0);
+            console.log("Aviiii")
+        };
+    w3IncludeHTML();
 </script>
 <!-- /.container -->
 </body>

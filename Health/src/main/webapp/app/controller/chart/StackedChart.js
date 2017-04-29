@@ -8,11 +8,7 @@ class StackedChart extends ChartObserver {
     }
 
      generateChart(){
-      
-
-      
-
-           var ctx = document.getElementById("stackedChart");
+        var ctx = document.getElementById("stackedChart");
         var stackedChart = new Chart(ctx, {
             type: this._type,
             data: {
@@ -27,7 +23,6 @@ class StackedChart extends ChartObserver {
                                 }
                          }
         });
-
         return stackedChart;
     }
 }

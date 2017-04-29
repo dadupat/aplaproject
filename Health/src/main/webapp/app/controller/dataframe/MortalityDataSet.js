@@ -30,11 +30,10 @@ class MortalityDataSet extends DataSet{
                 for (var i=0; i<columns.length; i++){
                     distColumnValues[i] = df.distinct(columns[i]).toDict()[columns[i]];
                 }
-
                 return distColumnValues;
             }
         ).catch(err => {
-        console.log(err);
+            console.log(err);
         });
         return distColumnValues;
 	}
@@ -61,99 +60,80 @@ class MortalityDataSet extends DataSet{
 		var DataFrame = dfjs.DataFrame;
         return DataFrame.fromCSV(this.filename).then(
              df => {
-
                  DataFrame.sql.registerTable(df, 'DeathRateTable', true);
-                 
                  if(death_Cause==''){
                     death_Cause="Diseases$of$heart";
                     alert("Default Death Cause value selected = Diseases of heart (* You can select desired death cause)");
                  }
-
                  var query = "SELECT * FROM DeathRateTable WHERE Death$Cause=" + "'" + death_Cause + "'";
-
-
                  if (gender != null && gender.length == 1){
                      query = query + " AND Gender=" + gender[0];
                  }
-                  else if(gender != null && gender.length > 1){
-                     var multipleGender='(';
-                     for(var p=0;p<gender.length;p++)
-                     {
-                         if(p==0)
-                         {
-                            multipleGender=multipleGender+ gender[0];
-                         }
-                         else
-                         {
-                             multipleGender=multipleGender+','+gender[p];
-                         }
-                     }
-                     multipleGender=multipleGender+')';
-                     
-                     query = query + " AND Gender IN "+multipleGender ;
-                 }
+                else if(gender != null && gender.length > 1){
+                    var multipleGender='(';
+                    for(var p=0;p<gender.length;p++){
+                        if(p==0){
+                        multipleGender=multipleGender+ gender[0];
+                        }
+                        else{
+                            multipleGender=multipleGender+','+gender[p];
+                        }
+                    }
+                    multipleGender=multipleGender+')';
+                    query = query + " AND Gender IN "+multipleGender ;
+                }
 
-                 if (years != null && years.length != 0){
-                     var yearStr = null;
-                     for (var i=0; i<years.length ; i++){
-                         if (yearStr != null){
-                             yearStr = yearStr + ",";
-                         }else{
-                             yearStr = '(';
-                         }
-                         yearStr = yearStr + years[i];
-                     }
-                     yearStr = yearStr + ')';
-                     query = query + " AND Year IN " + yearStr;
-                 }else{
-                     years = df.distinct('Year').toArray();
-                 }
-                 console.log(query);
-                 var dataRows = DataFrame.sql.request(query).toArray();
-                 console.log(dataRows);
+                if (years != null && years.length != 0){
+                    var yearStr = null;
+                    for (var i=0; i<years.length ; i++){
+                        if (yearStr != null){
+                            yearStr = yearStr + ",";
+                        }else{
+                            yearStr = '(';
+                        }
+                        yearStr = yearStr + years[i];
+                    }
+                    yearStr = yearStr + ')';
+                    query = query + " AND Year IN " + yearStr;
+                }
+                else{
+                    years = df.distinct('Year').toArray();
+                }
+                //console.log(query);
+                var dataRows = DataFrame.sql.request(query).toArray();
+                //console.log(dataRows);
                 
                 if(dataRows[0] != null){
                  this.calculateAndApplyAggFunction(dataRows);
                 }
-                 var genderDataMap =new Map();
-                
-
-                 for (i=0;i<dataRows.length;i++) {
-                   
-                     if(genderDataMap.has(dataRows[i][1]))
-                     {
-                        
-                         var existingGendarDataArray=genderDataMap.get(dataRows[i][1]);
-                         existingGendarDataArray.push(dataRows[i][3]);
-                         genderDataMap.set(dataRows[i][1],existingGendarDataArray);
-                     }
-                     else
-                     {
-                        
-                         var genderDataArray= new Array();
-                         genderDataArray.push(dataRows[i][3]);
-                         genderDataMap.set(dataRows[i][1],genderDataArray);  
-                     }
-                 } 
-
+                var genderDataMap =new Map();
+                for (i=0;i<dataRows.length;i++) {
+                    if(genderDataMap.has(dataRows[i][1])){
+                        var existingGendarDataArray=genderDataMap.get(dataRows[i][1]);
+                        existingGendarDataArray.push(dataRows[i][3]);
+                        genderDataMap.set(dataRows[i][1],existingGendarDataArray);
+                    }
+                    else{
+                        var genderDataArray= new Array();
+                        genderDataArray.push(dataRows[i][3]);
+                        genderDataMap.set(dataRows[i][1],genderDataArray);  
+                    }
+                } 
                 var genderLabelsArray= new Array();
                 for (var [key, value] of genderDataMap) {
-                           // console.log(key + ' = ' + value);
-                            genderLabelsArray.push(key);   
+                    genderLabelsArray.push(key);   
                 }
 
                 var datasetObjArray=new Array();
-            for(var x=0;x<genderLabelsArray.length;x++){
-                var genderLabel=genderLabelsArray[x];
-                var genderDataArray=genderDataMap.get(genderLabel);
+                for(var x=0;x<genderLabelsArray.length;x++){
+                    var genderLabel=genderLabelsArray[x];
+                    var genderDataArray=genderDataMap.get(genderLabel);
+                    var datasetObj= new DatasetObj(genderLabel,genderDataArray,null,null,null);
+                    datasetObjArray.push(datasetObj);
+                }
 
-                var datasetObj= new DatasetObj(genderLabel,genderDataArray,null,null,null);
-                datasetObjArray.push(datasetObj);
-            }
-
-            DataFrame.sql.dropTable('DeathRateTable');
-            
-        		var result = new Array();
+                DataFrame.sql.dropTable('DeathRateTable');
+                var result = new Array();
         		result.push (years);
         		result.push (datasetObjArray);
         		
@@ -171,7 +151,7 @@ class MortalityDataSet extends DataSet{
                 return df.distinct(columnName).toDict()[columnName];
             }
         ).catch(err => {
-        console.log(err);
+            console.log(err);
         });
 	}
 
@@ -305,7 +285,6 @@ class MortalityDataSet extends DataSet{
     }
 
     calculateAndApplyAggFunction(dataRows){
-
         this.selectedArray = new Array(); 
         var aggFunct = ['Minimum','Maximum','Average','Count','Standard Deviation'];
         var divResult = document.getElementById('aggregateFunctionResult');
@@ -356,7 +335,7 @@ class MortalityDataSet extends DataSet{
 
         var avgValue=0;
         for (var i=0 ; i < dataRows.length ; i++) {
-                avgValue= parseFloat(avgValue)+parseFloat(dataRows[i][3]);
+            avgValue= parseFloat(avgValue)+parseFloat(dataRows[i][3]);
         }
         var avg= parseFloat(avgValue)/parseFloat(dataRows.length);
 

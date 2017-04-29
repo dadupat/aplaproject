@@ -26,15 +26,13 @@ class BirthDataSet extends DataSet{
             df => {
                 var columns = df.listColumns();
                 var distColumnValues = [];
-
                 for (var i=0; i<columns.length; i++){
                     distColumnValues[i] = df.distinct(columns[i]).toDict()[columns[i]];
                 }
-
                 return distColumnValues;
             }
         ).catch(err => {
-        console.log(err);
+            console.log(err);
         });
         return distColumnValues;
 	}
@@ -61,7 +59,6 @@ class BirthDataSet extends DataSet{
 		var DataFrame = dfjs.DataFrame;
         return DataFrame.fromCSV(this.filename).then(
              df => {
-
                  DataFrame.sql.registerTable(df, 'birthRateTable');
                  var query = 'SELECT * FROM birthRateTable';
                  var flag=false;
@@ -77,39 +74,40 @@ class BirthDataSet extends DataSet{
                      }
                      yearStr = yearStr + ')';
                      query = query + " where Year IN " + yearStr;
-                 }else{
+                 }
+                 else{
                      years = df.distinct('Year').toArray();
                      if (state != null && state.length != 0){
-                      query = query + " WHERE ";}
+                        query = query + " WHERE ";
+                     }
 					 flag=true;
                  }
-                  if(flag==false && state != null && state.length != 0){
-					query=query+" AND ";
-				 }
-                 if (state != null && state.length != 0){
-                     var stateStr = null;
-                     for (var i=0; i<state.length ; i++){
-                         if (stateStr != null){
-                             stateStr = stateStr + ",";
-                         }else{
-                             stateStr = '(';
-                         }
-                         stateStr = stateStr + state[i];
-                     }
-                     stateStr = stateStr + ')';
-                     query = query + "State IN " + stateStr;
-                 }else{
-                     state = df.distinct('State').toArray();
-                     if(flag==false){
-                     query = query + " AND State = 'Illinois'";
+                if(flag==false && state != null && state.length != 0){
+                    query=query+" AND ";
+                }
+                if (state != null && state.length != 0){
+                    var stateStr = null;
+                    for (var i=0; i<state.length ; i++){
+                        if (stateStr != null){
+                            stateStr = stateStr + ",";
+                        }
+                        else{
+                            stateStr = '(';
+                        }
+                        stateStr = stateStr + state[i];
                     }
-                    
-                     alert("Setting State by default to Illinois(* You can select multiple States)");
+                    stateStr = stateStr + ')';
+                    query = query + "State IN " + stateStr;
+                }
+                else{
+                    state = df.distinct('State').toArray();
+                    if(flag==false){
+                        query = query + " AND State = 'Illinois'";
+                    }
+                    alert("Setting State by default to Illinois(* You can select multiple States)");
                  }
-
                  //console.log(query);
                  var dataRows = DataFrame.sql.request(query).toArray();
-                 //console.log(dataRows.length);
                  //console.log(dataRows);
                 
                 if(dataRows[0] != null){
@@ -117,71 +115,50 @@ class BirthDataSet extends DataSet{
                 }	     
 
                 var stateDataMap =new Map();
-                
-
-                 for (i=0;i<dataRows.length;i++) {
-                   
-                     if(stateDataMap.has(dataRows[i][1]))
-                     {
-                         
-                         var existingStateDataArray=stateDataMap.get(dataRows[i][1]);
-                         existingStateDataArray.push(dataRows[i][2]);
-                         stateDataMap.set(dataRows[i][1],existingStateDataArray);
-                     }
-                     else
-                     {
-                         
-                         var stateDataArray= new Array();
-                         stateDataArray.push(dataRows[i][2]);
-                         stateDataMap.set(dataRows[i][1],stateDataArray);  
-                     }
-                     
-                     
+                for (i=0;i<dataRows.length;i++) {
+                    if(stateDataMap.has(dataRows[i][1])){
+                        var existingStateDataArray=stateDataMap.get(dataRows[i][1]);
+                        existingStateDataArray.push(dataRows[i][2]);
+                        stateDataMap.set(dataRows[i][1],existingStateDataArray);
                     }
-                   
-                   var stateLabelsArray= new Array();
-               
-                     
-                   
-                    for (var [key, value] of stateDataMap) {
-                            //console.log(key + ' = ' + value);
-                            stateLabelsArray.push(key);
-                     
-                        }
+                    else{
+                        var stateDataArray= new Array();
+                        stateDataArray.push(dataRows[i][2]);
+                        stateDataMap.set(dataRows[i][1],stateDataArray);  
+                    } 
+                }
+                var stateLabelsArray= new Array();
+                for (var [key, value] of stateDataMap) {
+                    stateLabelsArray.push(key);
+                }
          
-           	var datasetObjArray=new Array();
-            for(var x=0;x<stateLabelsArray.length;x++){
-                var stateLabel=stateLabelsArray[x];
-                var stateDataArray=stateDataMap.get(stateLabel);
-
-                var datasetObj= new DatasetObj(stateLabel,stateDataArray,null,null,null);
-                datasetObjArray.push(datasetObj);
-            }
+                var datasetObjArray=new Array();
+                for(var x=0;x<stateLabelsArray.length;x++){
+                    var stateLabel=stateLabelsArray[x];
+                    var stateDataArray=stateDataMap.get(stateLabel);
+                    var datasetObj= new DatasetObj(stateLabel,stateDataArray,null,null,null);
+                    datasetObjArray.push(datasetObj);
+                }
                
            		DataFrame.sql.dropTable('birthRateTable');
-     	
         		var result = new Array();
-        	
                 result.push(years);
               	result.push (datasetObjArray);
-            		
-                return result;
-                 
-                 
+                return result;  
 	        }
         ).catch(err => {
             console.log(err);
         });
     }
 
-     getRandomColor() {
-    var letters = '0123456789ABCDEF'.split('');
-    var color = '#';
-    for (var i = 0; i < 6; i++ ) {
-        color += letters[Math.floor(Math.random() * 16)];
+    getRandomColor() {
+        var letters = '0123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
     }
-    return color;
-}
 
 	getDistinctColumnVal(columnName) {
 		var DataFrame = dfjs.DataFrame;
@@ -190,7 +167,7 @@ class BirthDataSet extends DataSet{
                 return df.distinct(columnName).toDict()[columnName];
             }
         ).catch(err => {
-        console.log(err);
+            console.log(err);
         });
 	}
 
@@ -365,7 +342,7 @@ class BirthDataSet extends DataSet{
 
         var avgValue=0;
         for (var i=0 ; i < dataRows.length ; i++) {
-                avgValue= parseFloat(avgValue)+parseFloat(dataRows[i][2]);
+            avgValue= parseFloat(avgValue)+parseFloat(dataRows[i][2]);
         }
         var avg= parseFloat(avgValue)/parseFloat(dataRows.length);
 
@@ -396,28 +373,23 @@ class BirthDataSet extends DataSet{
         } 
     }
 
-    datasetGenerationForBarChart(stateLabelsArray,stateDataMap,labelsBackgroundColorMap,labelsBorderColorMap,datasetObjArray)
-    {
-         for(var p=0;p<stateLabelsArray.length;p++){
-                 
-                    var stateLabel=stateLabelsArray[p];
-                    var datasetObj= new DatasetObj(stateLabel,stateDataMap.get(stateLabel),labelsBackgroundColorMap.get(stateLabel),labelsBorderColorMap.get(stateLabel),1);
-                    datasetObjArray.push(datasetObj);
-                }
-                return datasetObjArray;
+    datasetGenerationForBarChart(stateLabelsArray,stateDataMap,labelsBackgroundColorMap,labelsBorderColorMap,datasetObjArray){
+        for(var p=0;p<stateLabelsArray.length;p++){    
+            var stateLabel=stateLabelsArray[p];
+            var datasetObj= new DatasetObj(stateLabel,stateDataMap.get(stateLabel),labelsBackgroundColorMap.get(stateLabel),labelsBorderColorMap.get(stateLabel),1);
+            datasetObjArray.push(datasetObj);
+        }
+        return datasetObjArray;
     }
 
-    datasetGenerationForPieChart(stateLabelsArray,stateDataMap,stateDataColorMap,stateDataBorderColorMap,borderWidth,datasetObjArray)
-    {
-     var state= stateLabelsArray[0];
-     var datasetObj= new DatasetObj(state,stateDataMap.get(state),stateDataColorMap.get(state),stateDataBorderColorMap.get(state),1);
-     datasetObjArray.push(datasetObj);
+    datasetGenerationForPieChart(stateLabelsArray,stateDataMap,stateDataColorMap,stateDataBorderColorMap,borderWidth,datasetObjArray){
+        var state= stateLabelsArray[0];
+        var datasetObj= new DatasetObj(state,stateDataMap.get(state),stateDataColorMap.get(state),stateDataBorderColorMap.get(state),1);
+        datasetObjArray.push(datasetObj);
 
-     state= stateLabelsArray[1];
-      datasetObj= new DatasetObj(state,stateDataMap.get(state),stateDataColorMap.get(state),stateDataBorderColorMap.get(state),1);
-     datasetObjArray.push(datasetObj);
-    
-
-     return datasetObjArray;
+        state= stateLabelsArray[1];
+        datasetObj= new DatasetObj(state,stateDataMap.get(state),stateDataColorMap.get(state),stateDataBorderColorMap.get(state),1);
+        datasetObjArray.push(datasetObj);
+        return datasetObjArray;
     }
 }
