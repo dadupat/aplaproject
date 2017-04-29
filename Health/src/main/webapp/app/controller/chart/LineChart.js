@@ -7,6 +7,7 @@ class LineChart extends ChartObserver {
         this._datasetJsonArray=datasetJsonArray;
     }
 
+    // generateChart creates lineChart chart.
     generateChart(){
         var ctx = document.getElementById("lineChart");
         var lineChart = new Chart(ctx, {

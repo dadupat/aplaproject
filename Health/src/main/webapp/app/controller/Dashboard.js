@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 'use strict'
 class DashBoard {
 
@@ -9,6 +12,7 @@ class DashBoard {
         this.stackedCh = null;
     }
 
+    // createTable- prepare the data to be shown on UI, does UI cleanUp on dataset change,apply data set Header.
     createTable(dataType){
         this.clearContext();
         var instance = this;
@@ -31,6 +35,7 @@ class DashBoard {
         dataSetHeader.appendChild(labelCl);
     }
 
+    //displayTable creates table element with data.
     displayTable(tableData){
         var table = document.createElement('table');
         var tableBody = document.createElement('tbody');
@@ -63,6 +68,7 @@ class DashBoard {
         dataComponentDiv.scrollTop=0;
     }
 
+    //generateCharts - call createChart to prepare chart & aggregate Function Result cleanup
     generateCharts(){
         this.clearContext();
         var instance = this;
@@ -79,6 +85,7 @@ class DashBoard {
         });
     }
 
+    //generateCommonBuildChartData - generates different charts
     generateCommonBuildChartData(labelsArray,datasetsArray){
 
         var buildChartData=new BuildChartData(labelsArray,datasetsArray);
@@ -117,6 +124,7 @@ class DashBoard {
         this.doughnutCh = doughnutChart.generateChart();
     }
 
+    // Prepare Charts
     createChart(queryData){
        
         var labelsArray=queryData[0];
@@ -126,6 +134,7 @@ class DashBoard {
         this.generateCommonBuildChartData(labelsArray,datasetsArray);
     }
 
+    //cleanUpComponentOnDataSetChange does the clean up activity on UI on dataset change.
     cleanUpComponentOnDataSetChange(){
         var aggregateFunction = document.getElementById('aggregateFunction');
         var aggregateFunctionResult = document.getElementById('aggregateFunctionResult');
@@ -159,6 +168,7 @@ class DashBoard {
         this.setSelectChartValues(false, 'none');
     }
 
+    //clearContext - removes data from chart canvas.
     clearContext(){
         if(this.barCh != null)
             this.barCh.destroy();
@@ -172,6 +182,7 @@ class DashBoard {
             this.stackedCh.destroy();
     }
 
+    //setSelectChartValues - Chart show/hide logic
     setSelectChartValues(selectedValue, showOrHide){
         document.getElementById('barChkBox').checked = selectedValue;
         document.getElementById('barChartDiv').style.display = showOrHide;
@@ -189,6 +200,7 @@ class DashBoard {
         document.getElementById('stackedChartDiv').style.display = showOrHide;
     }
 
+    //showHideGraph- show hides the charts div.
     showHideGraph(chkBoxId, chartDivId){
          if(document.getElementById(chkBoxId).checked == true){
              document.getElementById(chartDivId).style.display = 'block';

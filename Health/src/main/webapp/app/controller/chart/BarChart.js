@@ -7,6 +7,7 @@ class BarChart extends ChartObserver {
         this._datasetJsonArray=datasetJsonArray;
     }
 
+    // generateChart creates bra chart.
     generateChart(){
         var ctx = document.getElementById("barChart");
         var barChart = new Chart(ctx, {

@@ -22,20 +22,22 @@ class DataSet{
         }
 	}
 	
-	// An abstract method.
+	// An abstract method to prepare column names.
 	getColumnList() {
 		throw new TypeError("Do not call abstract method getColumnName from child.");
 	}
 	
-	// An abstract method.
+	// An abstract method for distinct column values from csv files.
 	getDistinctColumnVal() {
 		throw new TypeError("Do not call abstract method getDistinctColumnVal from child.");
 	}
 
+	// An abstract method to returns the data from csv files.
 	getTableData(){
 		throw new TypeError("Do not call abstract method getTableData from child.");
 	}
 	
+	// An abstract method to creates the query to prepare dataRow from selected Column/Row  and return the resultset.
 	getQueryData(){
 		throw new TypeError("Do not call abstract method getQueryData from child.");
 	}

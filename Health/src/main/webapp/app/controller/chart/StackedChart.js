@@ -7,6 +7,7 @@ class StackedChart extends ChartObserver {
         this._datasetJsonArray=datasetJsonArray;
     }
 
+    // generateChart creates stackedChart chart.
      generateChart(){
         var ctx = document.getElementById("stackedChart");
         var stackedChart = new Chart(ctx, {
