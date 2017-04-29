@@ -84,10 +84,11 @@ class SmokerDataSet extends DataSet{
                      query = query + " WHERE Gender IN"+multipleGender ;
                  }
 				 else{
-					query = query + " WHERE "
+                     if(years != null && years.length != 0){
+					query = query + " WHERE ";}
 					flag=true;
 				 }
-				 if(flag==false){
+				 if(flag==false && years != null && years.length != 0){
 					query=query+" AND ";
 				 }
                  if (years != null && years.length != 0){

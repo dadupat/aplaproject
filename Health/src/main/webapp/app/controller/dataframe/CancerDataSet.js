@@ -63,8 +63,10 @@ class CancerDataSet extends DataSet{
              df => {
 
                  DataFrame.sql.registerTable(df, 'cancerTable', true);
+                 if(cancerType!=null){
                  var query = "SELECT * FROM cancerTable WHERE Cancer$Type=" + "'" + cancerType + "'";
-
+                }
+                
 
                  if (gender != null && gender.length == 1){
                      query = query + " AND Gender=" + gender[0];
@@ -84,7 +86,7 @@ class CancerDataSet extends DataSet{
                      }
                      multipleGender=multipleGender+')';
                      console.log("Gender IN query prepared multipleGender="+multipleGender);
-                     query = query + " WHERE Gender IN "+multipleGender ;
+                     query = query + " AND Gender IN "+multipleGender ;
                  }
 
                  if (years != null && years.length != 0){

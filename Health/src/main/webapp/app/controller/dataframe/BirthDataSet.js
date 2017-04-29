@@ -64,7 +64,7 @@ class BirthDataSet extends DataSet{
 
                  DataFrame.sql.registerTable(df, 'birthRateTable');
                  var query = 'SELECT * FROM birthRateTable';
-
+                 var flag=false;
                  if (years != null && years.length != 0){
                      var yearStr = null;
                      for (var i=0; i<years.length ; i++){
@@ -79,7 +79,13 @@ class BirthDataSet extends DataSet{
                      query = query + " where Year IN " + yearStr;
                  }else{
                      years = df.distinct('Year').toArray();
+                     if (state != null && state.length != 0){
+                      query = query + " WHERE ";}
+					 flag=true;
                  }
+                  if(flag==false && state != null && state.length != 0){
+					query=query+" AND ";
+				 }
                  if (state != null && state.length != 0){
                      var stateStr = null;
                      for (var i=0; i<state.length ; i++){
@@ -91,7 +97,7 @@ class BirthDataSet extends DataSet{
                          stateStr = stateStr + state[i];
                      }
                      stateStr = stateStr + ')';
-                     query = query + " AND State IN " + stateStr;
+                     query = query + "State IN " + stateStr;
                  }else{
                      state = df.distinct('State').toArray();
                  }
