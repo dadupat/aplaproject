@@ -10,6 +10,7 @@ class DashBoard {
     }
 
     createTable(dataType){
+        this.clearContext();
         var instance = this;
     
         var dataSetFactory = new DataSetFactory();
@@ -78,75 +79,54 @@ class DashBoard {
         });
     }
 
-    clearContext(){
-        if(this.barCh != null)
-            this.barCh.destroy();
-        if(this.lineCh != null)
-            this.lineCh.destroy();
-        if(this.pieCh != null)
-            this.pieCh.destroy();
-        if(this.doughnutCh != null)
-            this.doughnutCh.destroy();
-        if(this.stackedCh != null)
-            this.stackedCh.destroy();
-    }
+    generateCommonBuildChartData(labelsArray,datasetsArray){
 
-generateCommonBuildChartData(labelsArray,datasetsArray){
+        var buildChartData=new BuildChartData(labelsArray,datasetsArray);
 
-    var buildChartData=new BuildChartData(labelsArray,datasetsArray);
-        
         //getting stateDataMap
         var stateDataMap =new Map();
         stateDataMap=buildChartData.generateStateDataMap();
-      
+
         //getting stateLabelsArray
         var stateLabelsArray=new Array();
         stateLabelsArray=buildChartData.generateStateLabelsArray();
-       
+
        //for bar chart
         var barDatasetObjArray=buildChartData.generateBarDatasetWithColor(stateDataMap,stateLabelsArray);
         var barChart= new BarChart('bar',labelsArray,barDatasetObjArray);
-		this.barCh = barChart.generateChart();
+        this.barCh = barChart.generateChart();
 
        //for line chart
        var lineDatasetObjArray=buildChartData.generateLineDatasetWithColor(stateDataMap,stateLabelsArray);
         var lineChart= new LineChart('line',labelsArray,lineDatasetObjArray);
-		this.lineCh = lineChart.generateChart();
+        this.lineCh = lineChart.generateChart();
 
         //for stacked line chart
         var stackedLineDatasetObjArray=buildChartData.generateLineDatasetWithColor(stateDataMap,stateLabelsArray);
         var stackedChart= new StackedChart('line',labelsArray,stackedLineDatasetObjArray);
-		this.stackedCh = stackedChart.generateChart();
-        
+        this.stackedCh = stackedChart.generateChart();
+
         //for pie chart
         var pieDatasetObjArray=buildChartData.generatePieDatasetWithColor(stateDataMap,stateLabelsArray);
         var pieChart= new PieChart('pie',labelsArray,pieDatasetObjArray);
-		this.pieCh = pieChart.generateChart();
+        this.pieCh = pieChart.generateChart();
 
         //for doughnut chart
         var dounutDatasetObjArray=buildChartData.generatePieDatasetWithColor(stateDataMap,stateLabelsArray);
         var doughnutChart= new DoughnutChart('doughnut',labelsArray,dounutDatasetObjArray);
-		this.doughnutCh = doughnutChart.generateChart();
+        this.doughnutCh = doughnutChart.generateChart();
 
-}
+    }
 
     createChart(queryData){
        
         var labelsArray=queryData[0];
         var datasetsArray=queryData[1];
-
+        this.setSelectChartValues(true, 'block');
        //generating BuildChartData only once for each call
        this.generateCommonBuildChartData(labelsArray,datasetsArray);
 
-   
-    }
 
-    showHideGraph(chkBoxId, chartDivId){
-         if(document.getElementById(chkBoxId).checked == true){
-             document.getElementById(chartDivId).style.display = 'block';
-         }else{
-             document.getElementById(chartDivId).style.display = 'none';
-         }
     }
 
     cleanUpComponentOnDataSetChange(){
@@ -160,7 +140,7 @@ generateCommonBuildChartData(labelsArray,datasetsArray){
         var graphDivthrd = document.getElementById('pieChart');
         var graphDivfourth = document.getElementById('doughnutChart');
         var graphDivfifth = document.getElementById('stackedChart');
-        
+
         var ctxGraphDivFirst=graphDivFirst.getContext("2d");
         var ctxGraphDivSec=graphDivSec.getContext("2d");
         var ctxGraphDivthrd=graphDivthrd.getContext("2d");
@@ -171,20 +151,53 @@ generateCommonBuildChartData(labelsArray,datasetsArray){
         columnCheckbox.innerHTML = '';
         aggregateFunction.innerHTML = '';
         aggregateFunctionResult.innerHTML = '';
-      
+
         ctxGraphDivFirst.clearRect(0, 0, graphDivFirst.width, graphDivFirst.height);
         ctxGraphDivSec.clearRect(0, 0, graphDivSec.width, graphDivSec.height);
         ctxGraphDivthrd.clearRect(0, 0, graphDivthrd.width, graphDivthrd.height);
         ctxGraphDivfourth.clearRect(0, 0, graphDivfourth.width, graphDivfourth.height);
         ctxGraphDivfifth.clearRect(0, 0, graphDivfifth.width, graphDivfifth.height);
-        
+
         document.getElementById('checkboxesId').style.display = 'none';
-        document.getElementById('barChkBox').checked =true;
-        document.getElementById('lineChkBox').checked =true;
-        document.getElementById('pieChkBox').checked =true;
-        document.getElementById('doughnutChkBox').checked =true;
-        document.getElementById('stackedChkBox').checked =true;
-    
+        this.setSelectChartValues(false, 'none');
+    }
+
+    clearContext(){
+        if(this.barCh != null)
+            this.barCh.destroy();
+        if(this.lineCh != null)
+            this.lineCh.destroy();
+        if(this.pieCh != null)
+            this.pieCh.destroy();
+        if(this.doughnutCh != null)
+            this.doughnutCh.destroy();
+        if(this.stackedCh != null)
+            this.stackedCh.destroy();
+    }
+
+    setSelectChartValues(selectedValue, showOrHide){
+        document.getElementById('barChkBox').checked = selectedValue;
+        document.getElementById('barChartDiv').style.display = showOrHide;
+
+        document.getElementById('lineChkBox').checked = selectedValue;
+        document.getElementById('lineChartDiv').style.display = showOrHide;
+
+        document.getElementById('pieChkBox').checked = selectedValue;
+        document.getElementById('pieChartDiv').style.display = showOrHide;
+
+        document.getElementById('doughnutChkBox').checked = selectedValue;
+        document.getElementById('doughnutChartDiv').style.display = showOrHide;
+
+        document.getElementById('stackedChkBox').checked = selectedValue;
+        document.getElementById('stackedChartDiv').style.display = showOrHide;
+    }
+
+    showHideGraph(chkBoxId, chartDivId){
+         if(document.getElementById(chkBoxId).checked == true){
+             document.getElementById(chartDivId).style.display = 'block';
+         }else{
+             document.getElementById(chartDivId).style.display = 'none';
+         }
     }
 }
 
