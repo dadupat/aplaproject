@@ -13,7 +13,7 @@ class StackedChart extends ChartObserver {
       
 
            var ctx = document.getElementById("stackedChart");
-        var lineChart1 = new Chart(ctx, {
+        var stackedChart = new Chart(ctx, {
             type: this._type,
             data: {
               labels: this._labelsArray,
@@ -27,5 +27,7 @@ class StackedChart extends ChartObserver {
                                 }
                          }
         });
+
+        return stackedChart;
     }
 }

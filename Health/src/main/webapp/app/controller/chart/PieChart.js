@@ -15,7 +15,7 @@ class PieChart extends ChartObserver {
        
 
            var ctx = document.getElementById("pieChart");
-        var lineChart1 = new Chart(ctx, {
+        var pieChart = new Chart(ctx, {
             type: this._type,
             data: {
               labels: this._labelsArray,
@@ -23,5 +23,6 @@ class PieChart extends ChartObserver {
             },
             
         });
+        return pieChart;
     }
 }

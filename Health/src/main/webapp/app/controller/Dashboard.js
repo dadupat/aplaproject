@@ -1,6 +1,14 @@
 'use strict'
 class DashBoard {
 
+    constructor () {
+        this.barCh = null;
+        this.lineCh = null;
+        this.pieCh = null;
+        this.doughnutCh = null;
+        this.stackedCh = null;
+    }
+
     createTable(dataType){
         var instance = this;
     
@@ -55,6 +63,7 @@ class DashBoard {
     }
 
     generateCharts(){
+        this.clearContext();
         var instance = this;
         var dataSetFactory = new DataSetFactory();
         var aggregateFunctionResult = document.getElementById('aggregateFunctionResult');
@@ -67,6 +76,19 @@ class DashBoard {
                 instance.createChart(queryData);
             }
         });
+    }
+
+    clearContext(){
+        if(this.barCh != null)
+            this.barCh.destroy();
+        if(this.lineCh != null)
+            this.lineCh.destroy();
+        if(this.pieCh != null)
+            this.pieCh.destroy();
+        if(this.doughnutCh != null)
+            this.doughnutCh.destroy();
+        if(this.stackedCh != null)
+            this.stackedCh.destroy();
     }
 
 generateCommonBuildChartData(labelsArray,datasetsArray){
@@ -84,27 +106,27 @@ generateCommonBuildChartData(labelsArray,datasetsArray){
        //for bar chart
         var barDatasetObjArray=buildChartData.generateBarDatasetWithColor(stateDataMap,stateLabelsArray);
         var barChart= new BarChart('bar',labelsArray,barDatasetObjArray);
-		 	barChart.generateChart();
+		this.barCh = barChart.generateChart();
 
        //for line chart
        var lineDatasetObjArray=buildChartData.generateLineDatasetWithColor(stateDataMap,stateLabelsArray);
         var lineChart= new LineChart('line',labelsArray,lineDatasetObjArray);
-		lineChart.generateChart();
+		this.lineCh = lineChart.generateChart();
 
         //for stacked line chart
         var stackedLineDatasetObjArray=buildChartData.generateLineDatasetWithColor(stateDataMap,stateLabelsArray);
         var stackedChart= new StackedChart('line',labelsArray,stackedLineDatasetObjArray);
-		stackedChart.generateChart();
+		this.stackedCh = stackedChart.generateChart();
         
         //for pie chart
         var pieDatasetObjArray=buildChartData.generatePieDatasetWithColor(stateDataMap,stateLabelsArray);
         var pieChart= new PieChart('pie',labelsArray,pieDatasetObjArray);
-		pieChart.generateChart();  
+		this.pieCh = pieChart.generateChart();
 
         //for doughnut chart
         var dounutDatasetObjArray=buildChartData.generatePieDatasetWithColor(stateDataMap,stateLabelsArray);
-        var donughnutChart= new DoughnutChart('doughnut',labelsArray,dounutDatasetObjArray);
-		donughnutChart.generateChart();
+        var doughnutChart= new DoughnutChart('doughnut',labelsArray,dounutDatasetObjArray);
+		this.doughnutCh = doughnutChart.generateChart();
 
 }
 
@@ -158,10 +180,10 @@ generateCommonBuildChartData(labelsArray,datasetsArray){
         
         document.getElementById('checkboxesId').style.display = 'none';
         document.getElementById('barChkBox').checked =true;
-        document.getElementById('lineChkBox').checked =false;
-        document.getElementById('pieChkBox').checked =false;
-        document.getElementById('doughnutChkBox').checked =false;
-        document.getElementById('stackedChkBox').checked =false;
+        document.getElementById('lineChkBox').checked =true;
+        document.getElementById('pieChkBox').checked =true;
+        document.getElementById('doughnutChkBox').checked =true;
+        document.getElementById('stackedChkBox').checked =true;
     
     }
 }

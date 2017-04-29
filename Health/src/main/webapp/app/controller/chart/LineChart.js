@@ -15,7 +15,7 @@ class LineChart extends ChartObserver {
  
 
            var ctx = document.getElementById("lineChart");
-        var lineChart1 = new Chart(ctx, {
+        var lineChart = new Chart(ctx, {
             type: this._type,
             data: {
               labels: this._labelsArray,
@@ -31,5 +31,7 @@ class LineChart extends ChartObserver {
 	             }
 	         }
         });
+
+        return lineChart;
     }
 }

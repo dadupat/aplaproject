@@ -96,20 +96,20 @@
     <div id="aggregateFunction" style="padding-top: 40px;"></div>
     <div id="aggregateFunctionResult" style="padding-top:20px;"></div>
 
- 
+
     <div style="padding-top:20px;">
         <button id="generateChartButton" onclick="dashboard.generateCharts()" style="display:none">Generate Charts</button>
     </div>
-    
+
 
     <!--Chart Section-->
     <div id="checkboxesId" style="padding-top: 2cm;display:none">
         <label>Select Charts:</label>
         <input type="checkbox" id="barChkBox" onclick="dashboard.showHideGraph('barChkBox','barChartDiv')" style="margin-left:30px;" checked="true"> Bar Chart </input>
-        <input type="checkbox" id="lineChkBox" onclick="dashboard.showHideGraph('lineChkBox','lineChartDiv')" style="margin-left:30px;"> Line Chart </input>
-        <input type="checkbox" id="pieChkBox" onclick="dashboard.showHideGraph('pieChkBox','pieChartDiv')" style="margin-left:30px;"> Pie Chart </input>
-        <input type="checkbox" id="doughnutChkBox" onclick="dashboard.showHideGraph('doughnutChkBox','doughnutChartDiv')" style="margin-left:30px;"> Doughnut Chart </input>
-        <input type="checkbox" id="stackedChkBox" onclick="dashboard.showHideGraph('stackedChkBox','stackedChartDiv')" style="margin-left:30px;"> Stacked Chart </input>
+        <input type="checkbox" id="lineChkBox" onclick="dashboard.showHideGraph('lineChkBox','lineChartDiv')" style="margin-left:30px;" checked="true"> Line Chart </input>
+        <input type="checkbox" id="pieChkBox" onclick="dashboard.showHideGraph('pieChkBox','pieChartDiv')" style="margin-left:30px;" checked="true"> Pie Chart </input>
+        <input type="checkbox" id="doughnutChkBox" onclick="dashboard.showHideGraph('doughnutChkBox','doughnutChartDiv')" style="margin-left:30px;" checked="true"> Doughnut Chart </input>
+        <input type="checkbox" id="stackedChkBox" onclick="dashboard.showHideGraph('stackedChkBox','stackedChartDiv')" style="margin-left:30px;" checked="true"> Stacked Chart </input>
     </div>
 
     <div class="row text-center" id="graphDivFirst">
@@ -121,7 +121,7 @@
         <div class="col-md-6 col-sm-6 hero-feature" id="barChartDiv">
             <canvas id="barChart" class="canvas-holder half"></canvas>
         </div>
-    
+
     </div>
     <div class="row text-center" id="graphDivSec">
         <div class="col-md-4 col-sm-4 hero-feature" id="pieChartDiv">
